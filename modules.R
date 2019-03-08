@@ -1,7 +1,8 @@
 #Shiny UI/Server Modules
 
 csvFileInput <- function(id, label = "CSV file") {
-  # Create a namespace function using the provided id
+  #File Input UI
+  
   ns <- NS(id)
   
   tagList(fileInput(
@@ -16,19 +17,35 @@ csvFileInput <- function(id, label = "CSV file") {
   ))
 }
 
+
+csvFile <- function(input,output,session,stateChange=FALSE){
+  #Clean file and return xts time series
+  #stateChange = True indicates file contained a state change trend
+  
+  data <- input$file$datapath
+  if(stateChange){
+    
+  }else{
+    
+  }
+}
+
 plottingOutput <- function(id) {
+  #Plot Output UI
   ns <- NS(id)
   
-  tagList(plotlyOutput(ns("plot")))
+  tagList(plotlyOutput(ns("plot"),height="500px"))
 }
 
 plotting <- function(input, output, session, data) {
+  #Create plotly output from data
+  
   plt <- reactive({
     if (all(is.na(data()))) {
       emptyPlot()
     }
     else{
-      
+      #Plot data
     }
   })
   
