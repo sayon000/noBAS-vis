@@ -1,5 +1,9 @@
 #Shiny UI/Server Modules
 
+#Libraries
+library(shiny)
+library(plotly) #renderPlotly
+
 csvFileInput <- function(id, label = "CSV file") {
   #File Input UI
   

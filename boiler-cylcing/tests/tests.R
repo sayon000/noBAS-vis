@@ -1,8 +1,3 @@
-library(readr)
-library(lubridate)
-library(xts)
-library(tibble)
-
 source('data_processing.R')
 
 motor1 <- 'boiler-cylcing/tests/motor1.csv'

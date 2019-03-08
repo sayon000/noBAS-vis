@@ -1,5 +1,9 @@
 #Plots and Data Processing/Prep
 
+library(plotly)
+library(lubridate)
+library(readr)
+library(xts)
 
 #####-----Data Cleaning / Reformatting -----#####
 find_start <- function(index_column, dt_formats) {

@@ -1,4 +1,4 @@
-
+library(shinythemes)
 
 ui <-
   navbarPage(
