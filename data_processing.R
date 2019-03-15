@@ -84,16 +84,25 @@ process_data<-
       stop("Unable to parse datetimes with given orders/index column")
     }
     
-    #State Change Data
-    if(state_change_data){
-      #state change function here
-    }
-    
-    #Account for Periodicty
+    #Convert to xts
     col_names = colnames(df)[-1]
     xtsdata <- xts(df[2:length(df)], order.by = df$index)
     
-    if (periodicity_15 && !state_change_data) {
+    #State Change Data
+    if(state_change_data){
+      
+      times <- index(xtsdata)
+      times <- times - 1
+      times <- times[-1]
+      nas <- rep(NA,length(times))
+      insert <- xts(nas,times)
+      xtsdata <- suppressWarnings(rbind(xtsdata,insert))
+      xtsdata <- na.locf(xtsdata)
+      return(xtsdata)
+      
+    }
+    #Account for Periodicty
+    else if (periodicity_15) {
       p <- periodicity(xtsdata)
       if (p['frequency'] < 15 &&
           p['units'] == 'mins') {
