@@ -4,8 +4,13 @@ library(plotly)
 library(lubridate)
 library(readr)
 library(xts)
+library(dplyr)
 
 #####-----Data Cleaning / Reformatting -----#####
+
+#DEPRECATED
+#Loop through index_column of dataframe looking for and entry that matches parse_date_time(entry,dt_formats)
+  #Returns location of first match
 find_start <- function(index_column, dt_formats) {
   count <- 1
   for (entry in index_column) {
@@ -22,52 +27,55 @@ find_start <- function(index_column, dt_formats) {
   }
 }
 
+#Read in csv file. Skips until string "Date" is encountered
+csv_read <- function(filepath){
+  data.table::fread(filepath,sep=',',data.table=FALSE,blank.lines.skip=TRUE,skip="Date",na.strings=c("","logged","Logged"))
+}
+
 #input: datapath from csvFileInput containing 1 trend
 #Output: xts object with 1 data column, 1 index
 process_data<-
-  function(df,
-           keep_columns = c(2),
-           col_names = c('val'),
+  function(data,
            dt_formats = c('Ymd HM', 'Ymd HMS', 'mdy IMS p'),
+           target_columns = c("Temp"),
            state_change_data = FALSE,
            periodicity_15 = FALSE) {
-    #df: dataframe like object containing time series data
-    #keep_columns: vector of column numbers to keep (after dropping redundant index columns)
-    #col_names: names of non index columns
+    #data: csv file object exported through HOBOware
+    #dt_formats: datetime formats to try and parse against
+    #target_columns: target data columns (not Date Time) to keep (matching via regex)
     #state_change: bool flag for whether state change data
     #periodicity_15: bool flag to force downscale to 15 minute period for NON state_change data
     
+    df <- csv_read(data)
+    
     #Remove redundant index column if present
-    df_rowcount <- length(df[[1]]) + array(-5:5) #+/- 5
+    df <- df %>% select(-matches("#"))
     
-    last_val <- df[length(df[[1]]), 1][[1]]
-    
-    if (any(df_rowcount == last_val)) {
-      df <- df[c(-1)]
-      warning("First column detected to be numeric index, removed")
+    #Keep only Specified Columns + Date Column
+    targets <- "Date" 
+    for(target in target_columns){
+      targets <- paste(targets,"|",target,sep="")
     }
+    df <- df %>% select(matches(targets))
     
-    start <- find_start(df[[1]], dt_formats)
-    if (is.na(start)) {
-      start <- find_start(df[[2]], dt_formats)
-      if (is.na(start)) {
-        stop("Unable to locate or parse datetime column within first two columns")
-      } else{
-        df <- df[c(-1)] #failsafe to drop redunant index column
-        warning("First column detected to be numeric index, removed")
-      }
-    }
+    #Confirm Location of first Date Time Entry
     
-    #trim rows before start
-    df <- df[start:length(df[[1]]), ]
+    # start <- find_start(df[[1]], dt_formats)
+    # if (is.na(start)) {
+    #   start <- find_start(df[[2]], dt_formats)
+    #   if (is.na(start)) {
+    #     stop("Unable to locate or parse datetime column within first two columns")
+    #   }
+    # }
+
+    #trim rows before first Date Time Entry
     
-    #trim extra columns
-    df <- df[c(1, keep_columns)]
-    
-    colnames(df) <- c('index', col_names)
+    # df <- df[start:length(df[[1]]), ]
+
+    colnames(df)[1] <- "index"
     
     #filter out incomplete date/val pairs
-    df <- df[complete.cases(df[, c(1, keep_columns)]), ]
+    df <- df[complete.cases(df),]
     
     #Convert index to datetime format
     df$index <-
@@ -76,14 +84,21 @@ process_data<-
       stop("Unable to parse datetimes with given orders/index column")
     }
     
-    xtsdata <- xts(df[2:length(df)], order.by = df$index)
+    #State Change Data
+    if(state_change_data){
+      #state change function here
+    }
     
     #Account for Periodicty
+    col_names = colnames(df)[-1]
+    xtsdata <- xts(df[2:length(df)], order.by = df$index)
+    
     if (periodicity_15 && !state_change_data) {
       p <- periodicity(xtsdata)
       if (p['frequency'] < 15 &&
           p['units'] == 'mins') {
         xtsdata <- to.minutes15(xtsdata)[, 1]
+        colnames(xtsdata) <- col_names
       }
     }
     
@@ -128,23 +143,76 @@ emptyPlot <-
     return(plt)
   }
 
+#Return plotly object from data (xtsformat)
 fullPlot <- function(discreteData = NA,
-                     stateData = NA) {
-  #Return plotly object from data (xtsformat)
-  #discreteData: List of trends such as Temperature
-  #stateData: State change data (0 or 1)
+                     stateData = NA,
+                     title='My Plot',
+                     x_label='Time',
+                     y1_label='Y1 Label',
+                     y2_label='Y2 Label') {
   
+  
+  #discreteData: List of trend lists each containing:
+    # $name: Legend Name for Trend
+    # $index: data.frame of datatime objects
+    # $values: data.frame of value pairs for index
+    # $color: color of trend
+    
+    #ex: list(list(name=temp1,index=date_indexes1,values=values1,color='red'),
+                #list(name=temp2,index=date_indexes2,values=values2,color='blue'))
+  
+  #stateData: State change data (0 or 1)
+
   if (is.na(discreteData) && is.na(stateData)){
-    print("no data provided, defaulted to emptyPlot")
+    warning("no data provided, defaulted to emptyPlot")
     return(emptyPlot())
   }
-  else if (is.na(stateData)) {
-    #discreteData without stateData
+  
+  y <- list(title = y1_label, 
+            overlaying = 'y2')
+  
+  #Right y-axis (State Change)
+  y2 <- list(
+    tickfont = list(color = "red"),
+    showgrid = FALSE,
+    side = "right",
+    title = y2_label
+  )
+  
+  #x-axis (time)
+  x <- list(title = x_label,
+            nticks = 45,
+            tickangle = -90,
+            automargin=TRUE
+          )
+  
+  plt <-
+    plot_ly(type = 'scatter', mode = 'lines') %>% layout(
+      title = title,
+      xaxis = x,
+      yaxis = y
+    )
+  
+
+  if (all(!is.na(discreteData))) {
+    for(trend in discreteData){
+      trend_label <- trend$name
+      trend_date_times <-  trend$index
+      trend_values <- trend$values
+      trend_color <- trend$color
+      
+      plt <-
+        plt %>% add_lines(
+          name = trend_label,
+          x = trend_date_times,
+          y = trend_values,
+          line = list(color = trend_color)
+        )
+    }
+    return(plt)
   }
-  else if(is.na(discreteData)){
-    #stateData without discreteData
-  }
-  else{
-    #discreteData and stateData
+  
+  if(!is.na(stateData)){
+    
   }
 }
