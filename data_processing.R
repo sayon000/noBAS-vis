@@ -28,6 +28,7 @@ find_start <- function(index_column, dt_formats) {
 }
 
 #Read in csv file. Skips until string "Date" is encountered
+#Assumes Index column header contains string "Date"
 csv_read <- function(filepath){
   data.table::fread(filepath,sep=',',data.table=FALSE,blank.lines.skip=TRUE,skip="Date",na.strings=c("","logged","Logged"))
 }
@@ -36,14 +37,18 @@ csv_read <- function(filepath){
 #Output: xts object with 1 data column, 1 index
 process_data<-
   function(data,
+           state_change_data,
+           target_columns,
            dt_formats = c('Ymd HM', 'Ymd HMS', 'mdy IMS p'),
-           target_columns = c("Temp"),
-           state_change_data = FALSE,
            periodicity_15 = FALSE) {
     #data: csv file object exported through HOBOware
-    #dt_formats: datetime formats to try and parse against
-    #target_columns: target data columns (not Date Time) to keep (matching via regex)
     #state_change: bool flag for whether state change data
+    #target_columns: target data columns (not Date Time) to keep (matching via regex)
+    
+      #IMPORTANT: target_columns string values MUST corresponds to the "Measurement" name given to the logger 
+                  #when initialized in HOBOware
+    
+    #dt_formats: datetime formats to try and parse against. Default values work for all  HOBOware files (to my knowledge)
     #periodicity_15: bool flag to force downscale to 15 minute period for NON state_change data
     
     df <- csv_read(data)
@@ -57,20 +62,6 @@ process_data<-
       targets <- paste(targets,"|",target,sep="")
     }
     df <- df %>% select(matches(targets))
-    
-    #Confirm Location of first Date Time Entry
-    
-    # start <- find_start(df[[1]], dt_formats)
-    # if (is.na(start)) {
-    #   start <- find_start(df[[2]], dt_formats)
-    #   if (is.na(start)) {
-    #     stop("Unable to locate or parse datetime column within first two columns")
-    #   }
-    # }
-
-    #trim rows before first Date Time Entry
-    
-    # df <- df[start:length(df[[1]]), ]
 
     colnames(df)[1] <- "index"
     
@@ -98,6 +89,7 @@ process_data<-
       insert <- xts(nas,times)
       xtsdata <- suppressWarnings(rbind(xtsdata,insert))
       xtsdata <- na.locf(xtsdata)
+      
       return(xtsdata)
       
     }
@@ -153,8 +145,8 @@ emptyPlot <-
   }
 
 #Return plotly object from data (xtsformat)
-fullPlot <- function(discreteData = NA,
-                     stateData = NA,
+fullPlot <- function(discreteData=NA,
+                     stateData=NA,
                      title='My Plot',
                      x_label='Time',
                      y1_label='Y1 Label',
@@ -171,8 +163,8 @@ fullPlot <- function(discreteData = NA,
                 #list(name=temp2,index=date_indexes2,values=values2,color='blue'))
   
   #stateData: State change data (0 or 1)
-
-  if (is.na(discreteData) && is.na(stateData)){
+  
+  if (all(is.na(discreteData)) && all(is.na(stateData))){
     warning("no data provided, defaulted to emptyPlot")
     return(emptyPlot())
   }
@@ -212,16 +204,31 @@ fullPlot <- function(discreteData = NA,
       
       plt <-
         plt %>% add_lines(
+          yaxis='y',
           name = trend_label,
           x = trend_date_times,
           y = trend_values,
           line = list(color = trend_color)
         )
     }
-    return(plt)
   }
   
-  if(!is.na(stateData)){
-    
+  if(all(!is.na(stateData))){
+    for(trend in stateData){
+      trend_label <- trend$name
+      trend_date_times <-  trend$index
+      trend_values <- trend$values
+      trend_color <- trend$color
+      
+      plt <- plt %>% add_lines(
+          yaxis = 'y2',
+          name = trend_label,
+          x = trend_date_times,
+          y = trend_values,
+          line = list(color = trend_color)
+      ) %>% layout(yaxis2 = y2)
+    }
   }
+  
+  return(plt)
 }

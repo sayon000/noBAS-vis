@@ -18,6 +18,6 @@ fan <- process_data(fan_f,target_columns=c("Fan"),state_change_data=TRUE)
 
 stack1_trend <- list(name='Stack1',index=index(stack1),values=coredata(stack1),color='red')
 stack2_trend <- list(name='Stack2',index=index(stack2),values=coredata(stack2),color='blue')
-stack_plt <- fullPlot(discreteData = list(stack1_trend,stack2_trend))
+fan_trend <- list(name='Fan',index=index(fan),values=coredata(fan),color='gray')
 
-fan_trend <- list(name='Fan',index=index(fan),values=coredata(fan),color='blue')
+stack_plt <- fullPlot(discreteData = list(stack1_trend,stack2_trend),stateData = list(fan_trend))
