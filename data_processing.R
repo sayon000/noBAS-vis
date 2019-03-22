@@ -158,6 +158,7 @@ emptyPlot <-
 #Return plotly object from data (xtsformat)
 fullPlot <- function(discreteData=NA,
                      stateData=NA,
+                     occupancyRects=NA,
                      title='My Plot',
                      x_label='Time',
                      y1_label='Y1 Label',
@@ -205,6 +206,10 @@ fullPlot <- function(discreteData=NA,
       yaxis = y
     )
   
+  if(!is.na(occupancyRects)){
+    plt <- plt %>% layout(plot_bgcolor = "#d7d2d2", shapes = occupancyRects)
+  }
+  
 
   if (all(!is.na(discreteData))) {
     for(trend in discreteData){
@@ -240,6 +245,6 @@ fullPlot <- function(discreteData=NA,
       ) %>% layout(yaxis2 = y2)
     }
   }
-  
+
   return(plt)
 }

@@ -19,6 +19,10 @@ server <- function(input, output, session) {
                                     name=reactive({"Motor Status"}),
                                     color=reactive({"gray"}))
   
+  all_data <- reactive({
+    list(data1_trend(),data2_trend())
+  })
+  
   discrete <- reactive({
     list(data1_trend())
   })
@@ -28,5 +32,7 @@ server <- function(input, output, session) {
   })
   
   
-  callModule(plotting,"plot1",discrete,state)
+  date_range <- callModule(dateRange,"placeholder-id",data=all_data)
+  occupancyRects <- callModule(occupancy,"occ",date_range)
+  callModule(plotting,"plot1",discrete,state,occupancyRects)
 }

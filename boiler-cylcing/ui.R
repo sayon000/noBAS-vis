@@ -10,7 +10,8 @@ ui <-
              sidebarLayout(sidebarPanel(
                ##File Inputs
                csvFileInput(id='file1',label='Stack Temperature'),
-               csvFileInput(id='file2',label='Motor Status')
+               csvFileInput(id='file2',label='Motor Status'),
+               occupancyInput(id='occ',"https://cunybpl.shinyapps.io/nobas-occupancy/")
              ),
              mainPanel(
                #Plotting Output
