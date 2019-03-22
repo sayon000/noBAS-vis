@@ -56,12 +56,23 @@ process_data<-
     #Remove redundant index column if present
     df <- df %>% select(-matches("#"))
     
+    actual_colnames <- colnames(df)
+    
     #Keep only Specified Columns + Date Column
     targets <- "Date" 
     for(target in target_columns){
       targets <- paste(targets,"|",target,sep="")
     }
     df <- df %>% select(matches(targets))
+    
+    if(length(target_columns) + 1 != length(colnames(df))){
+      stop(paste(
+        "\nUnable to locate all target_columns.", 
+        "\nThis indicates the expected column headers do no match the actual column headers.",
+        "\nExpected Column Headers: ", target_columns,
+        "\nActual Columns: ", actual_colnames)
+      )
+    }
 
     colnames(df)[1] <- "index"
     
