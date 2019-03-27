@@ -194,7 +194,7 @@ fullPlot <- function(discreteData=NA,
   
   #x-axis (time)
   x <- list(title = x_label,
-            nticks = 45,
+            nticks = 40,
             tickangle = -90,
             automargin=TRUE
           )
@@ -206,43 +206,47 @@ fullPlot <- function(discreteData=NA,
       yaxis = y
     )
   
-  if(!is.na(occupancyRects)){
+  if(any(!is.na(occupancyRects))){
     plt <- plt %>% layout(plot_bgcolor = "#d7d2d2", shapes = occupancyRects)
   }
   
 
-  if (all(!is.na(discreteData))) {
+  if (any(!is.na(discreteData))) {
     for(trend in discreteData){
-      trend_label <- trend$name
-      trend_date_times <-  trend$index
-      trend_values <- trend$values
-      trend_color <- trend$color
-      
-      plt <-
-        plt %>% add_lines(
-          yaxis='y',
-          name = trend_label,
-          x = trend_date_times,
-          y = trend_values,
-          line = list(color = trend_color)
-        )
+      if(all(!is.na(trend))){
+        trend_label <- trend$name
+        trend_date_times <-  trend$index
+        trend_values <- trend$values
+        trend_color <- trend$color
+        
+        plt <-
+          plt %>% add_lines(
+            yaxis='y',
+            name = trend_label,
+            x = trend_date_times,
+            y = trend_values,
+            line = list(color = trend_color)
+          )
+      }
     }
   }
   
-  if(all(!is.na(stateData))){
+  if(any(!is.na(stateData))){
     for(trend in stateData){
-      trend_label <- trend$name
-      trend_date_times <-  trend$index
-      trend_values <- trend$values
-      trend_color <- trend$color
-      
-      plt <- plt %>% add_lines(
-          yaxis = 'y2',
-          name = trend_label,
-          x = trend_date_times,
-          y = trend_values,
-          line = list(color = trend_color)
-      ) %>% layout(yaxis2 = y2)
+      if(all(!is.na(trend))){
+        trend_label <- trend$name
+        trend_date_times <-  trend$index
+        trend_values <- trend$values
+        trend_color <- trend$color
+        
+          plt <- plt %>% add_lines(
+              yaxis = 'y2',
+              name = trend_label,
+              x = trend_date_times,
+              y = trend_values,
+              line = list(color = trend_color)
+          ) %>% layout(yaxis2 = y2)
+      }
     }
   }
 

@@ -437,7 +437,9 @@ plottingOutput <- function(id) {
   #Plot Output UI
   ns <- NS(id)
   
-  tagList(plotlyOutput(ns("plot"), height = "500px"))
+  tagList(plotlyOutput(ns("plot"), height = "500px"),
+          textInput(ns("plot_name"),label="Plot Title",value="My Plot",placeholder="My Plot")
+          )
 }
 
 plotting <-
@@ -454,7 +456,7 @@ plotting <-
         discreteData = discreteTrends(),
         stateData = stateTrends(),
         occupancyRects = occupancyRects(),
-        title = 'My Plot',
+        title = input$plot_name,
         x_label = 'Time',
         y1_label = 'Y1 Label',
         y2_label = 'Y2 Label'

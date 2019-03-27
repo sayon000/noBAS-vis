@@ -5,34 +5,50 @@ library(shiny)
 server <- function(input, output, session) {
   
   
-  data1_trend <- callModule(csvFile,"file1",
+  stack1_trend <- callModule(csvFile,"file1",
                       targetColumns=reactive({c("K-Type")}), 
                       stateChange=reactive({FALSE}), 
                       periodicity15=reactive({TRUE}),
-                      name=reactive({"Stack Temp"}),
+                      name=reactive({"Stack Temp 1"}),
                       color=reactive({"red"}))
   
-  data2_trend <- callModule(csvFile,"file2",
+  motor1_trend <- callModule(csvFile,"file2",
                                     targetColumns=reactive({c("Motor")}), 
                                     stateChange=reactive({TRUE}), 
                                     periodicity15=reactive({FALSE}),
-                                    name=reactive({"Motor Status"}),
+                                    name=reactive({"Motor Status 1"}),
                                     color=reactive({"gray"}))
   
+  stack2_trend <- callModule(csvFile,"file3",
+                             targetColumns=reactive({c("K-Type")}), 
+                             stateChange=reactive({FALSE}), 
+                             periodicity15=reactive({TRUE}),
+                             name=reactive({"Stack Temp 2"}),
+                             color=reactive({"orange"}))
+  
+  motor2_trend <- callModule(csvFile,"file4",
+                             targetColumns=reactive({c("Motor")}), 
+                             stateChange=reactive({TRUE}), 
+                             periodicity15=reactive({FALSE}),
+                             name=reactive({"Motor Status 2"}),
+                             color=reactive({"green"}))
+  
+  
   all_data <- reactive({
-    list(data1_trend(),data2_trend())
+    list(stack1_trend(),motor1_trend(),stack2_trend(),motor2_trend())
   })
   
+  date_range <- callModule(dateRange,"placeholder-id",data=all_data)
+  
+  
   discrete <- reactive({
-    list(data1_trend())
+    list(stack1_trend(),stack2_trend())
   })
   
   state <- reactive({
-    list(data2_trend())
+    list(motor1_trend(),motor2_trend())
   })
   
-  
-  date_range <- callModule(dateRange,"placeholder-id",data=all_data)
   occupancyRects <- callModule(occupancy,"occ",date_range)
   callModule(plotting,"plot1",discrete,state,occupancyRects)
 }
