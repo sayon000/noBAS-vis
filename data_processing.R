@@ -10,7 +10,7 @@ library(dplyr)
 
 #DEPRECATED
 #Loop through index_column of dataframe looking for and entry that matches parse_date_time(entry,dt_formats)
-  #Returns location of first match
+#Returns location of first match
 find_start <- function(index_column, dt_formats) {
   count <- 1
   for (entry in index_column) {
@@ -45,8 +45,8 @@ process_data<-
     #state_change: bool flag for whether state change data
     #target_columns: target data columns (not Date Time) to keep (matching via regex)
     
-      #IMPORTANT: target_columns string values MUST corresponds to the "Measurement" name given to the logger 
-                  #when initialized in HOBOware
+    #IMPORTANT: target_columns string values MUST corresponds to the "Measurement" name given to the logger 
+    #when initialized in HOBOware
     
     #dt_formats: datetime formats to try and parse against. Default values work for all  HOBOware files (to my knowledge)
     #periodicity_15: bool flag to force downscale to 15 minute period for NON state_change data
@@ -65,15 +65,27 @@ process_data<-
     }
     df <- df %>% select(matches(targets))
     
-    if(length(target_columns) + 1 != length(colnames(df))){
+    if(length(colnames(df)) < 2){
+      targets <- gsub(',','',targets)
+      actual_colnames_str <- NULL
+      for(col in actual_colnames){
+        actual_colnames_str <- paste(actual_colnames_str, "\n",gsub(',','',col))
+      }
+      
       stop(paste(
-        "\nUnable to locate all target_columns.", 
-        "\nThis indicates the expected column headers do no match the actual column headers.",
-        "\nExpected Column Headers: ", target_columns,
-        "\nActual Columns: ", actual_colnames)
+        "\nUnable to locate target_column substring.",
+        "\nThis indicates the expected column headers do not match the actual column headers.",
+        "You've either uploaded the wrong type of trend or the column headers of your .csv are labeled incorrectly for this application.",
+        "\n\nExpected Column Headers: ", gsub('|','\n',targets,fixed=TRUE),
+        "\n\nActual Columns: ", actual_colnames_str,
+        "\n\n To fix this issue, edit your .csv file column headers. For the desired column of measurement (such as temperature),",
+        "replace the column header with the expected column header "
+        
+
+        )
       )
     }
-
+    
     colnames(df)[1] <- "index"
     
     #filter out incomplete date/val pairs
@@ -156,8 +168,7 @@ emptyPlot <-
   }
 
 #Return plotly object from data (xtsformat)
-fullPlot <- function(discreteData=NA,
-                     stateData=NA,
+fullPlot <- function(data=NA,
                      occupancyRects=NA,
                      title='My Plot',
                      x_label='Time',
@@ -165,26 +176,24 @@ fullPlot <- function(discreteData=NA,
                      y2_label='Y2 Label') {
   
   
-  #discreteData: List of trend lists each containing:
+  # data: List of trend lists each containing:
     # $name: Legend Name for Trend
     # $index: data.frame of datatime objects
     # $values: data.frame of value pairs for index
     # $color: color of trend
-    
+  
     #ex: list(list(name=temp1,index=date_indexes1,values=values1,color='red'),
-                #list(name=temp2,index=date_indexes2,values=values2,color='blue'))
+      #list(name=temp2,index=date_indexes2,values=values2,color='blue'))
   
-  #stateData: State change data (0 or 1)
-  
-  if (all(is.na(discreteData)) && all(is.na(stateData))){
+  if (all(is.na(data)) ){
     warning("no data provided, defaulted to emptyPlot")
     return(emptyPlot())
   }
   
-  y <- list(title = y1_label, 
-            overlaying = 'y2')
+  y1 <- list(title = y1_label, 
+             overlaying = 'y2')
   
-  #Right y-axis (State Change)
+  #Right y-axis (State Change usually)
   y2 <- list(
     tickfont = list(color = "red"),
     showgrid = FALSE,
@@ -197,58 +206,50 @@ fullPlot <- function(discreteData=NA,
             nticks = 40,
             tickangle = -90,
             automargin=TRUE
-          )
+  )
   
   plt <-
     plot_ly(type = 'scatter', mode = 'lines') %>% layout(
       title = title,
       xaxis = x,
-      yaxis = y
+      yaxis = y1
     )
   
   if(any(!is.na(occupancyRects))){
     plt <- plt %>% layout(plot_bgcolor = "#d7d2d2", shapes = occupancyRects)
   }
   
-
-  if (any(!is.na(discreteData))) {
-    for(trend in discreteData){
+  
+  if (any(!is.na(data))) {
+    for(trend in data){
       if(all(!is.na(trend))){
-        trend_label <- trend$name
-        trend_date_times <-  trend$index
-        trend_values <- trend$values
-        trend_color <- trend$color
         
-        plt <-
-          plt %>% add_lines(
-            yaxis='y',
-            name = trend_label,
-            x = trend_date_times,
-            y = trend_values,
-            line = list(color = trend_color)
-          )
+        if(trend$axis == 'y1'){
+          plt <-
+            plt %>% 
+            add_lines(
+              yaxis = 'y1',
+              name = trend$name,
+              x = trend$index,
+              y = trend$values,
+              line = list(color = trend$color)
+            )
+        }
+        
+        
+        else{
+          plt <-
+            plt %>% add_lines(
+              yaxis = 'y2',
+              name = trend$name,
+              x = trend$index,
+              y = trend$values,
+              line = list(color = trend$color)) %>% layout(yaxis2 = y2)
+        }
+        
       }
     }
   }
   
-  if(any(!is.na(stateData))){
-    for(trend in stateData){
-      if(all(!is.na(trend))){
-        trend_label <- trend$name
-        trend_date_times <-  trend$index
-        trend_values <- trend$values
-        trend_color <- trend$color
-        
-          plt <- plt %>% add_lines(
-              yaxis = 'y2',
-              name = trend_label,
-              x = trend_date_times,
-              y = trend_values,
-              line = list(color = trend_color)
-          ) %>% layout(yaxis2 = y2)
-      }
-    }
-  }
-
   return(plt)
 }

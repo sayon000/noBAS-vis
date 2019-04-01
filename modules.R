@@ -1,5 +1,10 @@
 #Shiny UI/Server Modules
 
+###########
+#All function parameters must be passed as reactive values. These reactive values are dereferenced within the functions themselves.
+#EX: To pass a 'string' pass reactive({'my string})
+###########
+
 #Libraries
 library(shiny)
 library(plotly) #renderPlotly
@@ -10,6 +15,8 @@ source('../data_processing.R')
 
 csvFileInput <- function(id, label = "CSV file") {
   #File Input UI
+  #Inputs:
+  #label: label of fileInput in UI output (string)
   
   ns <- NS(id)
   
@@ -34,9 +41,19 @@ csvFile <-
            periodicity15,
            name,
            color,
+           axis,
            dtFormats = c('Ymd HM', 'Ymd HMS', 'mdy IMS p')) {
     #Clean file and return xts time series
-    #stateChange = True indicates file contained a state change trend
+    
+    #Inputs:
+      #targetColumns, periodicity15,dtFormats are passed to process_data in data_processing.R See documentation there.
+
+      #name: name of trend
+      #color: color of trend to use on plot
+      #axis: either 'y' or 'y2', which y axis to use. Cannot mix discrete/state data on same axis
+    
+    #Outputs:
+      #List object representing an individual trend
     
     data_trend <- reactive({
       if (is.null(input$file)) {
@@ -56,15 +73,21 @@ csvFile <-
           name = name(),
           index = index(data),
           values = coredata(data),
-          color = color()
+          color = color(),
+          axis = axis()
         )
     })
     
     return(data_trend)
   }
 
-dateRange <- function(input,output,session,data){
+dateRange <- function(input, output, session, data) {
   #available date range of all uploaded files return: (min date, max date)
+  #Inputs:
+  #data: list of 'trends' retreived from csvFile module
+  #outputs:
+  #reactive container of list(start,end)
+  
   date_range <- reactive({
     earliest_dt <- NA
     latest_dt <- NA
@@ -74,13 +97,6 @@ dateRange <- function(input,output,session,data){
       all_data <- data()[notNA]
       
       for (dat in all_data) {
-        #dat <- na.trim(dat, is.na = 'all')
-        
-        # start <- head(index(data), 1)
-        # start <- as.POSIXct(start)
-        # end <- tail(index(data), 1)
-        # end <- as.POSIXct(end)
-        
         start <- head(dat$index, 1)
         start <- as.POSIXct(start)
         end <- tail(dat$index, 1)
@@ -105,32 +121,47 @@ dateRange <- function(input,output,session,data){
         
       }
     }
-    range <- list(start=earliest_dt, end=latest_dt)
+    range <- list(start = earliest_dt, end = latest_dt)
     return(range)
   })
   
   return(date_range)
 }
 
-occupancyInput <- function(id,occupancy_app_link) {
+occupancyInput <- function(id, occupancy_app_link) {
+  #File Input for an occupancy .csv, retreieved from the occupancy shiny application.
+  #Inputs:
+  #occupancy_app_link: url of the occupancy shiny application
+  
   ns <- NS(id)
   
   #Occupancy file input
-  tagList(fileInput(
-    ns("occFile"),
-    "Occupancy Schedule",
-    accept = c(
-      "text/csv",
-      "text/comma-separated-values,text/plain",
-      ".csv"
+  tagList(
+    fileInput(
+      ns("occFile"),
+      "Occupancy Schedule",
+      accept = c(
+        "text/csv",
+        "text/comma-separated-values,text/plain",
+        ".csv"
+      )
+    ),
+    tags$a(
+      href = occupancy_app_link,
+      "Create an Occupancy Schedule",
+      target = "_blank"
     )
-  ),
-  tags$a(href=occupancy_app_link, "Create an Occupancy Schedule",target="_blank")
   )
   
 }
 
-occupancy <- function(input,output,session,date_range){
+occupancy <- function(input, output, session, date_range) {
+  #Server logic for processing occupancy .csvs and creating the shapes for plotting
+  #Inputs:
+  #date_range: output from dateRange module
+  #Output:
+  #Occupancy "rectangles" to pass to the plotting module
+  
   occData <- reactive({
     if (!is.null(input$occFile)) {
       d1 <- input$occFile$datapath
@@ -160,6 +191,7 @@ occupancy <- function(input,output,session,date_range){
     }
   })
   
+  #I'm sure this can be done in a loop~~~someday
   occRects <- eventReactive({
     occData()
     date_range()
@@ -437,24 +469,31 @@ plottingOutput <- function(id) {
   #Plot Output UI
   ns <- NS(id)
   
-  tagList(plotlyOutput(ns("plot"), height = "500px"),
-          textInput(ns("plot_name"),label="Plot Title",value="My Plot",placeholder="My Plot")
-          )
+  tagList(
+    plotlyOutput(ns("plot"), height = "500px"),
+    textInput(
+      ns("plot_name"),
+      label = "Plot Title",
+      value = "My Plot",
+      placeholder = "My Plot"
+    )
+  )
 }
 
 plotting <-
   function(input,
            output,
            session,
-           discreteTrends,
-           stateTrends,
-           occupancyRects) {
+           data=NA,
+           occupancyRects=NA) {
     #Create plotly output from data
+    #Inputs: 
+    #data: list of 'trends' from csvFile module
+    #occupancyRects: ouput of occupancy module
     
     plt <- reactive({
       plt <- fullPlot(
-        discreteData = discreteTrends(),
-        stateData = stateTrends(),
+        data = data(),
         occupancyRects = occupancyRects(),
         title = input$plot_name,
         x_label = 'Time',
