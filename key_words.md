@@ -5,3 +5,5 @@
 ### hot-water-reset
 **Outside Air Temp**: *Temp*
 **Hot Water Set Temp**: *Temp*
+
+

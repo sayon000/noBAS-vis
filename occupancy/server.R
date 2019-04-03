@@ -1,4 +1,4 @@
-#Server
+#Occupancy Scheduling
 
 server <- function(input, output, session) {
   #return diff_time in seconds between two times

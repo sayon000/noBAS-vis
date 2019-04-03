@@ -15,8 +15,8 @@ source('../data_processing.R')
 
 csvFileInput <- function(id, label = "CSV file") {
   #File Input UI
-  #Inputs:
-  #label: label of fileInput in UI output (string)
+    #Inputs:
+      #label: label of fileInput in UI output (string)
   
   ns <- NS(id)
   
@@ -53,7 +53,8 @@ csvFile <-
       #axis: either 'y' or 'y2', which y axis to use. Cannot mix discrete/state data on same axis
     
     #Outputs:
-      #List object representing an individual trend
+      #List object representing an individual trend 
+      #TODO: Investigate object oriented approach to representing 'trends'
     
     data_trend <- reactive({
       if (is.null(input$file)) {
@@ -83,10 +84,10 @@ csvFile <-
 
 dateRange <- function(input, output, session, data) {
   #available date range of all uploaded files return: (min date, max date)
-  #Inputs:
-  #data: list of 'trends' retreived from csvFile module
-  #outputs:
-  #reactive container of list(start,end)
+    #Inputs:
+      #data: list of 'trends' retreived from csvFile module
+    #outputs:
+      #reactive container of list(start,end)
   
   date_range <- reactive({
     earliest_dt <- NA
@@ -130,8 +131,8 @@ dateRange <- function(input, output, session, data) {
 
 occupancyInput <- function(id, occupancy_app_link) {
   #File Input for an occupancy .csv, retreieved from the occupancy shiny application.
-  #Inputs:
-  #occupancy_app_link: url of the occupancy shiny application
+    #Inputs:
+      #occupancy_app_link: url of the occupancy shiny application
   
   ns <- NS(id)
   
@@ -157,10 +158,10 @@ occupancyInput <- function(id, occupancy_app_link) {
 
 occupancy <- function(input, output, session, date_range) {
   #Server logic for processing occupancy .csvs and creating the shapes for plotting
-  #Inputs:
-  #date_range: output from dateRange module
-  #Output:
-  #Occupancy "rectangles" to pass to the plotting module
+    #Inputs:
+      #date_range: output from dateRange module
+    #Output:
+      #Occupancy "rectangles" to pass to the plotting module
   
   occData <- reactive({
     if (!is.null(input$occFile)) {
@@ -487,9 +488,9 @@ plotting <-
            data=NA,
            occupancyRects=NA) {
     #Create plotly output from data
-    #Inputs: 
-    #data: list of 'trends' from csvFile module
-    #occupancyRects: ouput of occupancy module
+      #Inputs: 
+        #data: list of 'trends' from csvFile module
+        #occupancyRects: ouput of occupancy module
     
     plt <- reactive({
       plt <- fullPlot(

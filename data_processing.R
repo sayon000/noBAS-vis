@@ -1,4 +1,5 @@
 #Plots and Data Processing/Prep
+  #Functions defined in this file are intended to work in or outside of the Shiny context.
 
 library(plotly)
 library(lubridate)
@@ -42,7 +43,7 @@ process_data<-
            dt_formats = c('Ymd HM', 'Ymd HMS', 'mdy IMS p'),
            periodicity_15 = FALSE) {
     #data: csv file object exported through HOBOware
-    #state_change: bool flag for whether state change data
+    #state_change: bool flag for whether state change data 0 -> 1 -> 0 -> 1
     #target_columns: target data columns (not Date Time) to keep (matching via regex)
     
     #IMPORTANT: target_columns string values MUST corresponds to the "Measurement" name given to the logger 
@@ -66,6 +67,9 @@ process_data<-
     df <- df %>% select(matches(targets))
     
     if(length(colnames(df)) < 2){
+      #target_columns not found
+      
+      #error message formatting
       targets <- gsub(',','',targets)
       actual_colnames_str <- NULL
       for(col in actual_colnames){
@@ -132,6 +136,7 @@ process_data<-
 
 #####----- Plotting -----#####
 
+#Plotly Output of BPL Logo
 emptyPlot <-
   function() {
     #x-axis
@@ -181,9 +186,10 @@ fullPlot <- function(data=NA,
     # $index: data.frame of datatime objects
     # $values: data.frame of value pairs for index
     # $color: color of trend
+    # $axis: either 'y1' or 'y2' indicating which y-axis to use.
   
     #ex: list(list(name=temp1,index=date_indexes1,values=values1,color='red'),
-      #list(name=temp2,index=date_indexes2,values=values2,color='blue'))
+      #list(name=temp2,index=date_indexes2,values=values2,color='blue',axis='y1'))
   
   if (all(is.na(data)) ){
     warning("no data provided, defaulted to emptyPlot")
@@ -208,6 +214,7 @@ fullPlot <- function(data=NA,
             automargin=TRUE
   )
   
+  #default setup
   plt <-
     plot_ly(type = 'scatter', mode = 'lines') %>% layout(
       title = title,
@@ -215,15 +222,17 @@ fullPlot <- function(data=NA,
       yaxis = y1
     )
   
+  #add occupancy if any
   if(any(!is.na(occupancyRects))){
     plt <- plt %>% layout(plot_bgcolor = "#d7d2d2", shapes = occupancyRects)
   }
   
-  
+  #add trends if any
   if (any(!is.na(data))) {
     for(trend in data){
       if(all(!is.na(trend))){
         
+        #y1 axis trends
         if(trend$axis == 'y1'){
           plt <-
             plt %>% 
@@ -236,7 +245,7 @@ fullPlot <- function(data=NA,
             )
         }
         
-        
+        #y2 axis trends
         else{
           plt <-
             plt %>% add_lines(

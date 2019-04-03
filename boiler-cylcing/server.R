@@ -43,16 +43,7 @@ server <- function(input, output, session) {
   })
   
   date_range <- callModule(dateRange,"placeholder-id",data=all_data)
-  
-  
-  discrete <- reactive({
-    list(stack1_trend(),stack2_trend())
-  })
-  
-  state <- reactive({
-    list(motor1_trend(),motor2_trend())
-  })
-  
   occupancyRects <- callModule(occupancy,"occ",date_range)
+  
   callModule(plotting,"plot1",all_data,occupancyRects)
 }

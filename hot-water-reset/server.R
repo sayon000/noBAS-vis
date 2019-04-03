@@ -1,3 +1,5 @@
+#Hot Water Reset
+
 library(shiny)
 
 server <- function(input, output, session) {
@@ -24,16 +26,7 @@ server <- function(input, output, session) {
   })
   
   date_range <- callModule(dateRange,"placeholder-id",data=all_data)
-  
-  
-  discrete <- reactive({
-    list(oat_trend(),hwst_trend())
-  })
-  
-  state <- reactive({
-    NA
-  })
-  
   occupancyRects <- callModule(occupancy,"occ",date_range)
+  
   callModule(plotting,"plot1",data=all_data,occupancyRects=occupancyRects)
 }

@@ -46,3 +46,8 @@ Therefore if a motor on-off logger is configured with a label other than "Motor"
                              color=reactive({"gray"}))
 
 ```
+
+#### HOBOware:
+
+#### CSV File: 
+
