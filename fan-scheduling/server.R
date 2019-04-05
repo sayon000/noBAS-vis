@@ -21,24 +21,9 @@ server <- function(input, output, session) {
                           color=reactive({"red"}),
                           axis=reactive({'y1'}))
 
-  fan_trend3 <- callModule(csvFile,"file3",
-                          targetColumns=reactive({c("Motor","Fan")}),
-                          stateChange=reactive({TRUE}),
-                          periodicity15=reactive({TRUE}),
-                          name=reactive({"Fan3"}),
-                          color=reactive({"green"}),
-                          axis=reactive({'y1'}))
-
-  fan_trend4 <- callModule(csvFile,"file4",
-                          targetColumns=reactive({c("Motor","Fan")}),
-                          stateChange=reactive({TRUE}),
-                          periodicity15=reactive({TRUE}),
-                          name=reactive({"Fan4"}),
-                          color=reactive({"blue"}),
-                          axis=reactive({'y1'}))
 
   all_data <- reactive({
-    list(fan_trend1(),fan_trend2(),fan_trend3(),fan_trend4())
+    list(fan_trend1(),fan_trend2())
   })
 
   date_range <- callModule(dateRange,"placeholder-id",data=all_data)
