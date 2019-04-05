@@ -59,3 +59,21 @@ Therefore if a motor on-off logger is configured with a label other than "*Motor
                              axis=reactive({'y2'}))
 
 ```
+
+### Learning Resources for future BPL interns
+
+Datacamp offers  a free two month subscription through your microsoft student account.  
+
+Courses I'd recommend for learning R/shiny:
+
+* https://www.datacamp.com/courses/free-introduction-to-r
+* https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny
+* https://www.datacamp.com/courses/building-dashboards-with-shinydashboard
+* https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny-case-studies
+* https://www.datacamp.com/courses/working-with-the-rstudio-ide-part-2
+
+Info on Shiny Modules:
+
+* https://shiny.rstudio.com/articles/modules.html
+* https://www.rstudio.com/resources/webinars/understanding-shiny-modules/
+* https://beta.rstudioconnect.com/content/2816/Shiny-Modules.html
