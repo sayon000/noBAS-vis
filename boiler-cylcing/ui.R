@@ -7,7 +7,7 @@ ui <-
     theme = shinytheme('yeti'),
     title = "Boiler Cycling and Stack Temperature",
     selected = 'Plotting',
-    useShinyjs(),
+    shinyjs::useShinyjs(),
     tabPanel('Plotting',
              sidebarLayout(sidebarPanel(
                ##File Inputs

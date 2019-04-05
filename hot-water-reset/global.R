@@ -1,5 +1,13 @@
 #Souce other files here source(/directory/myfile)
 
-source('../modules.R')
+library(noBASutilities)
 
-source('../data_processing.R')
+#dependencies
+library(shiny)
+library(plotly) #renderPlotly
+library(DT)
+library(shinyjs)
+library(lubridate)
+library(readr)
+library(xts)
+library(dplyr)
