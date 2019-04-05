@@ -6,9 +6,7 @@ This repository is a suite of R Shiny Applications for noBAS (No Building Automa
 Each **application** (boiler-cycling,hot-water-reset,fan-scheduling...) is reliant on the **noBASutilities** package from this repository. It can be installed with:
 
 	
-	```
 	devtools::install_github('cunybpl/noBAS-vis/noBASutilities')
-	```
 
 ##### Components of noBASutilities:
 * modules.R: shiny [modules](https://shiny.rstudio.com/articles/modules.html). These functions contain blocks of ui and server code which can be called in other applications. 
@@ -24,17 +22,23 @@ This project assumes all input files are acquired by HOBOware or HOBOware mobile
 *Therefore*, it is important to be mindful of these labels when deploying data loggers. When initializing a logger in HOBOware, look for a field such as "Measurement" or "Label." These fields should correspond to the substrings outlined here:
 
 * boiler-cycling *
+
 >**Stack Temp**: *K-Type*
+
 >**Motor Status**: *Motor*,*Fan*
 
 * hot-water-reset *
+
 >**Outside Air Temp**: *Temp*,*oat*,*OAT*
+
 >**Hot Water Set Temp**: *Temp*,*hwst*,*HWST*
 
 * fan-scheduling *
+
 >**Fan Status**:*Motor*,*Fan*
 
 ( * assumes 1 matching trend per .csv file)
+
 **Note**: If a header contains more than 1 of these substrings (*Motor,Fan*...), only the first matching column encounterd will be selected for trending. When using a single file containing multiple trends, these substrings must be according configured (ie. *hwst1, hwst2*).
 
 #### Example: 
