@@ -486,7 +486,9 @@ plotting <-
            output,
            session,
            data=NA,
-           occupancyRects=NA) {
+           occupancyRects=NA,
+           y1label = 'Y1',
+           y2label = 'Y2') {
     #Create plotly output from data
       #Inputs:
         #data: list of 'trends' from csvFile module
@@ -498,8 +500,8 @@ plotting <-
         occupancyRects = occupancyRects(),
         title = input$plot_name,
         x_label = 'Time',
-        y1_label = 'Y1 Label',
-        y2_label = 'Y2 Label'
+        y1_label = y1label,
+        y2_label = y2label
       )
 
       return(plt)

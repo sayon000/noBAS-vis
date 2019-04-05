@@ -5,13 +5,16 @@ This repository is a suite of R Shiny Applications for noBAS (No Building Automa
 
 Each **application** (boiler-cycling,hot-water-reset,fan-scheduling...) is reliant on the **noBASutilities** package from this repository. It can be installed with:
 
-```
+	
+	```
 	devtools::install_github('cunybpl/noBAS-vis/noBASutilities')
-``` 
+	```
 
 ##### Components of noBASutilities:
 * modules.R: shiny [modules](https://shiny.rstudio.com/articles/modules.html). These functions contain blocks of ui and server code which can be called in other applications. 
 * data_processing.R: utility functions for data cleansing, transformation, and plotting inside/outside of the shiny context. 
+
+___
 
 ### Input Requirements (IMPORTANT)
 This project assumes all input files are acquired by HOBOware or HOBOware mobile in .csv format. Files obtained through other likely *will not work*. 
@@ -59,6 +62,7 @@ Therefore if a motor on-off logger is configured with a label other than "*Motor
                              axis=reactive({'y2'}))
 
 ```
+___
 
 ### Learning Resources for future BPL interns
 
