@@ -45,5 +45,5 @@ server <- function(input, output, session) {
   date_range <- callModule(dateRange,"placeholder-id",data=all_data)
   occupancyRects <- callModule(occupancy,"occ",date_range)
 
-  callModule(plotting,"plot1",all_data,occupancyRects)
+  callModule(plotting,"plot1",all_data,occupancyRects,y1label='Temp',y2label='Motor Status')
 }
