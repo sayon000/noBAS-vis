@@ -9,7 +9,7 @@ Each **application** (boiler-cycling,hot-water-reset,fan-scheduling...) is relia
 	devtools::install_github('cunybpl/noBAS-vis/noBASutilities')
 ``` 
 
-#####Components of noBASutilities:
+##### Components of noBASutilities:
 * modules.R: shiny [modules](https://shiny.rstudio.com/articles/modules.html). These functions contain blocks of ui and server code which can be called in other applications. 
 * data_processing.R: utility functions for data cleansing, transformation, and plotting inside/outside of the shiny context. 
 
