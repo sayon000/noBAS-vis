@@ -1,0 +1,13 @@
+name: nobas-trends
+title: nobas-trends
+username:
+account: sayon000
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1222321
+bundleId: 2437868
+url: https://sayon000.shinyapps.io/nobas-trends/
+when: 1569258929.05027
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .Rapp.history|.RData
