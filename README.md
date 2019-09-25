@@ -85,3 +85,7 @@ Info on Shiny Modules:
 * https://shiny.rstudio.com/articles/modules.html
 * https://www.rstudio.com/resources/webinars/understanding-shiny-modules/
 * https://beta.rstudioconnect.com/content/2816/Shiny-Modules.html
+
+
+### Master Link To The Web Application Product
+* https://sayon000.shinyapps.io/nobas-trends/
