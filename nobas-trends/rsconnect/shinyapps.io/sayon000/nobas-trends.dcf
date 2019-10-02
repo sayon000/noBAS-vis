@@ -5,9 +5,9 @@ account: sayon000
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1222321
-bundleId: 2437868
+bundleId: 2450383
 url: https://sayon000.shinyapps.io/nobas-trends/
-when: 1569258929.05027
+when: 1569609453.20583
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: .Rapp.history|.RData

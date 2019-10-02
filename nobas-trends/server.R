@@ -8,6 +8,34 @@ server <- function(input, output, session) {
     updateTabItems(session, 'tabs', selected = "AHU")
   })  
   
+  observeEvent(input$trend1Tab,{
+    updateTabItems(session,'tabs',selected = "trend1")
+  })
+  
+  observeEvent(input$trend2bTab,{
+    updateTabItems(session,'tabs',selected = "trend2b")
+  })
+  
+  observeEvent(input$trend3Tab,{
+    updateTabItems(session,'tabs',selected = 'trend3')
+  })
+  
+  observeEvent(input$trend13aTab,{
+    updateTabItems(session,'tabs',selected = 'trend13a')
+  })
+  
+  observeEvent(input$trend19aTab,{
+    updateTabItems(session,'tabs',selected = 'trend19a')
+  })
+  
+  observeEvent(input$trend26Tab,{
+    updateTabItems(session,'tabs',selected = 'trend26')
+  })
+  
+  observeEvent(input$trend27Tab,{
+    updateTabItems(session,'tabs',selected = 'trend27')
+  })
+  
   observeEvent(input$CHPTab,{
     updateTabItems(session,'tabs',selected = "ChillerPlant")
   }) 
@@ -24,25 +52,83 @@ server <- function(input, output, session) {
     updateTabItems(session,'tabs',selected = "Perimeter")
   })
   
-  observeEvent(input$HTab,{
+  observeEvent(input$HTabAHU,{
     updateTabItems(session,'tabs',selected = "Home")
   })
   
-  observeEvent(input$HTab2,{
+  observeEvent(input$HTabCP,{
     updateTabItems(session,'tabs',selected = "Home")
   })
   
-  observeEvent(input$HTab3,{
+  observeEvent(input$HTabBP,{
     updateTabItems(session,'tabs',selected = "Home")
   })
  
-  observeEvent(input$HTab4,{
+  observeEvent(input$HTabZ,{
     updateTabItems(session,'tabs',selected = "Home")
   })
   
-  observeEvent(input$HTab5,{
+  observeEvent(input$HTabP,{
     updateTabItems(session,'tabs',selected = "Home")
   })
+  
+  observeEvent(input$HTabt1,{
+    updateTabItems(session,'tabs',selected = "Home")
+  })
+  
+  observeEvent(input$HTabt2b,{
+    updateTabItems(session,'tabs',selected = "Home")
+  })
+  
+  observeEvent(input$HTabt3,{
+    updateTabItems(session,'tabs',selected = "Home")
+  })
+  
+  observeEvent(input$HTabt13a,{
+    updateTabItems(session,'tabs',selected = "Home")
+  })
+  
+  observeEvent(input$HTabt19a,{
+    updateTabItems(session,'tabs',selected = "Home")
+  })
+  
+  observeEvent(input$HTabt26,{
+    updateTabItems(session,'tabs',selected = "Home")
+  })
+  
+  observeEvent(input$HTabt27,{
+    updateTabItems(session,'tabs',selected = "Home")
+  })
+  
+  
+  observeEvent(input$Prevtabt1,{
+    updateTabItems(session,'tabs',selected = "AHU")
+  })
+  
+  observeEvent(input$Prevtabt2b,{
+    updateTabItems(session,'tabs',selected = "AHU")
+  })
+  
+  observeEvent(input$Prevtabt3,{
+    updateTabItems(session,'tabs',selected = "AHU")
+  })
+  
+  observeEvent(input$Prevtabt13a,{
+    updateTabItems(session,'tabs',selected = "ChillerPlant")
+  })
+  
+  observeEvent(input$Prevtabt19a,{
+    updateTabItems(session,'tabs',selected = "BoilerPlant")
+  })
+  
+  observeEvent(input$Prevtabt26,{
+    updateTabItems(session,'tabs',selected = "Zone")
+  })
+  
+  observeEvent(input$Prevtabt27,{
+    updateTabItems(session,'tabs',selected = "Perimeter")
+  })
+  
   #end of button actions
   
   #start of trend 1
