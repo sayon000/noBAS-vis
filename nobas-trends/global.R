@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+library(shinydashboardPlus)
 library(plotly) #renderPlotly
 library(DT)
 library(shinyjs)
@@ -7,4 +8,5 @@ library(lubridate)
 library(readr)
 library(xts)
 library(dplyr)
+library(V8)
 library(noBASutilities)
