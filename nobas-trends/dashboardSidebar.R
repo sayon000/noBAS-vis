@@ -40,7 +40,8 @@ sidebar <- dashboardSidebar(disable = TRUE,
     menuItem('Trend 33b',tabName = 'trend33b', icon = icon('queen')),
     menuItem('Trend 34b',tabName = 'trend34b', icon = icon('queen')),
     menuItem('Trend 36b',tabName = 'trend36b', icon = icon('queen')),
-    menuItem('Trend 37b',tabName = 'trend37b', icon = icon('queen'))
+    menuItem('Trend 37b',tabName = 'trend37b', icon = icon('queen')),
+    menuItem('Acrotab',tabName = 'AcroTab', icon = icon('queen'))
   )
 )
 

@@ -1,0 +1,28 @@
+﻿Acronym,Defintion,Acronym ,Definition 
+ACH,Air Changes per Hour,ET,EnerTrac
+AHU,Air Handling Unit,HCV,Heating Coil Valve
+BAS,Building Automation System (aka BMS),HW,Hot Water
+BMS,Building Management System (aka BAS),HWLDP,Hot Water Loop Differential Pressure
+BRT,Building Re-tuning,HWLDP-SP,Hot Water Loop Differential Pressure Set Point
+CCV,Cooling Coil Valve,HWRT,Hot Water Return Temperature
+ChW,Chilled Water,HWST,Hot Water Supply Temperature
+ChWLDP,Chilled Water Loop Differential Pressure,HWST-SP,Hot Water Supply Temperature Set Point
+ChWLDP-SP,Chilled Water Loop Differential Pressure Set Point,LDP,Loop Differential Pressure
+ChWRT,Chilled Water Return Temperature,LDP-SP,Loop Differential Pressure Set Point
+CAV,Constant Air Volume,LM,Load Management
+CW,Condenser Water,LMM,Load Management Measure
+CWST,Condenser Water Supply Temperature,LP,Load Profile
+CWST-SP,Condenser Water Supply Temperature Set Point,MAT,Mixed Air Temperature
+CWRT,Condenser Water Return Temperature,MBCx,Monitoring-Based Commissioning
+DAT,Discharge Air Temperature (same as SAT),PTAC,Packaged Terminal Air Conditioner
+DAT-SP,Discharge Air Temperature Set Point (same as SAT-SP),OAD,Outside Air Damper
+DEMM,DCAS Division of Energy Management,OAT,Outdoor Air Temperature
+DCV,Demand Controlled Ventilation,OAF,Outside Air Fraction
+DD,Degree Day,RAT,Return Air Temperature
+DR,Demand Response,RTM,Real-Time Metering
+DSP,Duct Static Pressure,RTU,Rooftop Unit
+DOAS,Dedicated Outdoor Air System,SAT,Supply Air Temperature (same as DAT)
+ECM,Energy Conservation Measure,VAV,Variable Air Volume
+EER,Energy Efficiency Report,ZT,Zone Temperature
+EIS,Energy Information System,ZTSP-P,Perimeter hot water zone temperature setpoint
+EUI,Energy Use Intensity/Index,ZTSP-A,Air system hot water zone temperature setpoint

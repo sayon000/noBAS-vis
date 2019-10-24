@@ -1,9 +1,10 @@
 library(shinydashboard)
 
-
 server <- function(input, output, session) {
+  
   #actions to move between tabs using buttons should be here
  
+  ###Start of trend buttons#######
   observeEvent(input$AHUTab,{
     updateTabItems(session, 'tabs', selected = "AHU")
   })  
@@ -140,9 +141,13 @@ server <- function(input, output, session) {
     updateTabItems(session,'tabs',selected = 'trend37b')
   })
   
-  #end of trend tab buttons
+  observeEvent(input$AcroTab,{
+    updateTabItems(session,'tabs',selected = 'AcroTab')
+  })
+
+  #####end of trend tab buttons#########
   
-  #Buttons for getting home
+  ###Start of home buttons####
   
   observeEvent(input$CHPTab,{
     updateTabItems(session,'tabs',selected = "ChillerPlant")
@@ -340,9 +345,13 @@ server <- function(input, output, session) {
     updateTabItems(session,'tabs',selected = "Home")
   })
   
-  #END OF Buttons for getting home
+  observeEvent(input$HTabAcro,{
+    updateTabItems(session,'tabs',selected= "Home")
+  })
   
-  #Start of previous tab pages
+  ####END OF Buttons for getting home#####
+  
+  #####Start of previous tab pages#####
   observeEvent(input$Prevtabt1,{
     updateTabItems(session,'tabs',selected = "AHU")
   })
@@ -504,17 +513,17 @@ server <- function(input, output, session) {
   observeEvent(input$Prevtabt37b,{
     updateTabItems(session,'tabs',selected = "Perimeter")
   })
-  #end of previous tabs
+  ######end of previous tabs#####
   
-  #end of button actions
+  #####end of button actions####
   
-  #start of trend 1
+  ###start of trend 1####
   fan_trend_t1 <- callModule(csvFile,"fant1",
                            targetColumns=reactive({c("Motor","Fan")}),
                            stateChange=reactive({TRUE}),
                            periodicity15=reactive({TRUE}),
                            name=reactive({"Fan"}),
-                           color=reactive({"gray"}),
+                           color=reactive({"black"}),
                            axis=reactive({'y1'}))
   
   
@@ -535,7 +544,7 @@ server <- function(input, output, session) {
                              stateChange=reactive({TRUE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"Fan"}),
-                             color=reactive({"gray"}),
+                             color=reactive({"black"}),
                              axis=reactive({'y2'}))
   
   oat_trend_t2b <- callModule(csvFile,"OAT2b",
@@ -571,16 +580,16 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend2b",data=all_data_t2b,occupancyRects=occupancyRects_t2b,y1label='Temp (°F)',y2label='Status')
   
-  #end of trend 2b
+  ####end of trend 2b#######
   
   #start of trend 3 NOTE: FIX THIS WHEN YOU GET ACTUAL DATA
   
   oad_trend_t3 <- callModule(csvFile,"OAD3",
-                              targetColumns=reactive({c("Temp","oad","OAD")}),
+                              targetColumns=reactive({c("Oad","oad","OAD")}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"OAD"}),
-                              color=reactive({"yellow"}),
+                              color=reactive({"black"}),
                               axis=reactive({'y1'}))
   
   co2_trend_t3 <- callModule(csvFile,"CO2-3",
@@ -589,7 +598,7 @@ server <- function(input, output, session) {
                              periodicity15=reactive({TRUE}),
                              name=reactive({"CO2"}),
                              color=reactive({"purple"}),
-                             axis=reactive({'y1'}))
+                             axis=reactive({'y2'}))
   
   all_data_t3 <- reactive({
     list(oad_trend_t3(),co2_trend_t3())
@@ -598,12 +607,12 @@ server <- function(input, output, session) {
   date_range_t3 <- callModule(dateRange,"placeholder-id",data=all_data_t3)
   occupancyRects_t3 <- callModule(occupancy,"occ3",date_range_t3)
   
-  callModule(plotting,"trend3",data=all_data_t3,occupancyRects=occupancyRects_t3,y1label='Temp (°F)')
+  callModule(plotting,"trend3",data=all_data_t3,occupancyRects=occupancyRects_t3,y1label='Position (%)',y2label = 'CO2 (ppm)')
   
   
-  #end of trend 3
+  ####end of trend 3####
   
-  #start of trend 4c
+  #####start of trend 4c####
   
   oad_trend_t4c <- callModule(csvFile,"OAD4c",
                              targetColumns=reactive({c("Temp","oad","OAD")}),
@@ -638,16 +647,16 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend4c",data=all_data_t4c,occupancyRects=occupancyRects_t4c,y1label='Temp (°F)')
   
-  #end of trend 4c
+  #####end of trend 4c####
   
-  #start of trend 4d
+  #####start of trend 4d#####
   
   fan_trend_t4d <- callModule(csvFile,"fant4d",
                              targetColumns=reactive({c("Motor","Fan")}),
                              stateChange=reactive({TRUE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"Fan"}),
-                             color=reactive({"gray"}),
+                             color=reactive({"black"}),
                              axis=reactive({'y2'}))
   
   hwp_trend_t4d <- callModule(csvFile,"HWP4d",
@@ -667,16 +676,16 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend4d",data=all_data_t4d,occupancyRects=occupancyRects_t4d,y2label='Status')
   
-  #end of trend 4d
+  #####end of trend 4d#####
   
-  #start of trend 5a
+  #####start of trend 5a####
   
   fan_trend_t5a <- callModule(csvFile,"fant5a",
                               targetColumns=reactive({c("Motor","Fan")}),
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Fan"}),
-                              color=reactive({"gray"}),
+                              color=reactive({"black"}),
                               axis=reactive({'y2'}))
   
   oat_trend_t5a <- callModule(csvFile,"OAT5a",
@@ -713,16 +722,16 @@ server <- function(input, output, session) {
   callModule(plotting,"trend5a",data=all_data_t5a,occupancyRects=occupancyRects_t5a,y1label='Temp (°F)',y2label='Status')
   
   
-  #end of trend 5a
+  ####end of trend 5a#####
   
-  #start of trend 7
+  #####start of trend 7####
   
   fan_trend_t7 <- callModule(csvFile,"fant7",
                               targetColumns=reactive({c("Motor","Fan")}),
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Fan"}),
-                              color=reactive({"gray"}),
+                              color=reactive({"black"}),
                               axis=reactive({'y2'}))
   
   dat_trend_t7 <- callModule(csvFile,"DAT7",
@@ -738,7 +747,7 @@ server <- function(input, output, session) {
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"DATSP"}),
-                              color=reactive({"light blue"}),
+                              color=reactive({'#5ab0f2'}),
                               axis=reactive({'y1'}))
   
   
@@ -752,10 +761,10 @@ server <- function(input, output, session) {
   callModule(plotting,"trend7",data=all_data_t7,occupancyRects=occupancyRects_t7,y1label='Temp (°F)',y2label='Status')
   
   
-  #end of trend 7
+  #####end of trend 7####
   
   
-  #start of trend 8a
+  #####start of trend 8a####
 
   compressor1_trend_t8a <- callModule(csvFile,"Compressor1-t8a",
                              targetColumns=reactive({c("Temp","compressor","COMPRESSOR")}),
@@ -783,9 +792,9 @@ server <- function(input, output, session) {
   callModule(plotting,"trend8a",data=all_data_t8a,occupancyRects=occupancyRects_t8a,y2label='Status')
   
   
-  #end of trend 8a
+  ####end of trend 8a#####
   
-  #start of trend 8b
+  #####start of trend 8b####
   
   burner1_trend_t8b <- callModule(csvFile,"Burner1-t8b",
                                       targetColumns=reactive({c("Temp","burner","BURNER")}),
@@ -812,16 +821,16 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend8b",data=all_data_t8b,occupancyRects=occupancyRects_t8b,y2label='Status')
   
-  #end of trend 8b
+  ####end of trend 8b#####
   
-  #start of trend 10
+  ####start of trend 10####
   
   fan_trend_t10 <- callModule(csvFile,"fant10",
                               targetColumns=reactive({c("Motor","Fan")}),
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Fan"}),
-                              color=reactive({"gray"}),
+                              color=reactive({"black"}),
                               axis=reactive({'y2'}))
   
   mat_trend_t10 <- callModule(csvFile,"MAT10",
@@ -850,9 +859,9 @@ server <- function(input, output, session) {
   callModule(plotting,"trend10",data=all_data_t10,occupancyRects=occupancyRects_t10,y1label='Temp (°F)',y2label='Status')
   
   
-  #end of trend 10
+  ####end of trend 10#####
   
-  #start of trend 12
+  ####start of trend 12####
   
   chwst_trend_t12 <- callModule(csvFile,"CHWST12",
                                  targetColumns=reactive({c("Temp","chwst","CHWST")}),
@@ -879,10 +888,10 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend12",data=all_data_t12,occupancyRects=occupancyRects_t12,y1label='Temp (°F)',y2label = 'Speed')
   
-  #end of trend 12
+  #####end of trend 12###
   
   
-  #start of trend 13a
+  ####start of trend 13a####
   
   chwst_trend_t13a <- callModule(csvFile,"CHWST13a",
                               targetColumns=reactive({c("Temp","chwst","CHWST")}),
@@ -909,9 +918,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend13a",data=all_data_t13a,occupancyRects=occupancyRects_t13a,y1label='Temp (°F)')
    
-  #end of trend 13a
+  #######end of trend 13a#######
    
-  #start of trend 14a
+  ######start of trend 14a######
    
    chwst_trend_t14a <- callModule(csvFile,"CHWST14a",
                                   targetColumns=reactive({c("Temp","chwst","CHWST")}),
@@ -947,9 +956,9 @@ server <- function(input, output, session) {
    callModule(plotting,"trend14a",data=all_data_t14a,occupancyRects=occupancyRects_t14a,y1label='Temp (°F)')
    
    
-  #end of trend 14a
+  #####end of trend 14a#####
    
-  #start of trend 15
+  #####start of trend 15######
   
   cwps_trend_t15 <- callModule(csvFile,"CWPS15",
                               targetColumns=reactive({c("Motor","Fan")}),
@@ -976,9 +985,9 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend15",data=all_data_t15,occupancyRects=occupancyRects_t15,y1label='Status')
   
-  #end of trend 15
+  #####end of trend 15######
    
-  #start of trend 17
+  #####start of trend 17#######
   
   crt_trend_t17 <- callModule(csvFile,"CRT17",
                                targetColumns=reactive({c("Temp","crt","CRT")}),
@@ -997,9 +1006,9 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend17",data=all_data_t17,occupancyRects=occupancyRects_t17,y1label='Temp (°F)')
   
-  #end of trend 17
+  #######end of trend 17######
   
-  #start of trend 18
+  #######start of trend 18######
   
   bs_trend_t18 <- callModule(csvFile,"BSt18",
                              targetColumns=reactive({c("Motor","Fan")}),
@@ -1042,9 +1051,9 @@ server <- function(input, output, session) {
   
   callModule(plotting,"trend18",data=all_data_t18,occupancyRects=occupancyRects_t18,y1label='Temp (°F)',y2label = 'Status')
   
-  #end of trend 18
+  ########end of trend 18#########
   
-  #start of trend 19a
+  ########start of trend 19a########
    
    hwst_trend_t19a <- callModule(csvFile,"HWST19a",
                                   targetColumns=reactive({c("Temp","hwst","HWST")}),
@@ -1071,9 +1080,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend19a",data=all_data_t19a,occupancyRects=occupancyRects_t19a,y1label='Temp (°F)')
    
-  #end of trend 19a
+  #########end of trend 19a########
    
-  #start of trend 20a
+  #########start of trend 20a#########
    
    hwst_trend_t20a <- callModule(csvFile,"HWST20a",
                                  targetColumns=reactive({c("Temp","hwst","HWST")}),
@@ -1088,7 +1097,7 @@ server <- function(input, output, session) {
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"HWRT"}),
-                                color=reactive({"orange"}),
+                                color=reactive({"#940000"}),
                                 axis=reactive({'y1'}))
    
    all_data_t20a <- reactive({
@@ -1101,9 +1110,9 @@ server <- function(input, output, session) {
    callModule(plotting,"trend20a",data=all_data_t20a,occupancyRects=occupancyRects_t20a,y1label='Temp (°F)')
    
    
-  #end of trend 20a
+  ########end of trend 20a#########
    
-  #start of trend 21
+  #########start of trend 21########
    
    hwrt_trend_t21 <- callModule(csvFile,"HWRT21",
                                  targetColumns=reactive({c("Temp","hwrt","HWRT")}),
@@ -1122,9 +1131,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend21",data=all_data_t21,occupancyRects=occupancyRects_t21,y1label='Temp (°F)')
    
-  #end of trend 21
+  #######end of trend 21########
    
-  #start of trend 22
+  ######3start of trend 22#######
    
    bms_trend_t22 <- callModule(csvFile,"BMS22",
                               targetColumns=reactive({c("Motor","Fan")}),
@@ -1152,9 +1161,9 @@ server <- function(input, output, session) {
    callModule(plotting,"trend22",data=all_data_t22,occupancyRects=occupancyRects_t22,y1label='Temp (°F)',y2label = 'Status')
    
    
-  #end of trend 22
+  ########end of trend 22########
    
-  #start of trend 23
+  ########start of trend 23#######
    
    hwst_trend_t23 <- callModule(csvFile,"HWST23",
                                  targetColumns=reactive({c("Temp","hwst","HWST")}),
@@ -1181,23 +1190,23 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend23",data=all_data_t23,occupancyRects=occupancyRects_t23,y1label='Temp (°F)')
    
- #end of trend 23
+ ####end of trend 23#######
    
-  #start of trend 26
+  ####start of trend 26######
   
    zt_trend_t26 <- callModule(csvFile,"ZT26",
                                  targetColumns=reactive({c("Temp","zt","ZT")}),
                                  stateChange=reactive({FALSE}),
                                  periodicity15=reactive({TRUE}),
-                                 name=reactive({"Zone Temp"}),
-                                 color=reactive({"green"}),
+                                 name=reactive({"ZT"}),
+                                 color=reactive({"#ff70c6"}),
                                  axis=reactive({'y1'}))
    
    ztsp_trend_t26 <- callModule(csvFile,"ZTSP26",
                                  targetColumns=reactive({c("Temp","ztsp","ZTSP")}),
                                  stateChange=reactive({FALSE}),
                                  periodicity15=reactive({TRUE}),
-                                 name=reactive({"Zone Temp SP"}),
+                                 name=reactive({"ZTSP"}),
                                  color=reactive({"red"}),
                                  axis=reactive({'y1'}))
    
@@ -1217,10 +1226,9 @@ server <- function(input, output, session) {
    occupancyRects_t26 <- callModule(occupancy,"occ26",date_range_t26)
    
    callModule(plotting,"trend26",data=all_data_t26,occupancyRects=occupancyRects_t26,y1label='Temp (°F)')
-   
-  #end of trend 26
+  ######end of trend 26#####
   
-  #start of trend 2737a
+  ######start of trend 2737a#######
    
    burner_trend_t2737a <- callModule(csvFile,"Burner-t2737a",
                               targetColumns=reactive({c("Motor","Fan")}),
@@ -1271,10 +1279,10 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend2737a",data=all_data_t2737a,occupancyRects=occupancyRects_t2737a,y1label='Temp (°F)/Position',y2label = 'Status')
    
-  #end of trend 2737a
+  #######end of trend 2737a########
    
     
-  #start of trend 27b
+  ########start of trend 27b#######
    
    dat_trend_t27b <- callModule(csvFile,"DAT27b",
                               targetColumns=reactive({c("Temp","dat","DAT")}),
@@ -1288,8 +1296,8 @@ server <- function(input, output, session) {
                                targetColumns=reactive({c("Temp","zt","ZT")}),
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
-                               name=reactive({"DAT"}),
-                               color=reactive({"green"}),
+                               name=reactive({"ZT"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    ztspa_trend_t27b <- callModule(csvFile,"ZTSP-A27b",
@@ -1297,7 +1305,7 @@ server <- function(input, output, session) {
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"ZTSP-A"}),
-                               color=reactive({"red"}),
+                               color=reactive({"#966891"}),
                                axis=reactive({'y1'}))
    
    fan_trend_t27b <- callModule(csvFile,"fant27b",
@@ -1305,7 +1313,7 @@ server <- function(input, output, session) {
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Fan"}),
-                              color=reactive({"gray"}),
+                              color=reactive({"black"}),
                               axis=reactive({'y2'}))
    
    all_data_t27b <- reactive({
@@ -1317,9 +1325,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend27b",data=all_data_t27b,occupancyRects=occupancyRects_t27b,y1label='Temp (°F)',y2label='Status')
    
-  #end of trend 27b
+  ######end of trend 27b########
    
-   #start of trend 28b
+  #######start of trend 28b#######
    
    dat_trend_t28b <- callModule(csvFile,"DAT28b",
                                 targetColumns=reactive({c("Temp","dat","DAT")}),
@@ -1341,8 +1349,8 @@ server <- function(input, output, session) {
                                targetColumns=reactive({c("Temp","zt","ZT")}),
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
-                               name=reactive({"DAT"}),
-                               color=reactive({"green"}),
+                               name=reactive({"ZT"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    ztspa_trend_t28b <- callModule(csvFile,"ZTSP-A28b",
@@ -1358,7 +1366,7 @@ server <- function(input, output, session) {
                                 stateChange=reactive({TRUE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"Fan"}),
-                                color=reactive({"gray"}),
+                                color=reactive({"black"}),
                                 axis=reactive({'y2'}))
    
    all_data_t28b <- reactive({
@@ -1370,9 +1378,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend28b",data=all_data_t28b,occupancyRects=occupancyRects_t28b,y1label='Temp (°F)',y2label='Status')
    
-   #end of trend 28b
+   ########end of trend 28b##########
    
-   #start of trend 29b
+   #########start of trend 29b#########
 
    dat_trend_t29b <- callModule(csvFile,"DAT29b",
                                 targetColumns=reactive({c("Temp","dat","DAT")}),
@@ -1403,7 +1411,7 @@ server <- function(input, output, session) {
                                 stateChange=reactive({TRUE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"Fan"}),
-                                color=reactive({"gray"}),
+                                color=reactive({"black"}),
                                 axis=reactive({'y2'}))
    
    all_data_t29b <- reactive({
@@ -1415,9 +1423,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend29b",data=all_data_t29b,occupancyRects=occupancyRects_t29b,y1label='Temp (°F)',y2label='Status')
    
-   #end of trend 29b
+   ########end of trend 29b#########
    
-   #start of trend 30b
+   ########start of trend 30b########
    
    ratsp_trend_t30b <- callModule(csvFile,"RATSP30b",
                                 targetColumns=reactive({c("Temp","ratsp","RATSP")}),
@@ -1448,7 +1456,7 @@ server <- function(input, output, session) {
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"ZT"}),
-                                  color=reactive({"pink"}),
+                                  color=reactive({"#ff70c6"}),
                                   axis=reactive({'y1'}))
    
    fan_trend_t30b <- callModule(csvFile,"fant30b",
@@ -1456,7 +1464,7 @@ server <- function(input, output, session) {
                                 stateChange=reactive({TRUE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"Fan"}),
-                                color=reactive({"gray"}),
+                                color=reactive({"black"}),
                                 axis=reactive({'y2'}))
    
    all_data_t30b <- reactive({
@@ -1469,9 +1477,9 @@ server <- function(input, output, session) {
    callModule(plotting,"trend30b",data=all_data_t30b,occupancyRects=occupancyRects_t30b,y1label='Temp (°F)',y2label='Status')
    
    
-   #end of trend 30b
+   #########end of trend 30b##########
    
-   #start of trend 31b
+   ##########start of trend 31b##########
    
    dat_trend_t31b <- callModule(csvFile,"DAT31b",
                                 targetColumns=reactive({c("Temp","dat","DAT")}),
@@ -1495,7 +1503,7 @@ server <- function(input, output, session) {
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"ZT"}),
-                               color=reactive({"pink"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    rat_trend_t31b <- callModule(csvFile,"RAT31b",
@@ -1515,9 +1523,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend31b",data=all_data_t31b,occupancyRects=occupancyRects_t31b,y1label='Temp (°F)')
    
-   #end of trend 31b
+   #########end of trend 31b#########
    
-   #start of trend 32b
+   #########start of trend 32b##########
    
    hwst_trend_t32b <- callModule(csvFile,"HWST32b",
                                 targetColumns=reactive({c("Temp","hwst","HWST")}),
@@ -1541,7 +1549,7 @@ server <- function(input, output, session) {
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"ZT"}),
-                               color=reactive({"pink"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    
@@ -1554,24 +1562,24 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend32b",data=all_data_t32b,occupancyRects=occupancyRects_t32b,y1label='Temp (°F)')
    
-   #end of trend 32b
+   ##########end of trend 32b###########
    
-   #start of trend 33b
+   ##########start of trend 33b########
    
    zt_trend_t33b <- callModule(csvFile,"ZT33b",
                                targetColumns=reactive({c("Temp","zt","ZT")}),
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"ZT"}),
-                               color=reactive({"pink"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    ztspp_trend_t33b <- callModule(csvFile,"ZTSP-P33b",
-                                  targetColumns=reactive({c("Temp","ztspa","ZTSPP")}),
+                                  targetColumns=reactive({c("Temp","ztspp","ZTSPP")}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"ZTSP-P"}),
-                                  color=reactive({"red"}),
+                                  color=reactive({"#ff9987"}),
                                   axis=reactive({'y1'}))
    
    ztspa_trend_t33b <- callModule(csvFile,"ZTSP-A33b",
@@ -1579,7 +1587,7 @@ server <- function(input, output, session) {
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"ZTSP-A"}),
-                                  color=reactive({"brown"}),
+                                  color=reactive({"#ba475a"}),
                                   axis=reactive({'y1'}))
 
    fan_trend_t33b <- callModule(csvFile,"fant33b",
@@ -1587,7 +1595,7 @@ server <- function(input, output, session) {
                                 stateChange=reactive({TRUE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"Fan"}),
-                                color=reactive({"gray"}),
+                                color=reactive({"black"}),
                                 axis=reactive({'y2'}))
    
    dat_trend_t33b <- callModule(csvFile,"DAT33b",
@@ -1607,9 +1615,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend33b",data=all_data_t33b,occupancyRects=occupancyRects_t33b,y1label='Temp (°F)',y2label='Status')
    
-   #end of trend 33b
+   ##########end of trend 33b#########
    
-   #start of trend 34b
+   ###########start of trend 34b#########
    
    dat_trend_t34b <- callModule(csvFile,"DAT34b",
                                 targetColumns=reactive({c("Temp","dat","DAT")}),
@@ -1632,7 +1640,7 @@ server <- function(input, output, session) {
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"ZT"}),
-                               color=reactive({"pink"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    ztspp_trend_t34b <- callModule(csvFile,"ZTSP-P34b",
@@ -1640,7 +1648,7 @@ server <- function(input, output, session) {
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"ZTSP-P"}),
-                                  color=reactive({"red"}),
+                                  color=reactive({"#ba475a"}),
                                   axis=reactive({'y1'}))
    
    ztspa_trend_t34b <- callModule(csvFile,"ZTSP-A34b",
@@ -1656,7 +1664,7 @@ server <- function(input, output, session) {
                                 stateChange=reactive({TRUE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"Fan"}),
-                                color=reactive({"gray"}),
+                                color=reactive({"black"}),
                                 axis=reactive({'y2'}))
    
    all_data_t34b <- reactive({
@@ -1669,9 +1677,9 @@ server <- function(input, output, session) {
    callModule(plotting,"trend34b",data=all_data_t34b,occupancyRects=occupancyRects_t34b,y1label='Temp (°F)',y2label='Status')
    
    
-   #end of trend 34b
+   ########end of trend 34b#########
    
-   #start of trend 36b
+   #########start of trend 36b#######
    
    ratsp_trend_t36b <- callModule(csvFile,"RATSP36b",
                                targetColumns=reactive({c("Temp","ratsp","RATSP")}),
@@ -1702,7 +1710,7 @@ server <- function(input, output, session) {
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"ZT"}),
-                               color=reactive({"pink"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    ztspp_trend_t36b <- callModule(csvFile,"ZTSP-P36b",
@@ -1710,7 +1718,7 @@ server <- function(input, output, session) {
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"ZTSP-P"}),
-                                  color=reactive({"brown"}),
+                                  color=reactive({"#ba475a"}),
                                   axis=reactive({'y1'}))
    
    fan_trend_t36b <- callModule(csvFile,"fant36b",
@@ -1718,7 +1726,7 @@ server <- function(input, output, session) {
                                 stateChange=reactive({TRUE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"Fan"}),
-                                color=reactive({"gray"}),
+                                color=reactive({"black"}),
                                 axis=reactive({'y2'}))
    
    all_data_t36b <- reactive({
@@ -1730,9 +1738,9 @@ server <- function(input, output, session) {
    
    callModule(plotting,"trend36b",data=all_data_t36b,occupancyRects=occupancyRects_t36b,y1label='Temp (°F)',y2label='Status')
    
-   #end of trend 36b
+   ############end of trend 36b############
    
-   #start of trend 37b
+   ##############start of trend 37b##############
    
    dat_trend_t37b <- callModule(csvFile,"DAT37b",
                                 targetColumns=reactive({c("Temp","dat","DAT")}),
@@ -1755,7 +1763,7 @@ server <- function(input, output, session) {
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"ZT"}),
-                               color=reactive({"pink"}),
+                               color=reactive({"#ff70c6"}),
                                axis=reactive({'y1'}))
    
    ztspp_trend_t37b <- callModule(csvFile,"ZTSP-P37b",
@@ -1763,7 +1771,7 @@ server <- function(input, output, session) {
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"ZTSP-P"}),
-                                  color=reactive({"brown"}),
+                                  color=reactive({"#ba475a"}),
                                   axis=reactive({'y1'}))
    
    rat_trend_t37b <- callModule(csvFile,"RAT37b",
@@ -1784,5 +1792,14 @@ server <- function(input, output, session) {
    callModule(plotting,"trend37b",data=all_data_t37b,occupancyRects=occupancyRects_t37b,y1label='Temp (°F)')
    
    
-   #end of trend 37b
+   ########end of trend 37b########
+   
+   ######Acronym Table#######
+   
+   acronymFile <- "acronyms.csv" ###edit associated table for the acronyms
+   acroTable <- read_csv(acronymFile)
+   output$acroTable <- renderTable({ head( acroTable, n = 30 )},
+                                    hover = TRUE,
+                                    spacing = 'm'
+                                   )
 }
