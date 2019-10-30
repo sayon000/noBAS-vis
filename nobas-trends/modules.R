@@ -471,13 +471,45 @@ plottingOutput <- function(id) {
   ns <- NS(id)
 
   shiny::tagList(
-    plotly::plotlyOutput(ns("plot"), height = "500px"),
+    div(style = 'overflow:scroll',
+    plotly::plotlyOutput(ns("plot"), height = "500px",width = "1500px")
+    ),
     textInput(
       ns("plot_name"),
       label = "Plot Title",
       value = "My Plot",
-      placeholder = "My Plot"
+      placeholder = "My Plot",
+      width = '25%'
+    ),
+    #downloadButton(
+     # ns("ExportPlot"),
+    #  "ExportPlots",
+      #label = "Download the Plot"
+    #),
+    numericInput(
+      ns("Height"),
+      label = h3("Plot Height"),
+      value = 500,
+      width = '25%'
+    ),
+    numericInput(
+      ns("Width"),
+      label = h3("Plot Width"),
+      value = 1500,
+      width = '25%'
+    ),
+    
+    numericInput(
+      ns("XTicks"),
+      label = h3("X Ticks Number"),
+      value = 60,
+      width = '25%'
     )
+    #actionButton(
+    #  ns("Download"),
+     # "Download"
+    #)
+    ###work on the download thing using JShttps://stackoverflow.com/questions/48929528/whats-the-best-way-to-write-custom-javascript-for-r-shiny-module-that-uses-modu#####
   )
 }
 
@@ -493,7 +525,8 @@ plotting <-
       #Inputs:
         #data: list of 'trends' from csvFile module
         #occupancyRects: ouput of occupancy module
-
+    #Note: fullPlot comes from data processing
+    #Note for Sk: You can modify plotting to accept different values for height and width
     plt <- reactive({
       plt <- fullPlot(
         data = data(),
@@ -501,12 +534,25 @@ plotting <-
         title = input$plot_name,
         x_label = 'Time',
         y1_label = y1label,
-        y2_label = y2label
+        y2_label = y2label,
+        plotheight = input$Height,
+        plotwidth = input$Width,
+        numxticks = input$XTicks
       )
+      
       return(plt)
     })
 
-  
+    
+    #output$ExportPlot <- downloadHandler(
+     # filename <- 'plot.png',
+     # content = function(file){
+     #   orca(p = plt(), file = 'tempPlot.png')
+     #   file.copy('tempPlot.png',file)
+     # }
+    #)
 
     output$plot <- renderPlotly(plt())
   }
+
+

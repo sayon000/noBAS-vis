@@ -1,6 +1,7 @@
 sidebar <- dashboardSidebar(disable = TRUE,
   sidebarMenu(
     id = "tabs",
+    menuItem("Splash", tabName = "Splash", icon = icon("home")),
     menuItem("Home", tabName = "Home", icon = icon("home")),
     menuItem("AHU Trends", tabName = "AHU", icon = icon("wind")),
     menuItem("Chiller Plant Trends", tabName = "ChillerPlant", icon = icon("icicles")),

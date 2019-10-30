@@ -5,169 +5,215 @@ server <- function(input, output, session) {
   #actions to move between tabs using buttons should be here
  
   ###Start of trend buttons#######
+  
+  observeEvent(input$SplashTab,{
+    updateTabItems(session, 'tabs', selected = "Home")
+    js$ScrollUp()
+  }) 
+  
+  observeEvent(input$HomeTab,{
+    updateTabItems(session,'tabs',selected = "Home")
+    js$ScrollUp()
+  })
+  
   observeEvent(input$AHUTab,{
     updateTabItems(session, 'tabs', selected = "AHU")
+    js$ScrollUp()
   })  
   
   observeEvent(input$trend1Tab,{
     updateTabItems(session,'tabs',selected = "trend1")
+    js$ScrollUp()
   })
   
   observeEvent(input$trend2bTab,{
     updateTabItems(session,'tabs',selected = "trend2b")
+    js$ScrollUp()
   })
   
   observeEvent(input$trend3Tab,{
     updateTabItems(session,'tabs',selected = 'trend3')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend4cTab,{
     updateTabItems(session,'tabs',selected = 'trend4c')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend4dTab,{
     updateTabItems(session,'tabs',selected = 'trend4d')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend5aTab,{
     updateTabItems(session,'tabs',selected = 'trend5a')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend7Tab,{
     updateTabItems(session,'tabs',selected = 'trend7')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend8aTab,{
     updateTabItems(session,'tabs',selected = 'trend8a')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend8bTab,{
     updateTabItems(session,'tabs',selected = 'trend8b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend10Tab,{
     updateTabItems(session,'tabs',selected = 'trend10')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend12Tab,{
     updateTabItems(session,'tabs',selected = 'trend12')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend13aTab,{
     updateTabItems(session,'tabs',selected = 'trend13a')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend14aTab,{
     updateTabItems(session,'tabs',selected = 'trend14a')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend15Tab,{
     updateTabItems(session,'tabs',selected = 'trend15')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend17Tab,{
     updateTabItems(session,'tabs',selected = 'trend17')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend18Tab,{
     updateTabItems(session,'tabs',selected = 'trend18')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend19aTab,{
     updateTabItems(session,'tabs',selected = 'trend19a')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend20aTab,{
     updateTabItems(session,'tabs',selected = 'trend20a')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend21Tab,{
     updateTabItems(session,'tabs',selected = 'trend21')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend22Tab,{
     updateTabItems(session,'tabs',selected = 'trend22')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend23Tab,{
     updateTabItems(session,'tabs',selected = 'trend23')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend26Tab,{
     updateTabItems(session,'tabs',selected = 'trend26')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend2737aTab,{
     updateTabItems(session,'tabs',selected = 'trend2737a')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend27bTab,{
     updateTabItems(session,'tabs',selected = 'trend27b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend28bTab,{
     updateTabItems(session,'tabs',selected = 'trend28b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend29bTab,{
     updateTabItems(session,'tabs',selected = 'trend29b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend30bTab,{
     updateTabItems(session,'tabs',selected = 'trend30b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend31bTab,{
     updateTabItems(session,'tabs',selected = 'trend31b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend32bTab,{
     updateTabItems(session,'tabs',selected = 'trend32b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend33bTab,{
     updateTabItems(session,'tabs',selected = 'trend33b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend34bTab,{
     updateTabItems(session,'tabs',selected = 'trend34b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend36bTab,{
     updateTabItems(session,'tabs',selected = 'trend36b')
+    js$ScrollUp()
   })
   
   observeEvent(input$trend37bTab,{
     updateTabItems(session,'tabs',selected = 'trend37b')
+    js$ScrollUp()
   })
   
   observeEvent(input$AcroTab,{
     updateTabItems(session,'tabs',selected = 'AcroTab')
+    js$ScrollUp()
   })
 
-  #####end of trend tab buttons#########
-  
-  ###Start of home buttons####
-  
   observeEvent(input$CHPTab,{
     updateTabItems(session,'tabs',selected = "ChillerPlant")
+    js$ScrollUp()
   }) 
   
   observeEvent(input$BPTab,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$ZTab,{
     updateTabItems(session,'tabs',selected = "Zone")
+    js$ScrollUp()
   })
   
   observeEvent(input$PTab,{
     updateTabItems(session,'tabs',selected = "Perimeter")
+    js$ScrollUp()
   })
   
-  observeEvent(input$HTabAHU,{
-    updateTabItems(session,'tabs',selected = "Home")
-  })
+  #####end of trend tab buttons#########
+  
+  ###Start of home buttons####
   
   observeEvent(input$HTabCP,{
     updateTabItems(session,'tabs',selected = "Home")
@@ -354,87 +400,108 @@ server <- function(input, output, session) {
   #####Start of previous tab pages#####
   observeEvent(input$Prevtabt1,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt2b,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt3,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt4c,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt4d,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt5a,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt7,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt8a,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt8b,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt10,{
     updateTabItems(session,'tabs',selected = "AHU")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt12,{
     updateTabItems(session,'tabs',selected = "ChillerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt13a,{
     updateTabItems(session,'tabs',selected = "ChillerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt14a,{
     updateTabItems(session,'tabs',selected = "ChillerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt15,{
     updateTabItems(session,'tabs',selected = "ChillerPlant")
+    js$ScrollUp()
   })
   
   
   observeEvent(input$Prevtabt17,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt18,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt19a,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt20a,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt21,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt22,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   observeEvent(input$Prevtabt23,{
     updateTabItems(session,'tabs',selected = "BoilerPlant")
+    js$ScrollUp()
   })
   
   

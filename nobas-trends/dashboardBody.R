@@ -1,91 +1,138 @@
 body <- dashboardBody(
+  useShinyjs(),
+  extendShinyjs('www/shinyjsScrollUp.js'),
   tabItems(
     tabItem(tabName = "Splash",
-            title = "Nope",
+            title = "NoBAS Trend Charts",
             fluidRow(class = 'text-center',
-                     h1("NoBAS Trend Charts")
+                     width = 12,
+                     h1("NoBAS Trend Charts"),
+                     h2("Click on the image below to begin"),
+                     tags$button(
+                       id = "SplashTab",
+                       type = "button",
+                       class = "btn action-button",
+                       img(src = "https://raw.githubusercontent.com/cunybpl/noBAS-vis/master/bpl-logo.png",
+                           height = '75%',
+                           width = '75%'),
+                       width = 12
+                     )
               
             )
     ),
     #######First tab content###########
     tabItem(tabName = "Home",
-           fluidRow( 
-              
+           fluidRow(
+             width = 12
+             
+           ),
+           
+           fluidRow(class = 'text-center',
+             width = 12,
+             box(class = 'text-center',
+               width = 12,
+               h1("Welcome to the BPL Trending Tool"),
+               img(src="https://raw.githubusercontent.com/cunybpl/noBAS-vis/master/bpl-logo.png",
+                   align = 'middle',
+                   width = '50%',
+                   length = '50%'
+               )
+             )
+           ),
+           fluidRow(class = 'text-center',
+              width = 12,
+              box(class = 'text-center',
+                  width = 12,
+                  h3("Tips to make the most out of this tool"),
+                  tags$ol(class = 'text-left',
+                    tags$li("To create a valid CSV, you must put the time in the first column with the title 'Date' and the second column has the tile with the trend (for example, if you are trending MAT, the column should be called MAT) along with the data."),
+                    tags$li("If you want to change the parameters of the plot, you can adjust the values underneath each plot"),
+                    tags$li("To save a plot, scroll to the far right of the plot and click the camera icon that appears in the top right hand corner of the plot")
+                    )
+                  )
+             
+           ),
+            fluidRow(class = 'text-center',
+            width = 12,
              box(
-                title = "Air Handling Unit Charts",
-                width = 3,
-                height = 400,
-                img(src='https://www.cunybpl.org/wp-content/uploads/2018/11/ahu-150x150.png', 
-                    align = "left",
-                    width = '75%',
-                    length = '75%'),
-                actionButton('AHUTab',"Air Handling Units")
+                title = "AHU Charts",
+                class = 'text-center',
+                width = 2,
+                tags$button(
+                  id = "AHUTab",
+                  type = "button",
+                  class = "btn action-button",
+                  img(src = "AHU.png",
+                      height = '75%',
+                      width = '75%')
+                )
               ),
+              
               
              box(
                 title = "Chiller Plant Charts",
-                width = 3,
-                height = 400,
-                img(src='https://www.cunybpl.org/wp-content/uploads/2018/11/kisspng-chiller-hvac-free-cooling-condenser-refrigeration-advertising-carrier-5ae772db19a570.4527380615251176591051-300x173.jpg',
-                    align = 'left',
-                    width = '75%',
-                    length = '75%'),
-                actionButton('CHPTab',"Chiller Plant")
+                width = 2,
+                tags$button(
+                  id = "CHPTab",
+                  type = "button",
+                  class = "btn action-button",
+                  img(src = "CHILLER.jpg",
+                      height = '75%',
+                      width = '75%')
+                )
               ),
               
               box(
                 title = "Boiler Plant Charts",
-                width = 3,
-                height = 400,
-                img(src='http://tmiclimatesolutions.com/img/uhs-boiler-skid.jpg',
-                    align = 'left',
-                    width = '75%',
-                    length = '75%'),
-                actionButton('BPTab',"Boiler Plant")
+                width = 2,
+                tags$button(
+                  id = "BPTab",
+                  type = "button",
+                  class = "btn action-button",
+                  img(src = "BOILER.png",
+                      height = '75%',
+                      width = '75%')
+                )
               ),
              
               box(
                 title = "Zone Charts",
-                width = 3,
-                height = 400,
-                img(src='https://www.cunybpl.org/wp-content/uploads/2018/12/image1044_5-150x150.png',
-                    align = 'left',
-                    width = '75%',
-                    length = '75%'),
-                actionButton('ZTab',"Zone Charts")
-              )
-           ),
-
-           fluidRow(
-              
-             box(title = "Perimeter and Air Charts",
-                width = 3,
-                height = 400,
-                img(src="http://machineryequipmentonline.com/hvac-machinery/wp-content/uploads/2015/12/HVAC-LICENSING-EXAM-STUDY-GUIDE-0073_thumb.jpg",
-                    align = 'left',
-                    width = '100%',
-                    length = '100%'),
-                actionButton('PTab',"Perimeter And Air")
-            ),
-            
-            box(title = "Acronym Page",
-                width = 3,
-                height = 400,
-                actionButton('AcroTab',"Acronyms")
+                width = 2,
+                tags$button(
+                  id = "ZTab",
+                  type = "button",
+                  class = "btn action-button",
+                  img(src = "ZONE.png",
+                      height = '75%',
+                      width = '75%')
                 )
-          ),
-          
-          fluidRow(
-            width = 12,
-            box(
-              width = 12,
-              img(src="https://raw.githubusercontent.com/cunybpl/noBAS-vis/master/bpl-logo.png",
-                  align = 'left',
-                  width = '100%',
-                  length = '100%'
-              )
+              ),
+            
+            box(title = "Perimeter and Air Charts",
+                width = 2,
+                tags$button(
+                  id = "PTab",
+                  type = "button",
+                  class = "btn action-button",
+                  img(src = "PERIMETER.png",
+                      height = '75%',
+                      width = '75%')
+                )
+            ),
+            box(title = "Acronym Page",
+                width = 2,
+                tags$button(
+                  id = "AcroTab",
+                  type = "button",
+                  class = "btn action-button",
+                  img(src = "ACRONYM.png",
+                      height = '75%',
+                      width = '75%')
+                )
             )
-          )
+           )
+          
+          
     ),
     
     ########################################AHU TAB START##################################################
@@ -297,10 +344,8 @@ body <- dashboardBody(
            #fourth row end
            
             fluidRow(
-              box(
-                width = 2,
-                actionButton('HTabAHU',"Home")
-              )
+                
+
             )
             
     ),
@@ -2049,7 +2094,11 @@ body <- dashboardBody(
     
     tabItem(tabName = "Zone",
             fluidRow(
-              box(
+              boxPlus(
+                title = "Trend 26",
+                collapsed = TRUE,
+                collapsible = TRUE,
+                closable = FALSE,
                 width = 4,
                 h1(strong('Trend Chart 26')),
                 h2('Zone Temperature Setpoint'),
@@ -2057,7 +2106,7 @@ body <- dashboardBody(
                 tags$ul(
                   tags$li(csvFileInput(id = 'ZT26', label = "Zone Temperature")),
                   tags$li(csvFileInput(id = 'ZTSP26', label = 'Zone Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'ZTSBSP26', label = 'Zone Temperature Setpoint')),
+                  tags$li(csvFileInput(id = 'ZTSBSP26', label = 'Zone Temperature Setback Setpoint')),
                   tags$li(occupancyInput(id='occ26',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
                 ),
                 actionButton('trend26Tab',"Trend 26")

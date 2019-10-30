@@ -179,7 +179,10 @@ fullPlot <- function(data=NA,
                      title='My Plot',
                      x_label='Time',
                      y1_label='Y1 Label',
-                     y2_label='Y2 Label') {
+                     y2_label='Y2 Label',
+                     plotheight = 500,
+                     plotwidth = 2000,
+                     numxticks = 60) {
 
 
   # data: List of trend lists each containing:
@@ -211,7 +214,7 @@ fullPlot <- function(data=NA,
 
   #x-axis (time)
   x <- list(title = x_label,
-            nticks = 60,
+            nticks = numxticks,
             tickfont = list(size = 10),
             tickangle = 90,
             gridcolor = toRGB('gray60'),
@@ -222,7 +225,9 @@ fullPlot <- function(data=NA,
     plot_ly(type = 'scatter', mode = 'lines') %>% layout(
       title = title,
       xaxis = x,
-      yaxis = y1
+      yaxis = y1,
+      height = plotheight,
+      width = plotwidth
     )
 
   #add occupancy if any
