@@ -36,11 +36,12 @@ csv_read <- function(filepath){
 
 #input: datapath from csvFileInput containing 1 trend
 #Output: xts object with 1 data column, 1 index
+MASTER_DATE_FORMATS = c('mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
 process_data<-
   function(data,
            state_change_data,
            target_columns,
-           dt_formats = c('mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS'),
+           dt_formats = MASTER_DATE_FORMATS,
            periodicity_15 = FALSE) {
     #data: csv file object exported through HOBOware
     #state_change: bool flag for whether state change data 0 -> 1 -> 0 -> 1
@@ -100,6 +101,7 @@ process_data<-
     df$index <-
       lubridate::parse_date_time(df$index, dt_formats, quiet = TRUE)
     if (all(is.na(df$index))) {
+      warning("Unable to parse datetimes with given orders/index column")
       stop("Unable to parse datetimes with given orders/index column")
     }
 
@@ -180,9 +182,12 @@ fullPlot <- function(data=NA,
                      x_label='Time',
                      y1_label='Y1 Label',
                      y2_label='Y2 Label',
-                     plotheight = 500,
-                     plotwidth = 2000,
-                     numxticks = 60) {
+                     plotHeight = 500,
+                     plotWidth = 2000,
+                     numXTicks = 60,
+                     plotTickAngle = 90,
+                     XTickSize = 12,
+                     YTickSize = 12) {
 
 
   # data: List of trend lists each containing:
@@ -201,6 +206,7 @@ fullPlot <- function(data=NA,
   }
 
   y1 <- list(title = y1_label,
+             tickfont = list(size = YTickSize),
              gridcolor = toRGB("gray60"),
              overlaying = 'y2')
 
@@ -214,20 +220,20 @@ fullPlot <- function(data=NA,
 
   #x-axis (time)
   x <- list(title = x_label,
-            nticks = numxticks,
-            tickfont = list(size = 10),
-            tickangle = 90,
+            nticks = numXTicks,
+            tickfont = list(size = XTickSize),
+            tickangle = plotTickAngle,
             gridcolor = toRGB('gray60'),
             automargin=TRUE
   )
   #default setup
   plt <-
-    plot_ly(type = 'scatter', mode = 'lines') %>% layout(
+    plot_ly(type = 'scatter', mode = 'lines',height = plotHeight,
+            width = plotWidth) %>% layout(
       title = title,
       xaxis = x,
-      yaxis = y1,
-      height = plotheight,
-      width = plotwidth
+      yaxis = y1
+      
     )
 
   #add occupancy if any

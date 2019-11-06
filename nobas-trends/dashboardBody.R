@@ -1,4 +1,7 @@
 body <- dashboardBody(
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "homepage.css")
+  ),
   useShinyjs(),
   extendShinyjs('www/shinyjsScrollUp.js'),
   tabItems(
@@ -31,6 +34,7 @@ body <- dashboardBody(
              width = 12,
              box(class = 'text-center',
                width = 12,
+               solidHeader = TRUE,
                h1("Welcome to the BPL Trending Tool"),
                img(src="https://raw.githubusercontent.com/cunybpl/noBAS-vis/master/bpl-logo.png",
                    align = 'middle',
@@ -43,6 +47,7 @@ body <- dashboardBody(
               width = 12,
               box(class = 'text-center',
                   width = 12,
+                  solidHeader = TRUE,
                   h3("Tips to make the most out of this tool"),
                   tags$ol(class = 'text-left',
                     tags$li("To create a valid CSV, you must put the time in the first column with the title 'Date' and the second column has the tile with the trend (for example, if you are trending MAT, the column should be called MAT) along with the data."),
@@ -57,6 +62,7 @@ body <- dashboardBody(
              box(
                 title = "AHU Charts",
                 class = 'text-center',
+                solidHeader = TRUE,
                 width = 2,
                 tags$button(
                   id = "AHUTab",
@@ -72,6 +78,7 @@ body <- dashboardBody(
              box(
                 title = "Chiller Plant Charts",
                 width = 2,
+                solidHeader = TRUE,
                 tags$button(
                   id = "CHPTab",
                   type = "button",
@@ -85,6 +92,7 @@ body <- dashboardBody(
               box(
                 title = "Boiler Plant Charts",
                 width = 2,
+                solidHeader = TRUE,
                 tags$button(
                   id = "BPTab",
                   type = "button",
@@ -98,6 +106,7 @@ body <- dashboardBody(
               box(
                 title = "Zone Charts",
                 width = 2,
+                solidHeader = TRUE,
                 tags$button(
                   id = "ZTab",
                   type = "button",
@@ -110,6 +119,7 @@ body <- dashboardBody(
             
             box(title = "Perimeter and Air Charts",
                 width = 2,
+                solidHeader = TRUE,
                 tags$button(
                   id = "PTab",
                   type = "button",
@@ -121,6 +131,7 @@ body <- dashboardBody(
             ),
             box(title = "Acronym Page",
                 width = 2,
+                solidHeader = TRUE,
                 tags$button(
                   id = "AcroTab",
                   type = "button",
@@ -142,11 +153,13 @@ body <- dashboardBody(
             fluidRow(
               width = 12,
 
-              boxPlus(
+            boxPlus(
                 title = "Trend Chart 1: Fan Schedule",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 1')),
                 h2('Fan Schedule'),
@@ -158,11 +171,13 @@ body <- dashboardBody(
                 actionButton('trend1Tab',"Trend 1")
               ),
               
-              boxPlus(
+              box(
                 title = "Trend 2: OA Control Using OAD",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 2b')),
                 h2('OA Control Using OAD'),
@@ -177,11 +192,13 @@ body <- dashboardBody(
                 actionButton('trend2bTab','Trend 2b')
               ),
               
-              boxPlus(
+              box(
                 title = "Trend 3: Minimum OAD Position",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 3')),
                 h2("Minimum OAD Position"),
@@ -204,6 +221,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 4c')),
                 h2("Simultaneous Heating & Cooling"),
@@ -222,6 +241,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 4d')),
                 h2("Simultaneous Heating & Cooling"),
@@ -239,6 +260,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 5a')),
                 h2("Economizing Using Temperature or Enthalpy"),
@@ -264,6 +287,8 @@ body <- dashboardBody(
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
+               background = 'navy',
                width = 4,
                h1(strong('Trend Chart 7')),
                h2("DAT Control"),
@@ -283,6 +308,8 @@ body <- dashboardBody(
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
+               background = 'navy',
                h1(strong('Trend Chart 8a')),
                h2("Compressor Cycling & Staging"),
                h3('Parameters to trend'),
@@ -300,6 +327,8 @@ body <- dashboardBody(
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
+               background = 'navy',
                h1(strong('Trend Chart 8b')),
                h2("Burner Cycling & Staging"),
                h3('Parameters to trend'),
@@ -325,6 +354,8 @@ body <- dashboardBody(
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
+               background = 'navy',
                width = 4,
                h1(strong('Trend Chart 10')),
                h2("Heating/Cooling Mode"),
@@ -358,6 +389,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 1: Fan Status",
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id='trend1')
               )
             ),
@@ -368,6 +400,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the fans running during unoccupied hours?'),
                 h4('Faults:'),
@@ -376,6 +409,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Do they need to be on for any reason, e.g. meeting setbacks? Might have to trend zone temps and setback temps."),
@@ -389,8 +423,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt1","Previous Page"),
-                actionButton("HTabt1","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt1","Previous Page")
               )
             )
     ),
@@ -400,6 +434,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 2b: OA Control Using OAD",
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend2b')
               )
             ),
@@ -411,6 +446,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the OAD open during unoccupied times?'),
                 h4('Faults:'),
@@ -419,6 +455,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Do they need to be open for any reason?"),
@@ -435,6 +472,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the OAD open during startup when conditions are not favorable for economizing?'),
                 h4('Faults:'),
@@ -456,6 +494,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are your dampers open more than the minimum position during occupied hours when not economizing?'),
                 h4('Faults:'),
@@ -464,6 +503,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Are the zones served by this AHU required to run on 100% outside air?"),
@@ -481,6 +521,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you over-ventilating? (OAD > 20%)'),
                 h4('Faults:'),
@@ -489,6 +530,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Is there any reason that the minimum damper position should be greater than 20% (special CO2 requirement, demand control ventilation)?"),
@@ -503,6 +545,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you under-ventilating? (OAD < 10%)'),
                 h4('Faults:'),
@@ -511,6 +554,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Is there any reason that the minimum damper position should be less than 10% (special CO2 requirement, demand control ventilation)?"),
@@ -524,6 +568,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are Questions 1, 2, and 3 occurring simultaneously?'),
                 h4('Faults:'),
@@ -532,6 +577,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
@@ -544,6 +590,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
@@ -558,8 +605,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt2b","Previous Page"),
-                actionButton("HTabt2b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt2b","Previous Page")
               )
             )
           ),
@@ -570,6 +617,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 3: Minimum OAD Position",
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend3')
               )
             ),
@@ -624,8 +672,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt3","Previous Page"),
-                actionButton("HTabt3","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt3","Previous Page")
               )
             )
           ),
@@ -637,6 +685,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 4c: Simultaneous Heating & Cooling",
                   width = 12,
+                  solidHeader = TRUE,
                   plottingOutput(id = 'trend4c')
               )
             ),
@@ -648,6 +697,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you economizing with your HCV open?'),
                 h4('Faults:'),
@@ -656,6 +706,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
@@ -669,8 +720,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt4c","Previous Page"),
-                actionButton("HTabt4c","Home")
+                actionButton("Prevtabt4c","Previous Page")
               )
             )
     ),
@@ -681,6 +731,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 4d: Simultaneous Heating & Cooling",
                   width = 12,
+                  solidHeader = TRUE,
                   plottingOutput(id = 'trend4d')
               )
             ),
@@ -692,6 +743,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you economizing with your HCV open?'),
                 h4('Faults:'),
@@ -700,6 +752,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
@@ -711,8 +764,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt4d","Previous Page"),
-                actionButton("HTabt4d","Home")
+                actionButton("Prevtabt4d","Previous Page")
               )
             )
     ),
@@ -723,6 +775,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 5a: Economizing Using Temperature or Enthalpy",
                   width = 12,
+                  solidHeader = TRUE,
                   plottingOutput(id = 'trend5a')
               )
             ),
@@ -734,6 +787,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you in cooling mode?'),
                 h4('Faults:'),
@@ -742,6 +796,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("(See trend chart 2) If not in cooling mode, you should not be economizing."),
@@ -756,6 +811,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is MAT not between OAT and RAT? (OAF)'),
                 h4('Faults:'),
@@ -764,6 +820,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The temperature sensors are not calibrated properly."),
@@ -777,6 +834,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Should you be economizing? Are you not?'),
                 h4('Faults:'),
@@ -785,6 +843,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Operator override."),
@@ -799,8 +858,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt5a","Previous Page"),
-                actionButton("HTabt5a","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt5a","Previous Page")
               )
             )
     ),
@@ -811,6 +870,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 7: DAT Control",
                   width = 12,
+                  solidHeader = TRUE,
                   plottingOutput(id = 'trend7')
               )
             ),
@@ -822,6 +882,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2(' Is the system having trouble meeting the DATSP?'),
                 h4('Faults:'),
@@ -830,6 +891,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Does the HCV/CCV respond to the signal?"),
@@ -844,6 +906,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2(' Is the DAT hunting/stable?'),
                 h4('Faults:'),
@@ -852,6 +915,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("What is the operating differential? Can it be increased?"),
@@ -867,6 +931,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('For a dynamic DATSP: Is the DATSP erratic or unstable?'),
                 h4('Faults:'),
@@ -875,6 +940,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("What is controlling the DATSP?"),
@@ -887,8 +953,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt7","Previous Page"),
-                actionButton("HTabt7","Home")
+                actionButton("Prevtabt7","Previous Page")
               )
             )
     ),
@@ -899,6 +964,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 8a: Compressor/Burner Cycling & Staging",
                   width = 12,
+                  solidHeader = TRUE,
                   plottingOutput(id = 'trend8a')
               )
             ),
@@ -910,6 +976,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the compressors short cycling?'),
                 h4('Faults:'),
@@ -918,6 +985,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("DAT / DATSP operating differential is too tight."),
@@ -931,6 +999,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the compressors not staged properly?'),
                 h4('Faults:'),
@@ -939,6 +1008,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Staging controls not operating properly.")
@@ -951,8 +1021,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt8a","Previous Page"),
-                actionButton("HTabt8a","Home")
+                actionButton("Prevtabt8a","Previous Page")
               )
             )
     ),
@@ -963,6 +1032,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 8b: Burner Cycling & Staging",
                   width = 12,
+                  solidHeader = TRUE,
                   plottingOutput(id = 'trend8b')
               )
             ),
@@ -974,6 +1044,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the burners short cycling?'),
                 h4('Faults:'),
@@ -982,6 +1053,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("DAT / DATSP operating differential is too tight."),
@@ -995,6 +1067,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the burners not staged properly?'),
                 h4('Faults:'),
@@ -1003,6 +1076,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Staging controls not operating properly.")
@@ -1015,8 +1089,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt8b","Previous Page"),
-                actionButton("HTabt8b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt8b","Previous Page")
               )
             )
     ),
@@ -1028,6 +1102,7 @@ body <- dashboardBody(
             fluidRow(
               box(title = "Trend 10: Heating/Cooling Mode",
                   width = 12,
+                  solidHeader = TRUE,
                   plottingOutput(id = 'trend10')
               )
             ),
@@ -1039,6 +1114,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the AHU in cooling or heating mode? '),
                 h4('Faults:'),
@@ -1047,6 +1123,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If MAT < DAT, heating mode"),
@@ -1062,8 +1139,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt10","Previous Page"),
-                actionButton("HTabt10","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt10","Previous Page")
               )
             )
             
@@ -1085,6 +1162,8 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
+              background = 'navy',
               width = 4,
               h1(strong('Trend Chart 12')),
               h2('Chiller Plant Schedule'),
@@ -1104,6 +1183,8 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
+              background = 'navy',
               width = 4,
               h1(strong('Trend Chart 13a')),
               h2('Chilled Water Delta T'),
@@ -1122,6 +1203,8 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
+              background = 'navy',
               width = 4,
               h1(strong('Trend Chart 14a')),
               h2('ChWST Reset'),
@@ -1144,6 +1227,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 15')),
                 h2('Cooling Tower Scheduling'),
@@ -1154,13 +1239,6 @@ body <- dashboardBody(
                   tags$li(occupancyInput(id ='occ15',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
                 ),
                 actionButton('trend15Tab','Trend 15')
-              )
-            ),
-          
-          fluidRow(
-              width = 3,
-              box(
-                actionButton('HTabCP',"Home")
               )
             )
             
@@ -1175,6 +1253,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend12')
               )
             ),
@@ -1186,6 +1265,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the chiller not following the occupancy (and start up) schedule?'),
                 h4('Faults:'),
@@ -1208,8 +1288,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt12","Previous Page"),
-                actionButton("HTabt12","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt12","Previous Page")
               )
             )
             
@@ -1221,6 +1301,7 @@ body <- dashboardBody(
             fluidRow(
             box(
               width = 12,
+              solidHeader = TRUE,
               plottingOutput(id = 'trend13a')
               )
             ),
@@ -1232,6 +1313,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is my Delta-T (ChWST and ChWRT differential) too small? '),
                 h4('Faults:'),
@@ -1252,6 +1334,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('LDP not properly maintained by modulating pump speed?'),
                 h4('Faults:'),
@@ -1273,6 +1356,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Does pump speed not vary?'),
                 h4('Faults:'),
@@ -1281,6 +1365,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Control loop not operating.")
@@ -1292,6 +1377,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The VFD may not be working."),
@@ -1305,8 +1391,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt13a","Previous Page"),
-                actionButton("HTabt13a","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt13a","Previous Page")
               )
             )
       
@@ -1318,6 +1404,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend14a')
               )
             ),
@@ -1329,6 +1416,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Does your ChWST-SP not have a reset schedule? What is it based on? (such as OAT, occupancy, maximum cooling coil valve position)'),
                 h4('Faults:'),
@@ -1337,6 +1425,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("ChWST reset was never set up"),
@@ -1350,6 +1439,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are your maximum CCV positions below 90%?'),
                 h4('Faults:'),
@@ -1358,6 +1448,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("ChWST-SP is too low"),
@@ -1370,8 +1461,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt14a","Previous Page"),
-                actionButton("HTabt14a","Home")
+                actionButton("Prevtabt14a","Previous Page")
               )
             )
             
@@ -1383,6 +1473,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend15')
               )
             ),
@@ -1394,6 +1485,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the fans on during unoccupied hours?'),
                 h4('Faults:'),
@@ -1402,6 +1494,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Standard start up time based on the worst day of the year."),
@@ -1415,6 +1508,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the fans short cycling? (turning on and off in short periods of time)'),
                 h4('Faults:'),
@@ -1423,6 +1517,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Control loop not operating properly and/or needs tuning."),
@@ -1435,8 +1530,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt15","Previous Page"),
-                actionButton("HTabt15","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt15","Previous Page")
               )
             )
             
@@ -1453,6 +1548,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 17')),
                 h2('Steam Boiler Condensate Return Temperature'),
@@ -1469,6 +1566,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 18')),
                 h2('Boiler Plant Scheduling'),
@@ -1487,6 +1586,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 19a')),
                 h2('Hot Water Temperature Reset'),
@@ -1508,6 +1609,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 20a')),
                 h2('Hot Water Loop: Delta T'),
@@ -1525,6 +1628,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 21')),
                 h2('Condensing Boiler Efficiency'),
@@ -1541,6 +1646,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 22')),
                 h2('Boiler Cycling & Staging'),
@@ -1562,6 +1669,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 23')),
                 h2('Hot Water Temperature Hunting'),
@@ -1572,13 +1681,6 @@ body <- dashboardBody(
                   tags$li(occupancyInput(id='occ23',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
                 ),
                 actionButton('trend23Tab',"Trend 23")
-              )
-            ),
-            
-            fluidRow(
-              width = 3,
-              box(
-                actionButton('HTabBP',"Home")
               )
             )
             
@@ -1592,6 +1694,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 12,
+              solidHeader = TRUE,
               plottingOutput(id = 'trend17')
             )
           ),
@@ -1603,6 +1706,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is the condensate return temperature too high?'),
               h4('Faults:'),
@@ -1611,6 +1715,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Faulty steam traps.")
@@ -1622,8 +1727,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 3,
-              actionButton("Prevtabt17","Previous Page"),
-              actionButton("HTabt17","Home")
+              actionButton("Prevtabt17","Previous Page")
             )
           )
           
@@ -1635,6 +1739,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 12,
+              solidHeader = TRUE,
               plottingOutput(id = 'trend18')
             )
           ),
@@ -1646,6 +1751,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is the boiler not following the occupancy schedule? '),
               h4('Faults:'),
@@ -1654,6 +1760,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Not scheduled properly: change the boiler schedule"),
@@ -1668,6 +1775,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is the boiler running when heating should be locked out? (such as 50℉) '),
               h4('Faults:'),
@@ -1676,6 +1784,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Disabling cutoff temperature not operating"),
@@ -1689,8 +1798,8 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 3,
-              actionButton("Prevtabt18","Previous Page"),
-              actionButton("HTabt18","Home")
+              solidHeader = TRUE,
+              actionButton("Prevtabt18","Previous Page")
             )
           )
           
@@ -1702,6 +1811,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 12,
+              solidHeader = TRUE,
               plottingOutput(id = 'trend19a')
             )
           ),
@@ -1714,6 +1824,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is HW reset failing to work properly or not aggressive enough?'),
               h4('Faults:'),
@@ -1722,6 +1833,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("No HW reset is available."),
@@ -1736,6 +1848,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Is the control loop functioning properly?")
@@ -1748,6 +1861,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is your average HCV position well below 50%? '),
               h4('Faults:'),
@@ -1756,6 +1870,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("HWST-SP is generally too high. ")
@@ -1768,6 +1883,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is your maximum HCV position well below 90%?'),
               h4('Faults:'),
@@ -1776,6 +1892,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("If HW is solely for heating coils, consider programming HWST-SP based on meeting a maximum HCV position of 90%.")
@@ -1787,8 +1904,8 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 3,
-              actionButton("Prevtabt19a","Previous Page"),
-              actionButton("HTabt19a","Home")
+              solidHeader = TRUE,
+              actionButton("Prevtabt19a","Previous Page")
             )
           )
           
@@ -1800,6 +1917,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 12,
+              solidHeader = TRUE,
               plottingOutput(id = 'trend20a')
             )
           ),
@@ -1810,6 +1928,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is my delta T (HWST - HWRT) too small? '),
               h4('Faults:'),
@@ -1818,6 +1937,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Hot water is being over-pumped.")
@@ -1830,6 +1950,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is LDP not properly maintained by modulating pump speed?'),
               h4('Faults:'),
@@ -1838,6 +1959,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("LDP sensor problem."),
@@ -1851,6 +1973,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Does pump speed fail to vary?'),
               h4('Faults:'),
@@ -1859,6 +1982,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Control loop not working.")
@@ -1869,6 +1993,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Piping problem: 3-way valves instead of 2-way valves prevent variable pressure.")
@@ -1880,8 +2005,8 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 3,
-              actionButton("Prevtabt20a","Previous Page"),
-              actionButton("HTabt20a","Home")
+              solidHeader = TRUE,
+              actionButton("Prevtabt20a","Previous Page")
             )
           )
           
@@ -1893,8 +2018,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 12,
-              csvFileInput(id = "HWRT21", label = "Hot Water Return Temperature"),
-              occupancyInput(id='occ21',"https://cunybpl.shinyapps.io/nobas-occupancy/"),
+              solidHeader = TRUE,
               plottingOutput(id = 'trend21')
             )
           ),
@@ -1904,6 +2028,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is the condensate return temperature too high?'),
               h4('Faults:'),
@@ -1912,6 +2037,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Over-pumping minimizes delta T. Reduce LDP-SP to reduce pump speed, causing HWRT to drop."),
@@ -1924,8 +2050,8 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 3,
-              actionButton("Prevtabt21","Previous Page"),
-              actionButton("HTabt21","Home")
+              solidHeader = TRUE,
+              actionButton("Prevtabt21","Previous Page")
             )
           )
           
@@ -1937,6 +2063,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 12,
+              solidHeader = TRUE,
               plottingOutput(id = 'trend22')
             )
           ),
@@ -1948,6 +2075,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is the boiler short cycling?'),
               h4('Faults:'),
@@ -1956,6 +2084,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("The boiler could be oversized."),
@@ -1971,6 +2100,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Does Stack temperature show that my burner is cycling on/off or modulating?'),
               h4('Faults:'),
@@ -1979,6 +2109,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Tubes are fouled."),
@@ -1992,6 +2123,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is my stack temperature too high?'),
               h4('Faults:'),
@@ -2000,6 +2132,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Tubes are fouled."),
@@ -2012,8 +2145,8 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 3,
-              actionButton("Prevtabt22","Previous Page"),
-              actionButton("HTabt22","Home")
+              solidHeader = TRUE,
+              actionButton("Prevtabt22","Previous Page")
             )
           )
           
@@ -2025,9 +2158,7 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 12,
-              csvFileInput(id = "HWST23", label = "Hot Water Supply Temperature"),
-              csvFileInput(id = "HWSTSP23", label = "Hot Water Supply Temperature Set Point"),
-              occupancyInput(id='occ23',"https://cunybpl.shinyapps.io/nobas-occupancy/"),
+              solidHeader = TRUE,
               plottingOutput(id = 'trend23')
             )
           ),
@@ -2039,6 +2170,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2('Is the HWST failing to follow its setpoint?'),
               h4('Faults:'),
@@ -2047,6 +2179,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Control loop not operating properly."),
@@ -2060,6 +2193,7 @@ body <- dashboardBody(
               collapsed = TRUE,
               collapsible = TRUE,
               closable = FALSE,
+              solidHeader = TRUE,
               width = 4,
               h2(' Is there hunting?'),
               h4('Faults:'),
@@ -2068,6 +2202,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 12,
                 tags$ul(
                   tags$li("Aquastat operating differential is not set properly.")
@@ -2080,8 +2215,8 @@ body <- dashboardBody(
           fluidRow(
             box(
               width = 3,
-              actionButton("Prevtabt23","Previous Page"),
-              actionButton("HTabt23","Home")
+              solidHeader = TRUE,
+              actionButton("Prevtabt23","Previous Page")
             )
           )
           
@@ -2099,6 +2234,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 26')),
                 h2('Zone Temperature Setpoint'),
@@ -2111,14 +2248,14 @@ body <- dashboardBody(
                 ),
                 actionButton('trend26Tab',"Trend 26")
               )
-            ),
-            actionButton('HTabZ',"Home")
+            )
     ),
     ###########trend26###########
     tabItem(tabName = "trend26",
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend26')
               )
             ),
@@ -2130,6 +2267,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the Zone Temperature not meeting its Zone Temperature Set-point?'),
                 h4('Faults:'),
@@ -2138,6 +2276,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Thermostat / VAV damper control loop is not working."),
@@ -2151,6 +2290,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the deadband not wide enough (below 5℉), allowing alternating heating and cooling to occur?'),
                 h4('Faults:'),
@@ -2159,6 +2299,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Bad setpoints cause alternating heating / cooling: Increase the deadband to at least 5℉.")
@@ -2171,6 +2312,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the zone temperature not floating toward the setback temperature during unoccupied times?'),
                 h4('Faults:'),
@@ -2190,6 +2332,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Zone temperature setbacks should be reduced to 55-60 °F during heating season, and raised to 80-85℉ during cooling season. Incremental changes / trial and error needed, especially for a leaky envelope and/or if your building takes a long time to reach occupied zone temperature setpoints. Check to see how your building responds and move to a more aggressive setback if everything is okay.")
@@ -2201,8 +2344,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt26","Previous Page"),
-                actionButton("HTabt26","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt26","Previous Page")
               )
             )
           ),
@@ -2220,6 +2363,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 27-37a')),
                 h2('Plotting the "a" Trend Chart For Each Trend (Heating Status)'),
@@ -2227,7 +2372,6 @@ body <- dashboardBody(
                 tags$ul(
                   tags$li(csvFileInput(id = 'Burner-t2737a', label = 'Burner Status')),
                   tags$li(csvFileInput(id = 'Boiler-t2737a', label = 'Boiler Status')),
-                  tags$li(csvFileInput(id = 'HWST2737a', label = "Hot Water Supply Temperature")),
                   tags$li(csvFileInput(id = 'MAT2737a', label = "Mixed Air Temperature")),
                   tags$li(csvFileInput(id = 'DAT2737a', label = 'Discharge Air Temperature')),
                   tags$li(csvFileInput(id = 'HCV2737a', label = "Heating Coil Valve Position")),
@@ -2240,6 +2384,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 27b')),
                 h2('Constant Volume Air System With a Heating Coil or Burner'),
@@ -2258,6 +2404,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 28b')),
                 h2('VAV without Reheats'),
@@ -2282,6 +2430,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 29b')),
                 h2('VAV with Reheats'),
@@ -2300,6 +2450,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 30b')),
                 h2('DAT Modulates Based on RAT'),
@@ -2319,6 +2471,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 31b')),
                 h2('Constant Volume Air System with a DATSP'),
@@ -2342,6 +2496,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 32b')),
                 h2('Constant Volume Air System without a DATSP'),
@@ -2359,6 +2515,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 33b')),
                 h2('Cosntant Volume On/Off Air System With a Heating Coil or Burner'),
@@ -2378,6 +2536,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 34b')),
                 h2('VAV without Reheats'),
@@ -2406,6 +2566,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 36b')),
                 h2('DAT based on RAT'),
@@ -2428,6 +2590,8 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
+                background = 'navy',
                 width = 4,
                 h1(strong('Trend Chart 37b')),
                 h2('Constant Volume Air System Based on DAT'),
@@ -2442,13 +2606,6 @@ body <- dashboardBody(
                 ),
                 actionButton('trend37bTab',"Trend 37b")
               )
-            ),
-            
-            fluidRow(
-              width = 3,
-              box(
-                actionButton('HTabP',"Home")
-              )
             )
         ),
     #################Start OF PERIMETER Plot##################
@@ -2458,6 +2615,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend2737a')
               )
             ),
@@ -2465,8 +2623,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt2737a","Previous Page"),
-                actionButton("HTabt2737a","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt2737a","Previous Page")
               )
             )
             
@@ -2477,6 +2635,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend27b')
               )
             ),
@@ -2488,6 +2647,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the system failing to meet the ZTSP-A?'),
                 h4('Faults:'),
@@ -2496,6 +2656,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check if the HCV opens or modulates its position (or burners fire) as a response to the call for heat."),
@@ -2514,6 +2675,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent HCV fluctuations or is there burner cycling?'),
                 h4('Faults:'),
@@ -2522,6 +2684,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -2534,6 +2697,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -2542,6 +2706,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
@@ -2558,6 +2723,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('If there are nighttime setbacks, are both systems running at night?'),
                 h4('Faults:'),
@@ -2566,6 +2732,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Can the nighttime setbacks be met solely with the perimeter system? Doing so will eliminate fan operation. This may require changing your HWST set point or HW reset settings.")
@@ -2577,8 +2744,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt27b","Previous Page"),
-                actionButton("HTabt27b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt27b","Previous Page")
               )
             )
           ),
@@ -2588,6 +2755,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend28b')
               )
             ),
@@ -2599,6 +2767,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you failing to meet your ZTSP-A?'),
                 h4('Faults:'),
@@ -2607,6 +2776,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check if the VAV dampers modulate their positions to meet ZTSP-A. If not, tune it."),
@@ -2625,6 +2795,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
                 h4('Faults:'),
@@ -2633,6 +2804,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -2645,6 +2817,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2(' Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -2653,6 +2826,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
@@ -2669,6 +2843,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the VAV damper positions below 50% or above 75%?'),
                 h4('Faults:'),
@@ -2677,6 +2852,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Duct static pressure is set too high or too low."),
@@ -2689,6 +2865,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check controls or PID loop.")
@@ -2701,6 +2878,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is DAT greater or less than ZT? '),
                 h4('Faults:'),
@@ -2709,6 +2887,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Not a recommended configuration, as there is no thermostat for the perimeter system.")
@@ -2721,6 +2900,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('If there are nighttime setbacks, are both systems running at night?'),
                 h4('Faults:'),
@@ -2729,6 +2909,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
@@ -2741,8 +2922,7 @@ body <- dashboardBody(
               width = 12,
               box(
                 width = 3,
-                actionButton("Prevtabt28b","Previous Page"),
-                actionButton("HTabt28b","Home")
+                actionButton("Prevtabt28b","Previous Page")
               )
             )
         ),
@@ -2752,6 +2932,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend29b')
               )
             ),
@@ -2763,6 +2944,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Does the system fail to meet its DATSP and ZTSP-A?'),
                 h4('Faults:'),
@@ -2771,6 +2953,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check the control loop between the HCV and the DAT. Tune if needed.")
@@ -2781,6 +2964,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If VAVs, check if the VAV dampers modulate their positions to meet ZTSP-A. If not, tune it."),
@@ -2799,6 +2983,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
                 h4('Faults:'),
@@ -2807,6 +2992,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -2819,6 +3005,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent valve fluctuations for the reheat coil?'),
                 h4('Faults:'),
@@ -2827,6 +3014,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check controls or PID loop.")
@@ -2842,6 +3030,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -2850,6 +3039,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
@@ -2863,6 +3053,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is DAT greater or less than ZT?'),
                 h4('Faults:'),
@@ -2871,6 +3062,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Possible overheating and negating the need for reheats and you lose zone-specific controls; not a recommended configuration.")
@@ -2883,6 +3075,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the VAV damper positions below 50% or above 75%?'),
                 h4('Faults:'),
@@ -2891,6 +3084,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Duct static pressure is set too high or too low."),
@@ -2903,6 +3097,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check controls or PID loop.")
@@ -2918,6 +3113,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('What is the maximum HCV position when reheat coils are active?'),
                 h4('Faults:'),
@@ -2926,6 +3122,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Implement HWLDPSP reset so that the maximum HCV position is around 90% open.")
@@ -2938,6 +3135,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the majority of the reheats active?'),
                 h4('Faults:'),
@@ -2946,6 +3144,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Implement HWLDPSP reset so that the maximum HCV position is around 90% open.")
@@ -2958,6 +3157,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('If there are nighttime setbacks, are both systems running at night?'),
                 h4('Faults:'),
@@ -2966,6 +3166,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
@@ -2977,8 +3178,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt29b","Previous Page"),
-                actionButton("HTabt29b","Home")
+                actionButton("Prevtabt29b","Previous Page")
               )
             )
     ),
@@ -2989,6 +3189,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend30b')
               )
             ),
@@ -3000,6 +3201,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
                 h4('Faults:'),
@@ -3008,6 +3210,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -3020,6 +3223,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Does the RAT fail to meet its setpoint?'),
                 h4('Faults:'),
@@ -3028,6 +3232,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check controls sequence – see that DAT modulates to meet the RATSP, and that the HCV modulates to meet the DATSP. May need to tune the control loop.")
@@ -3040,6 +3245,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Does RAT fail to change in order to meet the RATSP?'),
                 h4('Faults:'),
@@ -3048,6 +3254,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check for air infiltration in the zones."),
@@ -3064,6 +3271,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -3072,6 +3280,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
@@ -3085,6 +3294,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are your zone temperatures uneven?'),
                 h4('Faults:'),
@@ -3093,6 +3303,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check air balance."),
@@ -3106,6 +3317,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('If there are nighttime setbacks, are both systems running at night?'),
                 h4('Faults:'),
@@ -3114,6 +3326,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
@@ -3125,8 +3338,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt30b","Previous Page"),
-                actionButton("HTabt30b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt30b","Previous Page")
               )
             )
             
@@ -3138,6 +3351,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend31b')
               )
             ),
@@ -3149,6 +3363,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Does the system fail to meet its DATSP?'),
                 h4('Faults:'),
@@ -3157,6 +3372,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Does the HCV modulate to meet DATSP? If not, tune the control loop.")
@@ -3169,6 +3385,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are your zone and return temperatures too hot or cold?'),
                 h4('Faults:'),
@@ -3177,6 +3394,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If the control loop between DAT and DATSP is working, adjust the DATSP or HWSTSP until the zone temperature or return temperatures are in an appropriate range."),
@@ -3190,6 +3408,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -3198,6 +3417,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
@@ -3213,6 +3433,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
                 h4('Faults:'),
@@ -3221,6 +3442,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -3232,8 +3454,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt31b","Previous Page"),
-                actionButton("HTabt31b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt31b","Previous Page")
               )
             )
       ),
@@ -3243,6 +3465,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend32b')
               )
             ),
@@ -3254,6 +3477,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are your zone or return temperatures too hot or cold?'),
                 h4('Faults:'),
@@ -3262,6 +3486,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("This system does not have many controls or set points available. Adjustments are typically manual for systems like these, and may include trial and error with the following settings:"),
@@ -3280,6 +3505,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -3288,6 +3514,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
@@ -3300,8 +3527,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt32b","Previous Page"),
-                actionButton("HTabt32b","Home")
+                actionButton("Prevtabt32b","Previous Page")
               )
             )
     ),
@@ -3323,6 +3549,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Do zone temperatures fail to meet their setpoints?'),
                 h4('Faults:'),
@@ -3331,6 +3558,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If ZTSP-P > ZTSP-A, the perimeter system controls meeting the ZTSP. In this case:"),
@@ -3349,6 +3577,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -3357,6 +3586,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
@@ -3369,6 +3599,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent heating coil valve fluctuations or burner cycling?'),
                 h4('Faults:'),
@@ -3377,6 +3608,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -3392,6 +3624,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are your ZTSP-P and ZTSP-A within one or two degrees of each other?'),
                 h4('Faults:'),
@@ -3400,6 +3633,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Select the system to dominate heating and set that ZTSP significantly higher (at least 5°F) across all zones served. Be sure this is true for all zones, otherwise the second system will remain on to serve the zone (or zones) where the rule is not followed.")
@@ -3412,6 +3646,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('If there are nighttime setbacks, are both systems running at night?'),
                 h4('Faults:'),
@@ -3420,6 +3655,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
@@ -3431,8 +3667,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt33b","Previous Page"),
-                actionButton("HTabt33b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt33b","Previous Page")
               )
             )
     ),
@@ -3443,6 +3679,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend34b')
               )
             ),
@@ -3454,6 +3691,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Do zone temperatures fail to meet their setpoints? IF YES, ask Qs. 1a–c, too!'),
                 h4('Faults:'),
@@ -3462,6 +3700,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If ZTSP-P > ZTSP-A, the perimeter system controls meeting the ZTSP. In this case:"),
@@ -3480,6 +3719,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is DAT > ZT when ZTSP-P (or TRVSP) > ZTSP-A?'),
                 h4('Faults:'),
@@ -3488,6 +3728,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("This is not a recommended setup. Potential overheating in the zones, suggest reducing VAV Damper Position to min positions and lower DATSP.")
@@ -3500,6 +3741,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is DAT < ZT when ZTSP-P (or TRVSP) < ZTSP-A? '),
                 h4('Faults:'),
@@ -3508,6 +3750,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("This is not a recommended setup. This will cause underheating in the zones. Increase DATSP or ZTSP-P. ")
@@ -3523,6 +3766,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('When ZTSP-P (or TRVSP) > ZTSP-A and DAT < ZT, does the VAV damper fail to modulate to minimum position?'),
                 h4('Faults:'),
@@ -3531,6 +3775,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("In this scenario, you want the VAV to go to minimum position. The damper should close when the zone temperature exceeds ZTSP-A. But the VAV is not at minimum position, and simultaneous heating and cooling is occurring.")
@@ -3543,6 +3788,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -3551,6 +3797,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
@@ -3563,6 +3810,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent heating coil valve fluctuations or burner cycling?'),
                 h4('Faults:'),
@@ -3571,6 +3819,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -3586,6 +3835,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are the VAV damper positions below 50% or above 75%?'),
                 h4('Faults:'),
@@ -3594,6 +3844,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Duct static pressure is set too high or too low."),
@@ -3606,6 +3857,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check controls or PID loop. ")
@@ -3618,6 +3870,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are your ZTSP-P and ZTSP-A within one or two degrees of each other?'),
                 h4('Faults:'),
@@ -3626,6 +3879,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Select the system to dominate heating and set that ZTSP significantly higher (at least 5°F) across all zones served. Be sure this is true for all zones, otherwise the second system will remain on to serve the zone (or zones) where the rule is not followed.")
@@ -3638,6 +3892,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('If there are nighttime setbacks, are both systems running at night?'),
                 h4('Faults:'),
@@ -3646,6 +3901,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
@@ -3657,8 +3913,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt34b","Previous Page"),
-                actionButton("HTabt34b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt34b","Previous Page")
               )
             )
     ),
@@ -3669,6 +3925,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend36b')
               )
             ),
@@ -3680,6 +3937,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is DAT having trouble meeting the RATSP?'),
                 h4('Faults:'),
@@ -3688,6 +3946,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check controls sequence – see that DAT modulates to meet the RATSP, and that the HCV modulates to meet the DATSP. May need to tune the control loop.")
@@ -3698,6 +3957,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check for air infiltration in the zones."),
@@ -3711,6 +3971,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the system having trouble meeting your ZTSP-P? '),
                 h4('Faults:'),
@@ -3719,6 +3980,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check air balance."),
@@ -3732,6 +3994,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -3740,6 +4003,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
@@ -3755,6 +4019,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the ZTSP-P < RATSP?'),
                 h4('Faults:'),
@@ -3763,6 +4028,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("This configuration is not recommended. It’s better to meet your heating requirements with your perimeter system. Change the settings.")
@@ -3774,8 +4040,8 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt36b","Previous Page"),
-                actionButton("HTabt36b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt36b","Previous Page")
               )
             )
     ),
@@ -3786,6 +4052,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
+                solidHeader = TRUE,
                 plottingOutput(id = 'trend37b')
               )
             ),
@@ -3797,6 +4064,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you having trouble meeting  ZTSP-P?'),
                 h4('Faults:'),
@@ -3805,6 +4073,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Check that perimeter system valves serving the zones are operating properly."),
@@ -3818,6 +4087,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are you having trouble meeting DATSP?'),
                 h4('Faults:'),
@@ -3826,6 +4096,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("Does the HCV modulate to meet DATSP? If not, tune the control loop.")
@@ -3838,6 +4109,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Is the supply fan on during unoccupied times?'),
                 h4('Faults:'),
@@ -3846,6 +4118,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
@@ -3861,6 +4134,7 @@ body <- dashboardBody(
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
+                solidHeader = TRUE,
                 width = 4,
                 h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
                 h4('Faults:'),
@@ -3869,6 +4143,7 @@ body <- dashboardBody(
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
+                  solidHeader = TRUE,
                   width = 12,
                   tags$ul(
                     tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
@@ -3880,26 +4155,20 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 3,
-                actionButton("Prevtabt37b","Previous Page"),
-                actionButton("HTabt37b","Home")
+                solidHeader = TRUE,
+                actionButton("Prevtabt37b","Previous Page")
               )
             )
           ),
     #######################END OF PERIMETER PLOT###########
   tabItem(tabName = "AcroTab",
           fluidRow(
-            width =12,
+            width = 12,
             box(
+              solidHeader = TRUE,
               tableOutput("acroTable")
             )
             
-          ),
-          fluidRow(
-            width = 12,
-            box(
-              width = 3,
-              actionButton("HTabAcro","Home")
-            )
           )
     
   )

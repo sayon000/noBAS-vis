@@ -1,8 +1,31 @@
 library(shinydashboard)
-
+####GOALS FOR TOMRROW, ADD ALL THE COLS STUFF####
 server <- function(input, output, session) {
   
-  #actions to move between tabs using buttons should be here
+  ####target Columns for respective trends####
+  
+  FANCOLS <- c("motor","fan","FAN","Fan")
+  OATCOLS <- c("OAT","Oat","oat","Temp","Temperature","TEMP")
+  DATCOLS <- c("DAT","Dat","dat","Temp","Temperature","TEMP")
+  DATSPCOLS <- c("DATSP","Datsp","datsp","Temp","Setpoint")
+  MATCOLS <- c("MAT","Mat","mat","Temp","Temperature","TEMP")
+  RATCOLS <- c("RAT","Rat","rat","Temp","Temperature","TEMP")
+  OADCOLS <- c("OAD","Oad","oad","Position","position")
+  CO2COLS <- c("CO2","Co2","ppm","PPM")
+  HCVCOLS <- c("HCV","hcv","Hcv","Valve")
+  HWSTCOLS <- c("HWST","hwst","Hwst","Hot Water Supply Temperature")
+  HWRTCOLS <- c("HWRT","hwrt","Hwrt","Hot Water Return Temperature")
+  HWPCOLS <- c("HWP","hwp","Hwp","Hot Water Pump")
+  HWPSCOLS <- c("HWPS","hwps","Hwps","status","Status")
+  COMPRESSORCOLS <- c("COMPRESSOR","compressor","Compressor","Status")
+  BURNERCOLS <- c("BURNER","burner","Burner","Status")
+  CHWSTCOLS <- c("CHWST","chwst","Chwst","Temp","Chilled Water Supply")
+  CHWSTSPCOLS <- c("CHWSTSP","chwstsp","Chwstsp","Set Point","Chilled Water Supply Set Point")
+  CHWRTCOLS <- c("CHWRT","chwrt","Chwrt","Temp","Chilled Water Return")
+  CHWPCOLS <- c("CHWP","chwp","Chwp","Speed","SPEED")
+  BSCOLS <- c("BOILER","boiler","Boiler","Status","Boiler Status")
+  
+  #actions to move between tabs using buttons should be here below
  
   ###Start of trend buttons#######
   
@@ -586,7 +609,7 @@ server <- function(input, output, session) {
   
   ###start of trend 1####
   fan_trend_t1 <- callModule(csvFile,"fant1",
-                           targetColumns=reactive({c("Motor","Fan")}),
+                           targetColumns=reactive({FANCOLS}),
                            stateChange=reactive({TRUE}),
                            periodicity15=reactive({TRUE}),
                            name=reactive({"Fan"}),
@@ -607,7 +630,7 @@ server <- function(input, output, session) {
   
   #start of trend 2b
   fan_trend_t2b <- callModule(csvFile,"fant2b",
-                             targetColumns=reactive({c("Motor","Fan")}),
+                             targetColumns=reactive({FANCOLS}),
                              stateChange=reactive({TRUE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"Fan"}),
@@ -615,7 +638,7 @@ server <- function(input, output, session) {
                              axis=reactive({'y2'}))
   
   oat_trend_t2b <- callModule(csvFile,"OAT2b",
-                            targetColumns=reactive({c("Temp","oat","OAT")}),
+                            targetColumns=reactive({OATCOLS}),
                             stateChange=reactive({FALSE}),
                             periodicity15=reactive({TRUE}),
                             name=reactive({"OAT"}),
@@ -623,7 +646,7 @@ server <- function(input, output, session) {
                             axis=reactive({'y1'}))
   
   mat_trend_t2b <- callModule(csvFile,"MAT2b",
-                              targetColumns=reactive({c("Temp","mat","MAT")}),
+                              targetColumns=reactive({MATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"MAT"}),
@@ -631,7 +654,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
   
   rat_trend_t2b <- callModule(csvFile,"RAT2b",
-                              targetColumns=reactive({c("Temp","rat","RAT")}),
+                              targetColumns=reactive({RATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"RAT"}),
@@ -652,7 +675,7 @@ server <- function(input, output, session) {
   #start of trend 3 NOTE: FIX THIS WHEN YOU GET ACTUAL DATA
   
   oad_trend_t3 <- callModule(csvFile,"OAD3",
-                              targetColumns=reactive({c("Oad","oad","OAD")}),
+                              targetColumns=reactive({OADCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"OAD"}),
@@ -660,7 +683,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
   
   co2_trend_t3 <- callModule(csvFile,"CO2-3",
-                             targetColumns=reactive({c("CO2","ppm","PPM")}),
+                             targetColumns=reactive({CO2COLS}),
                              stateChange=reactive({FALSE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"CO2"}),
@@ -682,7 +705,7 @@ server <- function(input, output, session) {
   #####start of trend 4c####
   
   oad_trend_t4c <- callModule(csvFile,"OAD4c",
-                             targetColumns=reactive({c("Temp","oad","OAD")}),
+                             targetColumns=reactive({OADCOLS}),
                              stateChange=reactive({FALSE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"OAD"}),
@@ -690,7 +713,7 @@ server <- function(input, output, session) {
                              axis=reactive({'y1'}))
   
   hcv_trend_t4c <- callModule(csvFile,"HCV4c",
-                             targetColumns=reactive({c("Temp","hcv","HCV")}),
+                             targetColumns=reactive({HCVCOLS}),
                              stateChange=reactive({FALSE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"HCV"}),
@@ -698,10 +721,10 @@ server <- function(input, output, session) {
                              axis=reactive({'y1'}))
   
   hwst_trend_t4c <- callModule(csvFile,"HWST4c",
-                             targetColumns=reactive({c("Temp","hwst","HWST")}),
+                             targetColumns=reactive({HWSTCOLS}),
                              stateChange=reactive({FALSE}),
                              periodicity15=reactive({TRUE}),
-                             name=reactive({"OAD"}),
+                             name=reactive({"HWST"}),
                              color=reactive({"orange"}),
                              axis=reactive({'y1'}))
   
@@ -719,15 +742,15 @@ server <- function(input, output, session) {
   #####start of trend 4d#####
   
   fan_trend_t4d <- callModule(csvFile,"fant4d",
-                             targetColumns=reactive({c("Motor","Fan")}),
+                             targetColumns=reactive({FANCOLS}),
                              stateChange=reactive({TRUE}),
-                             periodicity15=reactive({TRUE}),
+                             periodicity15=reactive({FALSE}),
                              name=reactive({"Fan"}),
                              color=reactive({"black"}),
                              axis=reactive({'y2'}))
   
   hwp_trend_t4d <- callModule(csvFile,"HWP4d",
-                             targetColumns=reactive({c("Motor","Fan")}),
+                             targetColumns=reactive({HWPCOLS}),
                              stateChange=reactive({TRUE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"HWP"}),
@@ -748,7 +771,7 @@ server <- function(input, output, session) {
   #####start of trend 5a####
   
   fan_trend_t5a <- callModule(csvFile,"fant5a",
-                              targetColumns=reactive({c("Motor","Fan")}),
+                              targetColumns=reactive({FANCOLS}),
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Fan"}),
@@ -756,7 +779,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y2'}))
   
   oat_trend_t5a <- callModule(csvFile,"OAT5a",
-                              targetColumns=reactive({c("Temp","oat","OAT")}),
+                              targetColumns=reactive({OATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"OAT"}),
@@ -764,7 +787,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
   
   mat_trend_t5a <- callModule(csvFile,"MAT5a",
-                              targetColumns=reactive({c("Temp","mat","MAT")}),
+                              targetColumns=reactive({MATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"MAT"}),
@@ -772,7 +795,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
   
   rat_trend_t5a <- callModule(csvFile,"RAT5a",
-                              targetColumns=reactive({c("Temp","rat","RAT")}),
+                              targetColumns=reactive({RATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"RAT"}),
@@ -794,7 +817,7 @@ server <- function(input, output, session) {
   #####start of trend 7####
   
   fan_trend_t7 <- callModule(csvFile,"fant7",
-                              targetColumns=reactive({c("Motor","Fan")}),
+                              targetColumns=reactive({FANCOLS}),
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Fan"}),
@@ -802,7 +825,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y2'}))
   
   dat_trend_t7 <- callModule(csvFile,"DAT7",
-                              targetColumns=reactive({c("Temp","dat","DAT")}),
+                              targetColumns=reactive({DATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"DAT"}),
@@ -810,7 +833,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
   
   datsp_trend_t7 <- callModule(csvFile,"DATSP7",
-                              targetColumns=reactive({c("Temp","datsp","DATSP")}),
+                              targetColumns=reactive({DATSPCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"DATSP"}),
@@ -834,20 +857,20 @@ server <- function(input, output, session) {
   #####start of trend 8a####
 
   compressor1_trend_t8a <- callModule(csvFile,"Compressor1-t8a",
-                             targetColumns=reactive({c("Temp","compressor","COMPRESSOR")}),
-                             stateChange=reactive({FALSE}),
-                             periodicity15=reactive({TRUE}),
+                             targetColumns=reactive({COMPRESSORCOLS}),
+                             stateChange=reactive({TRUE}),
+                             periodicity15=reactive({FALSE}),
                              name=reactive({"Compressor 1"}),
                              color=reactive({"gray"}),
-                             axis=reactive({'y2'}))
+                             axis=reactive({'y1'}))
   
   compressor2_trend_t8a <- callModule(csvFile,"Compressor1-t8b",
-                             targetColumns=reactive({c("Temp","compressor","COMPRESSOR")}),
-                             stateChange=reactive({FALSE}),
-                             periodicity15=reactive({TRUE}),
+                             targetColumns=reactive({COMPRESSORCOLS}),
+                             stateChange=reactive({TRUE}),
+                             periodicity15=reactive({FALSE}),
                              name=reactive({"Compressor 2"}),
                              color=reactive({"brown"}),
-                             axis=reactive({'y2'}))
+                             axis=reactive({'y1'}))
   
   all_data_t8a <- reactive({
     list(compressor1_trend_t8a(),compressor2_trend_t8a())
@@ -856,7 +879,7 @@ server <- function(input, output, session) {
   date_range_t8a <- callModule(dateRange,"placeholder-id",data=all_data_t8a)
   occupancyRects_t8a <- callModule(occupancy,"occ8a",date_range_t8a)
   
-  callModule(plotting,"trend8a",data=all_data_t8a,occupancyRects=occupancyRects_t8a,y2label='Status')
+  callModule(plotting,"trend8a",data=all_data_t8a,occupancyRects=occupancyRects_t8a,y1label='Status')
   
   
   ####end of trend 8a#####
@@ -864,7 +887,7 @@ server <- function(input, output, session) {
   #####start of trend 8b####
   
   burner1_trend_t8b <- callModule(csvFile,"Burner1-t8b",
-                                      targetColumns=reactive({c("Temp","burner","BURNER")}),
+                                      targetColumns=reactive({BURNERCOLS}),
                                       stateChange=reactive({FALSE}),
                                       periodicity15=reactive({TRUE}),
                                       name=reactive({"Burner 1"}),
@@ -872,7 +895,7 @@ server <- function(input, output, session) {
                                       axis=reactive({'y2'}))
   
   burner2_trend_t8b <- callModule(csvFile,"Burner2-t8b",
-                                      targetColumns=reactive({c("Temp","burner","BURNER")}),
+                                      targetColumns=reactive({BURNERCOLS}),
                                       stateChange=reactive({FALSE}),
                                       periodicity15=reactive({TRUE}),
                                       name=reactive({"Burner 2"}),
@@ -893,7 +916,7 @@ server <- function(input, output, session) {
   ####start of trend 10####
   
   fan_trend_t10 <- callModule(csvFile,"fant10",
-                              targetColumns=reactive({c("Motor","Fan")}),
+                              targetColumns=reactive({FANCOLS}),
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Fan"}),
@@ -901,7 +924,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y2'}))
   
   mat_trend_t10 <- callModule(csvFile,"MAT10",
-                              targetColumns=reactive({c("Temp","mat","MAT")}),
+                              targetColumns=reactive({MATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"MAT"}),
@@ -909,11 +932,11 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
   
   dat_trend_t10 <- callModule(csvFile,"DAT10",
-                              targetColumns=reactive({c("Temp","rat","RAT")}),
+                              targetColumns=reactive({DATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
-                              name=reactive({"RAT"}),
-                              color=reactive({"Red"}),
+                              name=reactive({"DAT"}),
+                              color=reactive({"blue"}),
                               axis=reactive({'y1'}))
   
   all_data_t10 <- reactive({
@@ -931,7 +954,7 @@ server <- function(input, output, session) {
   ####start of trend 12####
   
   chwst_trend_t12 <- callModule(csvFile,"CHWST12",
-                                 targetColumns=reactive({c("Temp","chwst","CHWST")}),
+                                 targetColumns=reactive({CHWSTCOLS}),
                                  stateChange=reactive({FALSE}),
                                  periodicity15=reactive({TRUE}),
                                  name=reactive({"CHWST"}),
@@ -939,7 +962,7 @@ server <- function(input, output, session) {
                                  axis=reactive({'y1'}))
   
   chwp_trend_t12 <- callModule(csvFile,"CHWP12",
-                                 targetColumns=reactive({c("Temp","chwp","CHWP")}),
+                                 targetColumns=reactive({CHWPCOLS}),
                                  stateChange=reactive({FALSE}),
                                  periodicity15=reactive({TRUE}),
                                  name=reactive({"CHWP"}),
@@ -961,7 +984,7 @@ server <- function(input, output, session) {
   ####start of trend 13a####
   
   chwst_trend_t13a <- callModule(csvFile,"CHWST13a",
-                              targetColumns=reactive({c("Temp","chwst","CHWST")}),
+                              targetColumns=reactive({CHWSTCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"CHWST"}),
@@ -969,7 +992,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
  
    chwrt_trend_t13a <- callModule(csvFile,"CHWRT13a",
-                              targetColumns=reactive({c("Temp","chwrt","CHWRT")}),
+                              targetColumns=reactive({CHWRTCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"CHWRT"}),
@@ -990,7 +1013,7 @@ server <- function(input, output, session) {
   ######start of trend 14a######
    
    chwst_trend_t14a <- callModule(csvFile,"CHWST14a",
-                                  targetColumns=reactive({c("Temp","chwst","CHWST")}),
+                                  targetColumns=reactive({CHWSTCOLS}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"CHWST"}),
@@ -998,7 +1021,7 @@ server <- function(input, output, session) {
                                   axis=reactive({'y1'}))
    
    chwstsp_trend_t14a <- callModule(csvFile,"CHWSTSP14a",
-                                  targetColumns=reactive({c("Temp","chwstsp","CHWSTSP")}),
+                                  targetColumns=reactive({CHWSTSPCOLS}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"CHWSTSP"}),
@@ -1006,7 +1029,7 @@ server <- function(input, output, session) {
                                   axis=reactive({'y1'}))
    
    oat_trend_t14a <- callModule(csvFile,"OAT14a",
-                               targetColumns=reactive({c("Temp","oat","OAT")}),
+                               targetColumns=reactive({OATCOLS}),
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"OAT"}),
@@ -1078,7 +1101,7 @@ server <- function(input, output, session) {
   #######start of trend 18######
   
   bs_trend_t18 <- callModule(csvFile,"BSt18",
-                             targetColumns=reactive({c("Motor","Fan")}),
+                             targetColumns=reactive({BSCOLS}),
                              stateChange=reactive({TRUE}),
                              periodicity15=reactive({TRUE}),
                              name=reactive({"Boiler Status"}),
@@ -1086,7 +1109,7 @@ server <- function(input, output, session) {
                              axis=reactive({'y2'}))
   
   hwst_trend_t18 <- callModule(csvFile,"HWST18",
-                              targetColumns=reactive({c("Temp","hwst","HWST")}),
+                              targetColumns=reactive({HWSTCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"HWST"}),
@@ -1094,15 +1117,15 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
   
   hwps_trend_t18 <- callModule(csvFile,"HWPS18",
-                             targetColumns=reactive({c("Motor","Fan")}),
+                             targetColumns=reactive({HWPSCOLS}),
                              stateChange=reactive({TRUE}),
-                             periodicity15=reactive({TRUE}),
-                             name=reactive({"HW Pump"}),
+                             periodicity15=reactive({FALSE}),
+                             name=reactive({"HWPS"}),
                              color=reactive({"brown"}),
                              axis=reactive({'y2'}))
   
-  oat_trend_t18 <- callModule(csvFile,"CRT17",
-                              targetColumns=reactive({c("Temp","oat","OAT")}),
+  oat_trend_t18 <- callModule(csvFile,"OAT18",
+                              targetColumns=reactive({OATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"OAT"}),
@@ -1123,7 +1146,7 @@ server <- function(input, output, session) {
   ########start of trend 19a########
    
    hwst_trend_t19a <- callModule(csvFile,"HWST19a",
-                                  targetColumns=reactive({c("Temp","hwst","HWST")}),
+                                  targetColumns=reactive({HWSTCOLS}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"HWST"}),
@@ -1131,7 +1154,7 @@ server <- function(input, output, session) {
                                   axis=reactive({'y1'}))
    
    oat_trend_t19a <- callModule(csvFile,"OAT19a",
-                               targetColumns=reactive({c("Temp","oat","OAT")}),
+                               targetColumns=reactive({OATCOLS}),
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"OAT"}),
@@ -1152,7 +1175,7 @@ server <- function(input, output, session) {
   #########start of trend 20a#########
    
    hwst_trend_t20a <- callModule(csvFile,"HWST20a",
-                                 targetColumns=reactive({c("Temp","hwst","HWST")}),
+                                 targetColumns=reactive({HWSTCOLS}),
                                  stateChange=reactive({FALSE}),
                                  periodicity15=reactive({TRUE}),
                                  name=reactive({"HWST"}),
@@ -1160,7 +1183,7 @@ server <- function(input, output, session) {
                                  axis=reactive({'y1'}))
    
    hwrt_trend_t20a <- callModule(csvFile,"HWRT20a",
-                                targetColumns=reactive({c("Temp","hwrt","HWRT")}),
+                                targetColumns=reactive({HWRTCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"HWRT"}),
@@ -1182,7 +1205,7 @@ server <- function(input, output, session) {
   #########start of trend 21########
    
    hwrt_trend_t21 <- callModule(csvFile,"HWRT21",
-                                 targetColumns=reactive({c("Temp","hwrt","HWRT")}),
+                                 targetColumns=reactive({HWRTCOLS}),
                                  stateChange=reactive({FALSE}),
                                  periodicity15=reactive({TRUE}),
                                  name=reactive({"HWRT"}),
@@ -1233,7 +1256,7 @@ server <- function(input, output, session) {
   ########start of trend 23#######
    
    hwst_trend_t23 <- callModule(csvFile,"HWST23",
-                                 targetColumns=reactive({c("Temp","hwst","HWST")}),
+                                 targetColumns=reactive({HWSTCOLS}),
                                  stateChange=reactive({FALSE}),
                                  periodicity15=reactive({TRUE}),
                                  name=reactive({"HWST"}),
@@ -1298,7 +1321,7 @@ server <- function(input, output, session) {
   ######start of trend 2737a#######
    
    burner_trend_t2737a <- callModule(csvFile,"Burner-t2737a",
-                              targetColumns=reactive({c("Motor","Fan")}),
+                              targetColumns=reactive({BURNERCOLS}),
                               stateChange=reactive({TRUE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"Burner"}),
@@ -1314,7 +1337,7 @@ server <- function(input, output, session) {
                                      axis=reactive({'y2'}))
    
    mat_trend_t2737a <- callModule(csvFile,"MAT2737a",
-                               targetColumns=reactive({c("Temp","mat","MAT")}),
+                               targetColumns=reactive({MATCOLS}),
                                stateChange=reactive({FALSE}),
                                periodicity15=reactive({TRUE}),
                                name=reactive({"MAT"}),
@@ -1322,7 +1345,7 @@ server <- function(input, output, session) {
                                axis=reactive({'y1'}))
    
    dat_trend_t2737a <- callModule(csvFile,"DAT2737a",
-                              targetColumns=reactive({c("Temp","dat","DAT")}),
+                              targetColumns=reactive({DATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"DAT"}),
@@ -1330,7 +1353,7 @@ server <- function(input, output, session) {
                               axis=reactive({'y1'}))
    
    hcv_trend_t2737a <- callModule(csvFile,"HCV2737a",
-                                targetColumns=reactive({c("Temp","hcv","HCV")}),
+                                targetColumns=reactive({HCVCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"HCV"}),
@@ -1352,7 +1375,7 @@ server <- function(input, output, session) {
   ########start of trend 27b#######
    
    dat_trend_t27b <- callModule(csvFile,"DAT27b",
-                              targetColumns=reactive({c("Temp","dat","DAT")}),
+                              targetColumns=reactive({DATCOLS}),
                               stateChange=reactive({FALSE}),
                               periodicity15=reactive({TRUE}),
                               name=reactive({"DAT"}),
@@ -1397,7 +1420,7 @@ server <- function(input, output, session) {
   #######start of trend 28b#######
    
    dat_trend_t28b <- callModule(csvFile,"DAT28b",
-                                targetColumns=reactive({c("Temp","dat","DAT")}),
+                                targetColumns=reactive({DATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DAT"}),
@@ -1405,7 +1428,7 @@ server <- function(input, output, session) {
                                 axis=reactive({'y1'}))
    
    datsp_trend_t28b <- callModule(csvFile,"DATSP28b",
-                                targetColumns=reactive({c("Temp","datsp","DATSP")}),
+                                targetColumns=reactive({DATSPCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DATSP"}),
@@ -1450,7 +1473,7 @@ server <- function(input, output, session) {
    #########start of trend 29b#########
 
    dat_trend_t29b <- callModule(csvFile,"DAT29b",
-                                targetColumns=reactive({c("Temp","dat","DAT")}),
+                                targetColumns=reactive({DATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DAT"}),
@@ -1458,7 +1481,7 @@ server <- function(input, output, session) {
                                 axis=reactive({'y1'}))
    
    datsp_trend_t29b <- callModule(csvFile,"DATSP29b",
-                                  targetColumns=reactive({c("Temp","datsp","DATSP")}),
+                                  targetColumns=reactive({DATSPCOLS}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"DATSP"}),
@@ -1503,7 +1526,7 @@ server <- function(input, output, session) {
                                 axis=reactive({'y1'}))
    
    rat_trend_t30b <- callModule(csvFile,"RAT30b",
-                                  targetColumns=reactive({c("Temp","rat","RAT")}),
+                                  targetColumns=reactive({RATCOLS}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"RAT"}),
@@ -1511,7 +1534,7 @@ server <- function(input, output, session) {
                                   axis=reactive({'y1'}))
    
    dat_trend_t30b <- callModule(csvFile,"DAT30b",
-                                  targetColumns=reactive({c("Temp","dat","DAT")}),
+                                  targetColumns=reactive({DATCOLS}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"DAT"}),
@@ -1549,7 +1572,7 @@ server <- function(input, output, session) {
    ##########start of trend 31b##########
    
    dat_trend_t31b <- callModule(csvFile,"DAT31b",
-                                targetColumns=reactive({c("Temp","dat","DAT")}),
+                                targetColumns=reactive({DATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DAT"}),
@@ -1558,7 +1581,7 @@ server <- function(input, output, session) {
    
    
    datsp_trend_t31b <- callModule(csvFile,"DATSP31b",
-                                targetColumns=reactive({c("Temp","datsp","DATSP")}),
+                                targetColumns=reactive({DATSPCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DATSP"}),
@@ -1574,7 +1597,7 @@ server <- function(input, output, session) {
                                axis=reactive({'y1'}))
    
    rat_trend_t31b <- callModule(csvFile,"RAT31b",
-                                targetColumns=reactive({c("Temp","rat","RAT")}),
+                                targetColumns=reactive({RATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"RAT"}),
@@ -1595,7 +1618,7 @@ server <- function(input, output, session) {
    #########start of trend 32b##########
    
    hwst_trend_t32b <- callModule(csvFile,"HWST32b",
-                                targetColumns=reactive({c("Temp","hwst","HWST")}),
+                                targetColumns=reactive({HWSTCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"HWST"}),
@@ -1666,7 +1689,7 @@ server <- function(input, output, session) {
                                 axis=reactive({'y2'}))
    
    dat_trend_t33b <- callModule(csvFile,"DAT33b",
-                                targetColumns=reactive({c("Temp","dat","DAT")}),
+                                targetColumns=reactive({DATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DAT"}),
@@ -1687,7 +1710,7 @@ server <- function(input, output, session) {
    ###########start of trend 34b#########
    
    dat_trend_t34b <- callModule(csvFile,"DAT34b",
-                                targetColumns=reactive({c("Temp","dat","DAT")}),
+                                targetColumns=reactive({DATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DAT"}),
@@ -1695,7 +1718,7 @@ server <- function(input, output, session) {
                                 axis=reactive({'y1'}))
    
    datsp_trend_t34b <- callModule(csvFile,"DATSP34b",
-                                targetColumns=reactive({c("Temp","datsp","DATSP")}),
+                                targetColumns=reactive({DATSPCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DATSP"}),
@@ -1757,7 +1780,7 @@ server <- function(input, output, session) {
                                axis=reactive({'y1'}))
    
    rat_trend_t36b <- callModule(csvFile,"RAT36b",
-                                  targetColumns=reactive({c("Temp","rat","RAT")}),
+                                  targetColumns=reactive({RATCOLS}),
                                   stateChange=reactive({FALSE}),
                                   periodicity15=reactive({TRUE}),
                                   name=reactive({"RAT"}),
@@ -1765,7 +1788,7 @@ server <- function(input, output, session) {
                                   axis=reactive({'y1'}))
    
    dat_trend_t36b <- callModule(csvFile,"DAT36b",
-                                targetColumns=reactive({c("Temp","dat","DAT")}),
+                                targetColumns=reactive({DATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DAT"}),
@@ -1810,15 +1833,15 @@ server <- function(input, output, session) {
    ##############start of trend 37b##############
    
    dat_trend_t37b <- callModule(csvFile,"DAT37b",
-                                targetColumns=reactive({c("Temp","dat","DAT")}),
+                                targetColumns=reactive({DATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DAT"}),
                                 color=reactive({"blue"}),
                                 axis=reactive({'y1'}))
    
-   datsp_trend_t37b <- callModule(csvFile,"DAT37b",
-                                targetColumns=reactive({c("Temp","datsp","DATSP")}),
+   datsp_trend_t37b <- callModule(csvFile,"DATSP37b",
+                                targetColumns=reactive({DATSPCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"DATSP"}),
@@ -1842,7 +1865,7 @@ server <- function(input, output, session) {
                                   axis=reactive({'y1'}))
    
    rat_trend_t37b <- callModule(csvFile,"RAT37b",
-                                targetColumns=reactive({c("Temp","rat","RAT")}),
+                                targetColumns=reactive({RATCOLS}),
                                 stateChange=reactive({FALSE}),
                                 periodicity15=reactive({TRUE}),
                                 name=reactive({"RAT"}),

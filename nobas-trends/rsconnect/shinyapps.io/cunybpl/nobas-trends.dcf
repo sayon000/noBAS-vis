@@ -1,0 +1,13 @@
+name: nobas-trends
+title: nobas-trends
+username:
+account: cunybpl
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1432298
+bundleId: 2568768
+url: https://cunybpl.shinyapps.io/nobas-trends/
+when: 1573056980.60072
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: OADFAKE.csv

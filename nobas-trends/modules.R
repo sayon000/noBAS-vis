@@ -31,6 +31,7 @@ csvFileInput <- function(id, label = "CSV file") {
     )
   ))
 }
+MASTER_DATE_FORMATS_MODULE = c('mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
 
 csvFile <-
   function(input,
@@ -42,7 +43,7 @@ csvFile <-
            name,
            color,
            axis,
-           dtFormats = c('mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS')) {
+           dtFormats = MASTER_DATE_FORMATS_MODULE) {
     #Clean file and return xts time series
 
     #Inputs:
@@ -472,7 +473,7 @@ plottingOutput <- function(id) {
 
   shiny::tagList(
     div(style = 'overflow:scroll',
-    plotly::plotlyOutput(ns("plot"), height = "500px",width = "1500px")
+      plotly::plotlyOutput(ns("plot"), height = "500px",width = "1500px")
     ),
     textInput(
       ns("plot_name"),
@@ -481,30 +482,85 @@ plottingOutput <- function(id) {
       placeholder = "My Plot",
       width = '25%'
     ),
-    #downloadButton(
-     # ns("ExportPlot"),
-    #  "ExportPlots",
-      #label = "Download the Plot"
-    #),
-    numericInput(
-      ns("Height"),
-      label = h3("Plot Height"),
-      value = 500,
-      width = '25%'
-    ),
-    numericInput(
-      ns("Width"),
-      label = h3("Plot Width"),
-      value = 1500,
-      width = '25%'
+    
+    div(style = 'display: inline-block;vertical-align:top;width:25%;',
+     numericInput(
+        ns("Height"),
+        label = h3("Plot Height"),
+        value = 500
+        )
     ),
     
-    numericInput(
-      ns("XTicks"),
-      label = h3("X Ticks Number"),
-      value = 60,
-      width = '25%'
+    #these space out the elements on the page
+    div(style = 'display: inline-block;vertical-align:top; width:25%;',
+        HTML("<br>")
+    ),
+    
+    
+    div(style = 'display: inline-block;vertical-align:top; width:25%;',
+     numericInput(
+        ns("Width"),
+        label = h3("Plot Width"),
+        value = 1500
+     )
+    ),
+    
+    div(style = 'display: inline-block;vertical-align:top; width:100%;',
+        HTML("<br>")
+    ),
+    
+    box(title = "Advanced Options",
+      collapsed = TRUE,
+      collapsible = TRUE,
+      closable = FALSE,
+      solidHeader = TRUE,
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          numericInput(
+            ns("XTicks"),
+            label = h3("X Ticks Number"),
+            value = 60,
+          )
+      ),
+      
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          HTML("<br>")
+      ),
+      
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          sliderInput(
+            ns("TickAngle"),
+            label = h3("Tick Angle"),
+            min = 0,
+            max = 360,
+            value = 90,
+          )
+      ),
+      
+      div(style = 'display: inline-block;vertical-align:top; width:100%;',
+          HTML("<br>")
+      ),
+      
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          numericInput(
+            ns("xTickSize"),
+            label = h3("X Tick Font Size"),
+            value = 12,
+          )
+      ),
+      
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          HTML("<br>")
+      ),
+      
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          numericInput(
+            ns("yTickSize"),
+            label = h3("Y Tick Font Size"),
+            value = 12,
+          )
+      )
     )
+    
     #actionButton(
     #  ns("Download"),
      # "Download"
@@ -527,6 +583,8 @@ plotting <-
         #occupancyRects: ouput of occupancy module
     #Note: fullPlot comes from data processing
     #Note for Sk: You can modify plotting to accept different values for height and width
+    ###NOTE: Everytime i want a reactive input, I go to data_processing and keep modifying the fullPlot
+    ###with whatever I need
     plt <- reactive({
       plt <- fullPlot(
         data = data(),
@@ -535,9 +593,12 @@ plotting <-
         x_label = 'Time',
         y1_label = y1label,
         y2_label = y2label,
-        plotheight = input$Height,
-        plotwidth = input$Width,
-        numxticks = input$XTicks
+        plotHeight = input$Height,
+        plotWidth = input$Width,
+        numXTicks = input$XTicks,
+        plotTickAngle = input$TickAngle,
+        XTickSize = input$xTickSize,
+        YTickSize = input$yTickSize
       )
       
       return(plt)
