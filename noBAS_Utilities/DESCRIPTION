@@ -1,9 +1,10 @@
 Package: noBASutilities
 Type: Package
 Title: Shiny modules and data processing utilities for noBAS Shiny applications (Title Case)
-Version: 0.1.0
+Version: 0.1.2
 Author: Daniel Vignoles
-Maintainer: Daniel Vignoles <dvignoles@gmail.com>
+New Author: Sk Ayon
+Maintainer: Sk Ayon <sayon000@citymail.cuny.edu>
 Description: #TODO
 License: MIT
 Encoding: UTF-8
