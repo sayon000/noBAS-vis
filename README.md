@@ -3,10 +3,10 @@ This repository is a suite of R Shiny Applications for noBAS (No Building Automa
 
 ### Project Structure
 
-Each **application** (boiler-cycling,hot-water-reset,fan-scheduling...) is reliant on the **noBASutilities** package from this repository. It can be installed with:
+Each **application** (boiler-cycling,hot-water-reset,fan-scheduling...) is reliant on the **noBAS_Utilities** package from this repository. It can be installed with:
 
 	
-	devtools::install_github('sayon000/noBAS-vis/noBASutilities')
+	devtools::install_github('sayon000/noBAS-vis/noBAS_Utilities')
 
 ##### Components of noBASutilities:
 * modules.R: shiny [modules](https://shiny.rstudio.com/articles/modules.html). These functions contain blocks of ui and server code which can be called in other applications. 
