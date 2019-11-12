@@ -1,4 +1,4 @@
-Package: noBASutilities
+Package: noBAS_Utilities
 Type: Package
 Title: Shiny modules and data processing utilities for noBAS Shiny applications (Title Case)
 Version: 0.1.2
