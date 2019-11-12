@@ -1,0 +1,19 @@
+Package: noBASutilities
+Type: Package
+Title: Shiny modules and data processing utilities for noBAS Shiny applications (Title Case)
+Version: 0.1.0
+Author: Daniel Vignoles
+Maintainer: Daniel Vignoles <dvignoles@gmail.com>
+Description: #TODO
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+  plotly,
+  shinyjs,
+  DT,
+  lubridate,
+  readr,
+  xts,
+  dplyr
+  
