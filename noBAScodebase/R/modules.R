@@ -12,7 +12,7 @@ library(DT)
 library(shinyjs)
 
 #source('data_processing.R')
-
+MASTER_DATE_FORMATS_MODULE = c('mdy HMSOS','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
 csvFileInput <- function(id, label = "CSV file") {
   #File Input UI
     #Inputs:
@@ -31,7 +31,7 @@ csvFileInput <- function(id, label = "CSV file") {
     )
   ))
 }
-MASTER_DATE_FORMATS_MODULE = c('mdy HMSOS','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
+
 
 csvFile <-
   function(input,
@@ -473,7 +473,7 @@ plottingOutput <- function(id) {
 
   shiny::tagList(
     div(style = 'overflow:scroll',
-      plotly::plotlyOutput(ns("plot"), height = "500px",width = "1500px")
+      plotly::plotlyOutput(ns("plot"), height = "500px",width = "1350px")
     ),
     textInput(
       ns("plot_name"),
@@ -503,7 +503,7 @@ plottingOutput <- function(id) {
      numericInput(
         ns("Width"),
         label = h3("Plot Width"),
-        value = 1500
+        value = 1350
      )
     ),
     

@@ -8,7 +8,8 @@ library(xts)
 library(dplyr)
 
 #####-----Data Cleaning / Reformatting -----#####
-
+MASTER_DATE_FORMATS = c('mdy HMSOS','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
+MASTER_SKIP_FORMATS = c('Date','date',"DATE",'Time',"TIME",'time')
 #DEPRECATED
 #Loop through index_column of dataframe looking for and entry that matches parse_date_time(entry,dt_formats)
 #Returns location of first match
@@ -31,12 +32,12 @@ find_start <- function(index_column, dt_formats) {
 #Read in csv file. Skips until string "Date" is encountered
 #Assumes Index column header contains string "Date"
 csv_read <- function(filepath){
-  data.table::fread(filepath,sep=',',data.table=FALSE,blank.lines.skip=TRUE,skip="Date",na.strings=c("","logged","Logged"))
+  data.table::fread(filepath,sep=',',data.table=FALSE,blank.lines.skip=TRUE,skip=MASTER_SKIP_FORMATS,na.strings=c("","logged","Logged"))
 }
 
 #input: datapath from csvFileInput containing 1 trend
 #Output: xts object with 1 data column, 1 index
-MASTER_DATE_FORMATS = c('mdy HMSOS','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
+
 process_data<-
   function(data,
            state_change_data,
