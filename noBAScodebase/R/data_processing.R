@@ -7,8 +7,43 @@ library(readr)
 library(xts)
 library(dplyr)
 
+####----Master Column Names For All Web Pages-----#####
+FANCOLS <- c("motor","fan","FAN","Fan")
+OATCOLS <- c("OAT","Oat","oat","Temp","Temperature","TEMP")
+DATCOLS <- c("DAT","Dat","dat","Temp","Temperature","TEMP")
+DATSPCOLS <- c("DATSP","Datsp","datsp","Temp","Setpoint")
+MATCOLS <- c("MAT","Mat","mat","Temp","Temperature","TEMP")
+RATCOLS <- c("RAT","Rat","rat","Temp","Temperature","TEMP")
+RATSPCOLS <- c("RATSP","Ratsp","ratsp","Temp","Temperature","TEMP")
+OADCOLS <- c("OAD","Oad","oad","Position","position")
+CO2COLS <- c("CO2","Co2","ppm","PPM")
+HCVCOLS <- c("HCV","hcv","Hcv","Valve")
+HWSTCOLS <- c("HWST","hwst","Hwst","Hot Water Supply Temperature")
+HWSTSPCOLS <- c("HWSTSP","hwstsp","Hwstsp","Hot Water Supply Temperature Setpoint","Hot Water Supply Setpoint")
+HWRTCOLS <- c("HWRT","hwrt","Hwrt","Hot Water Return Temperature")
+HWPCOLS <- c("HWP","hwp","Hwp","Hot Water Pump")
+HWPSCOLS <- c("HWPS","hwps","Hwps","Hot Water Pump Status","Hot water pump status")
+COMPRESSORCOLS <- c("COMPRESSOR","compressor","Compressor","Compressor Status")
+BURNERCOLS <- c("BURNER","burner","Burner","Burner Status")
+BOILERCOLS <- c("BOILER", "boiler","Boiler", "Boiler Status")
+CHWSTCOLS <- c("CHWST","chwst","Chwst","Temp","Chilled Water Supply")
+CHWSTSPCOLS <- c("CHWSTSP","chwstsp","Chwstsp","Set Point","Chilled Water Supply Set Point")
+CHWRTCOLS <- c("CHWRT","chwrt","Chwrt","Temp","Chilled Water Return")
+CHWPCOLS <- c("CHWP","chwp","Chwp","Speed","SPEED")
+BSCOLS <- c("BOILER","boiler","Boiler","Status","Boiler Status")
+CWPSCOLS <- c("CWPS","cwps","Cwps","CW Pump Status")
+CTFSCOLS <- c("CTFS","ctfs","Ctfs","Cooling Tower Fan Status")
+CRTCOLS <- c("CRT","crt","Crt","Condensate Return Temperature")
+STACKCOLS <- c("Stack Temperature", "Stack", "K-Type")
+ZTCOLS <- c("ZT","zt","Zt","Zone Temperature","Zone Temp")
+ZTSPCOLS <- c("ZTSP","ztsp","Ztsp","Zone Temperature Setpoint","Zone Temp Setpoint")
+ZTSPACOLS <- c("ZTSPA","ztspa","Ztspa","Zone Temperature Air Setpoint","Zone Temp Air Setpoint")
+ZTSPPCOLS <- c("ZTSPP","ztspp","Ztspp","Zone Temperature Perimeter Setpoint","Zone Temp Perimeter Setpoint")
+ZTSBSPCOLS <- c("ZTSBSP","ztsbsp","Ztsbsp","Zone Temperature Setback Setpoint","Zone Temp Setback Setpoint")
+#####-----End of master----####
+
 #####-----Data Cleaning / Reformatting -----#####
-MASTER_DATE_FORMATS = c('mdy HMSOS','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
+MASTER_DATE_FORMATS = c('mdy HMSOS','mdy HMSp','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
 MASTER_SKIP_FORMATS = c('Date','date',"DATE",'Time',"TIME",'time')
 #DEPRECATED
 #Loop through index_column of dataframe looking for and entry that matches parse_date_time(entry,dt_formats)
@@ -32,7 +67,7 @@ find_start <- function(index_column, dt_formats) {
 #Read in csv file. Skips until string "Date" is encountered
 #Assumes Index column header contains string "Date"
 csv_read <- function(filepath){
-  data.table::fread(filepath,sep=',',data.table=FALSE,blank.lines.skip=TRUE,skip=MASTER_SKIP_FORMATS,na.strings=c("","logged","Logged"))
+  data.table::fread(filepath,sep=',',data.table=FALSE,blank.lines.skip=TRUE,skip="Date",na.strings=c("","logged","Logged"))
 }
 
 #input: datapath from csvFileInput containing 1 trend
@@ -234,7 +269,7 @@ fullPlot <- function(data=NA,
       title = title,
       xaxis = x,
       yaxis = y1
-      
+
     )
 
   #add occupancy if any
