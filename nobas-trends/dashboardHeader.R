@@ -1,4 +1,4 @@
-header <- dashboardHeader(title = 'CUNY BPL NoBAS Trending Tool',
+header <- dashboardHeader(title = 'CUNY BPL Trend Chart App',
                           titleWidth = 450,
                           tags$li(
                             class = "dropdown",

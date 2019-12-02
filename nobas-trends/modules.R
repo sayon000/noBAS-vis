@@ -12,7 +12,7 @@ library(DT)
 library(shinyjs)
 
 #source('data_processing.R')
-
+MASTER_DATE_FORMATS_MODULE = c('mdy HMSOS','mdy HMSp','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
 csvFileInput <- function(id, label = "CSV file") {
   #File Input UI
     #Inputs:
@@ -31,7 +31,7 @@ csvFileInput <- function(id, label = "CSV file") {
     )
   ))
 }
-MASTER_DATE_FORMATS_MODULE = c('mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
+
 
 csvFile <-
   function(input,
@@ -473,7 +473,7 @@ plottingOutput <- function(id) {
 
   shiny::tagList(
     div(style = 'overflow:scroll',
-      plotly::plotlyOutput(ns("plot"), height = "500px",width = "1500px")
+      plotly::plotlyOutput(ns("plot"), height = "500px",width = "1350px")
     ),
     textInput(
       ns("plot_name"),
@@ -482,7 +482,9 @@ plottingOutput <- function(id) {
       placeholder = "My Plot",
       width = '25%'
     ),
-    
+
+    #questionButtonOutput("yeetus"),
+
     div(style = 'display: inline-block;vertical-align:top;width:25%;',
      numericInput(
         ns("Height"),
@@ -490,25 +492,25 @@ plottingOutput <- function(id) {
         value = 500
         )
     ),
-    
+
     #these space out the elements on the page
     div(style = 'display: inline-block;vertical-align:top; width:25%;',
         HTML("<br>")
     ),
-    
-    
+
+
     div(style = 'display: inline-block;vertical-align:top; width:25%;',
      numericInput(
         ns("Width"),
         label = h3("Plot Width"),
-        value = 1500
+        value = 1350
      )
     ),
-    
+
     div(style = 'display: inline-block;vertical-align:top; width:100%;',
         HTML("<br>")
     ),
-    
+
     box(title = "Advanced Options",
       collapsed = TRUE,
       collapsible = TRUE,
@@ -521,11 +523,11 @@ plottingOutput <- function(id) {
             value = 60,
           )
       ),
-      
+
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           HTML("<br>")
       ),
-      
+
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           sliderInput(
             ns("TickAngle"),
@@ -535,11 +537,11 @@ plottingOutput <- function(id) {
             value = 90,
           )
       ),
-      
+
       div(style = 'display: inline-block;vertical-align:top; width:100%;',
           HTML("<br>")
       ),
-      
+
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           numericInput(
             ns("xTickSize"),
@@ -547,11 +549,11 @@ plottingOutput <- function(id) {
             value = 12,
           )
       ),
-      
+
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           HTML("<br>")
       ),
-      
+
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           numericInput(
             ns("yTickSize"),
@@ -560,7 +562,7 @@ plottingOutput <- function(id) {
           )
       )
     )
-    
+
     #actionButton(
     #  ns("Download"),
      # "Download"
@@ -600,20 +602,24 @@ plotting <-
         XTickSize = input$xTickSize,
         YTickSize = input$yTickSize
       )
-      
+
       return(plt)
     })
-
-    
-    #output$ExportPlot <- downloadHandler(
-     # filename <- 'plot.png',
-     # content = function(file){
-     #   orca(p = plt(), file = 'tempPlot.png')
-     #   file.copy('tempPlot.png',file)
-     # }
-    #)
 
     output$plot <- renderPlotly(plt())
   }
 
+questionButtonOutput <- function(id){
+  ns <- NS(id)
+  actionButton(ns("questionJump"),"Go To Questions")
+}
 
+questionButton <-
+  function(input,
+          output,
+          session){
+
+  observeEvent(input$questionJump,{
+    js$ScrollToQuestion()
+  })
+}

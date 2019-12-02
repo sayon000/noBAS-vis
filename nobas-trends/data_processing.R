@@ -8,7 +8,8 @@ library(xts)
 library(dplyr)
 
 #####-----Data Cleaning / Reformatting -----#####
-
+MASTER_DATE_FORMATS = c('mdy HMSOS','mdy HMSp','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
+MASTER_SKIP_FORMATS = c('Date','date',"DATE",'Time',"TIME",'time')
 #DEPRECATED
 #Loop through index_column of dataframe looking for and entry that matches parse_date_time(entry,dt_formats)
 #Returns location of first match
@@ -36,7 +37,7 @@ csv_read <- function(filepath){
 
 #input: datapath from csvFileInput containing 1 trend
 #Output: xts object with 1 data column, 1 index
-MASTER_DATE_FORMATS = c('mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
+
 process_data<-
   function(data,
            state_change_data,
@@ -233,7 +234,7 @@ fullPlot <- function(data=NA,
       title = title,
       xaxis = x,
       yaxis = y1
-      
+
     )
 
   #add occupancy if any
