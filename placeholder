@@ -1,0 +1,59 @@
+
+tabPanel(
+                   "Trend Chart 34b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 34b")),
+                       h2("VAV without Reheats"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT34b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "DATSP34b", label = "Discharge Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "ZT34b",label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-P34b", label = "Zone Temperature Setpoint (Perimeter)")),
+                         tags$li(csvFileInput(id = "ZTSP-A34b", label = "Zone Temperature Setpoint (Air System)")),
+                         tags$li(csvFileInput(id = "fant34b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ34b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+
+                       ),
+                       actionButton("trend34bTab","Trend 34b")
+                   )
+                 ),
+
+tabPanel(
+                   "Trend Chart 36b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 36b")),
+                       h2("DAT based on RAT"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "RATSP36b", label = "Return Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "RAT36b", label = "Return Air Temperature")),
+                         tags$li(csvFileInput(id = "DAT36b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "ZT36b", label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-P36b", label = "Zone Temperature Setpoint (Perimeter)")),
+                         tags$li(csvFileInput(id = "fant36b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ36b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+
+                       ),
+                       actionButton("trend36bTab","Trend 36b")
+                   )
+                 )
+
+
+                 tabPanel(
+                   "Trend Chart 37b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 37b")),
+                       h2("Constant Volume Air System Based on DAT"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT37b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "DATSP37b", label = "Discharge Air Temperature Set Point")),
+                         tags$li(csvFileInput(id = "ZT37b", label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-P37b", label = "Zone Temperature Setpoint (Perimeter)")),
+                         tags$li(csvFileInput(id = "RAT37b", label = "Return Air Temperature")),
+                         tags$li(occupancyInput(id="occ37b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend37bTab","Trend 37b")
+                   )
+                 )

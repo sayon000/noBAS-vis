@@ -2552,7 +2552,7 @@ body <- dashboardBody(
                 background = "navy",
                 width = 4,
                 h1(strong("Trend Chart 27-37a")),
-                h2("Plotting the "a" Trend Chart For Each Trend (Heating Status)"),
+                h2("Plotting the 'a' Trend Chart For Each Trend (Heating Status)"),
                 h3("Parameters to trend"),
                 tags$ul(
                   tags$li(csvFileInput(id = "Burner-t2737a", label = "Burner Status")),
