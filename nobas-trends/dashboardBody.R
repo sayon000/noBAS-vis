@@ -5,7 +5,7 @@ body <- dashboardBody(
     tags$link(rel = "stylesheet", type = "text/css", href = "homepage.css")
   ),
   useShinyjs(),
-  extendShinyjs('www/shinyjsScrollUp.js'),
+  extendShinyjs("www/shinyjsScrollUp.js"),
   tabItems(
     #######First tab content###########
     tabItem(tabName = "Home",
@@ -14,26 +14,26 @@ body <- dashboardBody(
 
            ),
 
-           fluidRow(class = 'text-center',
+           fluidRow(class = "text-center",
              width = 12,
-             box(class = 'text-center',
+             box(class = "text-center",
                width = 12,
                solidHeader = TRUE,
                h1("Welcome to the CUNY BPL Trend Chart App"),
                img(src="https://raw.githubusercontent.com/cunybpl/noBAS-vis/master/bpl-logo.png",
-                   align = 'middle',
-                   width = '25%',
-                   length = '25%'
+                   align = "middle",
+                   width = "25%",
+                   length = "25%"
                ),
                h2("This app helps you create trend charts in the Building Operator Playbook. "),
-               h3('Use the Playbook to select trend charts; gather data for each parameter needed (such as “OAT”), and create a “CSV” file for each parameter.')
+               h3("Use the Playbook to select trend charts; gather data for each parameter needed (such as “OAT”), and create a “CSV” file for each parameter.")
              )
            ),
-            fluidRow(class = 'text-center',
+            fluidRow(class = "text-center",
             width = 12,
              box(
                 title = "AHU Charts",
-                class = 'text-center',
+                class = "text-center",
                 solidHeader = TRUE,
                 width = 2,
                 tags$button(
@@ -41,8 +41,8 @@ body <- dashboardBody(
                   type = "button",
                   class = "btn action-button",
                   img(src = "AHU.png",
-                      height = '75%',
-                      width = '75%')
+                      height = "75%",
+                      width = "75%")
                 )
               ),
 
@@ -56,8 +56,8 @@ body <- dashboardBody(
                   type = "button",
                   class = "btn action-button",
                   img(src = "CHILLER.jpg",
-                      height = '75%',
-                      width = '75%')
+                      height = "75%",
+                      width = "75%")
                 )
               ),
 
@@ -70,8 +70,8 @@ body <- dashboardBody(
                   type = "button",
                   class = "btn action-button",
                   img(src = "BOILER.png",
-                      height = '75%',
-                      width = '75%')
+                      height = "75%",
+                      width = "75%")
                 )
               ),
 
@@ -84,8 +84,8 @@ body <- dashboardBody(
                   type = "button",
                   class = "btn action-button",
                   img(src = "ZONE.png",
-                      height = '75%',
-                      width = '75%')
+                      height = "75%",
+                      width = "75%")
                 )
               ),
 
@@ -97,20 +97,21 @@ body <- dashboardBody(
                   type = "button",
                   class = "btn action-button",
                   img(src = "PERIMETER.png",
-                      height = '75%',
-                      width = '75%')
+                      height = "75%",
+                      width = "75%")
                 )
             )
         ),
-        fluidRow(class = 'text-center',
+        fluidRow(class = "text-center",
                  width = 12,
-                 box(class = 'text-center',
+                 box(class = "text-center",
                      width = 12,
                      solidHeader = TRUE,
                      h1("Tips to make the most out of this app"),
                      h4(
-                       tags$ul(class = 'text-left',
+                       tags$ul(class = "text-left",
                              tags$li("In order to use this app, you must input each trend in to a CSV"),
+                             tags$li("You should come prepared with data from your loggers."),
                              tags$li("To save a trend, click the camera in the top right hand corner to download the plot")
                       )
                      )
@@ -122,256 +123,178 @@ body <- dashboardBody(
 
     ########################################AHU TAB START##################################################
     # AHU Tab Content start
-    tabItem(tabName = 'AHU',
+    tabItem(tabName = "AHU",
             #FIRST ROW Start
             fluidRow(
-            ),
-            fluidRow(
-              width = 12,
-
-            box(
-                title = "Trend Chart 1: Fan Schedule",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 1')),
-                h2('Fan Schedule'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id='fant1',label='Fan Status')),
-                  tags$li(occupancyInput(id='occ1',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+              titlePanel("AHU TRENDS"),
+              navlistPanel(
+                tabPanel(
+                  "AHU",
+                  h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
-                actionButton('trend1Tab',"Trend 1")
-              ),
-
-            box(
-              title = "Trend Chart 2a: OA Control Using OAD",
-              collapsed = TRUE,
-              collapsible = TRUE,
-              closable = FALSE,
-              solidHeader = TRUE,
-              background = 'navy',
-              width = 4,
-              h1(strong('Trend Chart 2a')),
-              h2('OA Control Using OAD'),
-              h3('Parameters to trend'),
-              tags$ul(
-                tags$li(csvFileInput(id = 'fant2a', label = 'Fan Status')),
-                tags$li(csvFileInput(id = 'OAD2a', label = 'Outside Air Damper Position (OAD)')),
-                tags$li(occupancyInput(id='occ2a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-              ),
-              actionButton('trend2aTab','Trend 2a')
-            ),
-
-
-              box(
-                title = "Trend Chart 2b: OA Control Using OAF",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 2b')),
-                h2('OA Control Using OAF'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'fant2b', label = 'Fan Status')),
-                  tags$li(csvFileInput(id = 'OAT2b', label = 'Outside Air Temperature (OAT)')),
-                  tags$li(csvFileInput(id = 'MAT2b', label = 'Mixed Air Temperature (MAT)')),
-                  tags$li(csvFileInput(id = 'RAT2b', label = 'Return Air Temperature (RAT)')),
-                  tags$li(occupancyInput(id='occ2b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                tabPanel(
+                  "Trend Chart 1",
+                  box(solidHeader = TRUE, width = 12,
+                    h1(strong("Trend Chart 1")),
+                    h2("Fan Schedule"),
+                    h3("Parameters to trend"),
+                    tags$ul(
+                      tags$li(csvFileInput(id="fant1",label="Browse and input your fan status here")),
+                      tags$li(occupancyInput(id="occ1","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                    ),
+                    actionButton("trend1Tab","Trend 1")
+                  )
                 ),
-                actionButton('trend2bTab','Trend 2b')
+                tabPanel(
+                  "Trend Chart 2a",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 2a")),
+                      h2("OA Control Using OAD"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "fant2a", label = "Browse and input your Fan Status file here")),
+                        tags$li(csvFileInput(id = "OAD2a", label = "Browse and input your Outside Air Damper position here")),
+                        tags$li(occupancyInput(id="occ2a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend2aTab","Trend 2a")
+                  )
+                ),
+                tabPanel(
+                   "Trend Chart 2b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 2b")),
+                       h2("OA Control Using OAF"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "fant2b", label = "Browse and input your Fan Status file here")),
+                         tags$li(csvFileInput(id = "OAT2b", label = "Browse and input your Outside Air Temperature file here")),
+                         tags$li(csvFileInput(id = "MAT2b", label = "Browse and input your Mixed Air Temperature file here")),
+                         tags$li(csvFileInput(id = "RAT2b", label = "Browse and input your Return Air Temperature file here")),
+                         tags$li(occupancyInput(id="occ2b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend2bTab","Trend 2b")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 3",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 3")),
+                      h2("Minimum OAD Position"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id ="OAD3", label = "Browse and input your Outside Air Damper Position file here")),
+                        tags$li(csvFileInput(id = "CO2-3", label = "Browse and input your CO2 level file here")),
+                        tags$li(occupancyInput(id="occ3","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend3Tab","Trend 3")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 4c",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 4c")),
+                      h2("Simultaneous Heating & Cooling"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id ="OAD4c", label = "Browse and input your Outside Air Damper Position file here")),
+                        tags$li(csvFileInput(id = "HCV4c", label = "Browse and input your Heating Coil Valve file here")),
+                        tags$li(csvFileInput(id = "HWST4c", label = "Browse and input your Hot Water Supply Temperature file here")),
+                        tags$li(occupancyInput(id="occ4c","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend4cTab","Trend 4c")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 4d",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 4d")),
+                      h2("Simultaneous Heating & Cooling"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id ="fant4d", label = "Browse and input your Fan Status file here")),
+                        tags$li(csvFileInput(id = "HWP4d", label = "Browse and input your Hot Water Pump file here")),
+                        tags$li(occupancyInput(id="occ4d","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend4dTab","Trend 4d")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 5a",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 5a")),
+                      h2("Economizing Using Temperature or Enthalpy"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "fant5a", label = "Browse and input your Fan Status file here")),
+                        tags$li(csvFileInput(id = "OAT5a", label = "Browse and input your Outside Air Temperature file here")),
+                        tags$li(csvFileInput(id = "MAT5a", label = "Browse and input your Mixed Air Temperature file here")),
+                        tags$li(csvFileInput(id = "RAT5a", label = "Browse and input your Return Air Temperature file here")),
+                        tags$li(occupancyInput(id="occ5a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend5aTab","Trend 5a")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 7",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 7")),
+                      h2("DAT Control"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "fant7", label = "Browse and input your Fan Status file here")),
+                        tags$li(csvFileInput(id = "DAT7", label = "Browse and input your Discharge Air Temperature file here")),
+                        tags$li(csvFileInput(id = "DATSP7", label = "Browse and input your Discharge Air Temperature Setpoint file here")),
+                        tags$li(occupancyInput(id="occ7","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend7Tab","Trend 7")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 8a",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 8a")),
+                      h2("Compressor Cycling & Staging"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "Compressor1-t8a", label = "Browse and input your Compressor 1 Status file here")),
+                        tags$li(csvFileInput(id = "Compressor2-t8a", label = "Browse and input your Compressor 2 Status here")),
+                        tags$li(occupancyInput(id="occ8a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend8aTab","Trend 8a")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 8b",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 8b")),
+                      h2("Burner Cycling & Staging"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "Burner1-t8b", label = "Browse and input your Burner 1 Status file here")),
+                        tags$li(csvFileInput(id = "Burner2-t8b", label = "Browse and input your Burner 2 Status file here")),
+                        tags$li(occupancyInput(id="occ8b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend8bTab","Trend 8b")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 10",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 10")),
+                      h2("Heating/Cooling Mode"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id ="fant10", label = "Browse and input your Fan Status file here")),
+                        tags$li(csvFileInput(id = "MAT10", label = "Browse and input your Mixed Air Temperature file here")),
+                        tags$li(csvFileInput(id = "DAT10", label = "Browse and input your Discharge Air Temperature file here")),
+                        tags$li(occupancyInput(id="occ10","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend10Tab","Trend 10")
+                  )
+                )
               )
-
-
             ),
-            #first row end
 
-            #second row begin
-            fluidRow(
-              width = 12,
-
-              box(
-                title = "Trend Chart 3: Minimum OAD Position",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 3')),
-                h2("Minimum OAD Position"),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id ='OAD3', label = 'OAD Position')),
-                  tags$li(csvFileInput(id = "CO2-3", label = "CO2 Level")),
-                  tags$li(occupancyInput(id='occ3',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend3Tab','Trend 3')
-              ),
-
-              boxPlus(
-                title = "Trend Chart 4c: Simultaneous Heating & Cooling",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 4c')),
-                h2("Simultaneous Heating & Cooling"),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id ='OAD4c', label = 'OAD Position')),
-                  tags$li(csvFileInput(id = "HCV4c", label = "Heating Coil Valve")),
-                  tags$li(csvFileInput(id = "HWST4c", label = "Hot Water Supply Temperature")),
-                  tags$li(occupancyInput(id='occ4c',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend4cTab','Trend 4c')
-              ),
-
-              boxPlus(
-                title = "Trend Chart 4d: Simultaneous Heating & Cooling",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 4d')),
-                h2("Simultaneous Heating & Cooling"),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id ='fant4d', label = 'Supply Fan Status')),
-                  tags$li(csvFileInput(id = "HWP4d", label = "Hot Water Pump Status")),
-                  tags$li(occupancyInput(id='occ4d',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend4dTab','Trend 4d')
-              )
-
-
-            ),
-           #second row end
-
-           #third row begin
-
-           fluidRow(
-             width = 12,
-
-             boxPlus(
-               title = "Trend Chart 5a: Economizing Using Temperature or Enthalpy",
-               collapsed = TRUE,
-               collapsible = TRUE,
-               closable = FALSE,
-               solidHeader = TRUE,
-               background = 'navy',
-               width = 4,
-               h1(strong('Trend Chart 5a')),
-               h2("Economizing Using Temperature or Enthalpy"),
-               h3('Parameters to trend'),
-               tags$ul(
-                 tags$li(csvFileInput(id = 'fant5a', label = 'Fan Status')),
-                 tags$li(csvFileInput(id = 'OAT5a', label = 'Outside Air Temperature')),
-                 tags$li(csvFileInput(id = 'MAT5a', label = 'Mixed Air Temperature')),
-                 tags$li(csvFileInput(id = 'RAT5a', label = 'Return Air Temperature')),
-                 tags$li(occupancyInput(id='occ5a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-               ),
-               actionButton('trend5aTab','Trend 5a')
-             ),
-
-             boxPlus(
-               title = "Trend Chart 7: DAT Control",
-               collapsed = TRUE,
-               collapsible = TRUE,
-               closable = FALSE,
-               solidHeader = TRUE,
-               background = 'navy',
-               width = 4,
-               h1(strong('Trend Chart 7')),
-               h2("DAT Control"),
-               h3('Parameters to trend'),
-               tags$ul(
-                 tags$li(csvFileInput(id = 'fant7', label = 'Fan Status')),
-                 tags$li(csvFileInput(id = 'DAT7', label = 'Discharge Air Temperature')),
-                 tags$li(csvFileInput(id = 'DATSP7', label = 'Discharge Air Temperature Set Point')),
-                 tags$li(occupancyInput(id='occ7',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-               ),
-               actionButton('trend7Tab','Trend 7')
-             ),
-
-             boxPlus(
-               width = 4,
-               title = "Trend Chart 8a: Compressor Cycling & Staging",
-               collapsed = TRUE,
-               collapsible = TRUE,
-               closable = FALSE,
-               solidHeader = TRUE,
-               background = 'navy',
-               h1(strong('Trend Chart 8a')),
-               h2("Compressor Cycling & Staging"),
-               h3('Parameters to trend'),
-               tags$ul(
-                 tags$li(csvFileInput(id = 'Compressor1-t8a', label = 'Compressor 1 Status')),
-                 tags$li(csvFileInput(id = 'Compressor2-t8a', label = 'Compressor 2 Status')),
-                 tags$li(occupancyInput(id='occ8a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-               ),
-               actionButton('trend8aTab','Trend 8a')
-             )
-
-           ),
-
-           #third row end
-
-           #fourth row begin
-
-           fluidRow(
-             width = 12,
-
-             boxPlus(
-               width = 4,
-               title = "Trend Chart 8b: Burner Cycling & Staging",
-               collapsed = TRUE,
-               collapsible = TRUE,
-               closable = FALSE,
-               solidHeader = TRUE,
-               background = 'navy',
-               h1(strong('Trend Chart 8b')),
-               h2("Burner Cycling & Staging"),
-               h3('Parameters to trend'),
-               tags$ul(
-                 tags$li(csvFileInput(id = 'Burner1-t8b', label = 'Burner 1 Status')),
-                 tags$li(csvFileInput(id = 'Burner2-t8b', label = 'Burner 2 Status')),
-                 tags$li(occupancyInput(id='occ8b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-               ),
-               actionButton('trend8bTab','Trend 8b')
-             ),
-
-             boxPlus(
-               title = "Trend Chart 10: Heating/Cooling Mode",
-               collapsed = TRUE,
-               collapsible = TRUE,
-               closable = FALSE,
-               solidHeader = TRUE,
-               background = 'navy',
-               width = 4,
-               h1(strong('Trend Chart 10')),
-               h2("Heating/Cooling Mode"),
-               h3('Parameters to trend'),
-               tags$ul(
-                 tags$li(csvFileInput(id ='fant10', label = 'Supply Fan Status')),
-                 tags$li(csvFileInput(id = "MAT10", label = "Mixed Air Temperature")),
-                 tags$li(csvFileInput(id = "DAT10", label = "Discharge Air Temperature")),
-                 tags$li(occupancyInput(id='occ10',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-               ),
-               actionButton('trend10Tab','Trend 10')
-             )
-
-           ),
 
 
            #fourth row end
@@ -397,10 +320,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the fans running during unoccupied hours?'),
-                h4('Faults:'),
+                h2("Are the fans running during unoccupied hours?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Fans are on during unoccupied hours',
+                  title = "Fans are on during unoccupied hours",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -419,7 +342,7 @@ body <- dashboardBody(
               box(title = "Trend 1: Fan Status",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id='trend1')
+                  plottingOutput(id="trend1")
               )
             ),
 
@@ -438,7 +361,7 @@ body <- dashboardBody(
               box(title = "Trend 2b: OA Control Using OAF",
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend2b')
+                plottingOutput(id = "trend2b")
               )
             ),
 
@@ -451,10 +374,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the OAD open during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the OAD open during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'OAD is open during unoccupied times.',
+                  title = "OAD is open during unoccupied times.",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -477,10 +400,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the OAD open during startup when conditions are not favorable for economizing?'),
-                h4('Faults:'),
+                h2("Is the OAD open during startup when conditions are not favorable for economizing?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'OAD is open during startup when conditions are not favorable for economizing.',
+                  title = "OAD is open during startup when conditions are not favorable for economizing.",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -499,10 +422,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your dampers open more than the minimum position during occupied hours when not economizing?'),
-                h4('Faults:'),
+                h2("Are your dampers open more than the minimum position during occupied hours when not economizing?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.',
+                  title = "OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -526,10 +449,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you over-ventilating? (OAD > 20%)'),
-                h4('Faults:'),
+                h2("Are you over-ventilating? (OAD > 20%)"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Overventilation',
+                  title = "Overventilation",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -550,10 +473,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you under-ventilating? (OAD < 10%)'),
-                h4('Faults:'),
+                h2("Are you under-ventilating? (OAD < 10%)"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Underventilation',
+                  title = "Underventilation",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -573,10 +496,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are Questions 1, 2, and 3 occurring simultaneously?'),
-                h4('Faults:'),
+                h2("Are Questions 1, 2, and 3 occurring simultaneously?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Failure to close when commanded',
+                  title = "Failure to close when commanded",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -589,7 +512,7 @@ body <- dashboardBody(
                 ),
 
                 boxPlus(
-                  title = 'High Leakage Rate when closed',
+                  title = "High Leakage Rate when closed",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -620,7 +543,7 @@ body <- dashboardBody(
               box(title = "Trend 2a: OA Control Using OAD",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend2a')
+                  plottingOutput(id = "trend2a")
               )
             ),
 
@@ -633,10 +556,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the OAD open during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the OAD open during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'OAD is open during unoccupied times.',
+                  title = "OAD is open during unoccupied times.",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -659,10 +582,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the OAD open during startup when conditions are not favorable for economizing?'),
-                h4('Faults:'),
+                h2("Is the OAD open during startup when conditions are not favorable for economizing?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'OAD is open during startup when conditions are not favorable for economizing.',
+                  title = "OAD is open during startup when conditions are not favorable for economizing.",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -681,10 +604,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your dampers open more than the minimum position during occupied hours when not economizing?'),
-                h4('Faults:'),
+                h2("Are your dampers open more than the minimum position during occupied hours when not economizing?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.',
+                  title = "OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -708,10 +631,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you over-ventilating? (OAD > 20%)'),
-                h4('Faults:'),
+                h2("Are you over-ventilating? (OAD > 20%)"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Overventilation',
+                  title = "Overventilation",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -732,10 +655,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you under-ventilating? (OAD < 10%)'),
-                h4('Faults:'),
+                h2("Are you under-ventilating? (OAD < 10%)"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Underventilation',
+                  title = "Underventilation",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -755,10 +678,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are Questions 1, 2, and 3 occurring simultaneously?'),
-                h4('Faults:'),
+                h2("Are Questions 1, 2, and 3 occurring simultaneously?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Failure to close when commanded',
+                  title = "Failure to close when commanded",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -771,7 +694,7 @@ body <- dashboardBody(
                 ),
 
                 boxPlus(
-                  title = 'High Leakage Rate when closed',
+                  title = "High Leakage Rate when closed",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -803,7 +726,7 @@ body <- dashboardBody(
               box(title = "Trend 3: Minimum OAD Position",
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend3')
+                plottingOutput(id = "trend3")
               )
             ),
 
@@ -815,10 +738,10 @@ body <- dashboardBody(
                 collapsible = TRUE,
                 closable = FALSE,
                 width = 4,
-                h2('Does the maximum CO2 level of densely occupied zones exceed 900 ppm for hours at a time?'),
-                h4('Faults:'),
+                h2("Does the maximum CO2 level of densely occupied zones exceed 900 ppm for hours at a time?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'The maximum CO2 level of densely occupied zones exceeds 900 ppm for hours at a time',
+                  title = "The maximum CO2 level of densely occupied zones exceeds 900 ppm for hours at a time",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -837,10 +760,10 @@ body <- dashboardBody(
                 collapsible = TRUE,
                 closable = FALSE,
                 width = 4,
-                h2('Do CO2 levels of densely occupied zones never exceed 750 ppm?'),
-                h4('Faults:'),
+                h2("Do CO2 levels of densely occupied zones never exceed 750 ppm?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'The minimum OAD position is providing too much fresh air to the zones',
+                  title = "The minimum OAD position is providing too much fresh air to the zones",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -871,7 +794,7 @@ body <- dashboardBody(
               box(title = "Trend 4c: Simultaneous Heating & Cooling",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend4c')
+                  plottingOutput(id = "trend4c")
               )
             ),
 
@@ -884,10 +807,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you economizing with your HCV open?'),
-                h4('Faults:'),
+                h2("Are you economizing with your HCV open?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Simultaneous cooling and heating (When not humidifying)',
+                  title = "Simultaneous cooling and heating (When not humidifying)",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -917,7 +840,7 @@ body <- dashboardBody(
               box(title = "Trend 4d: Simultaneous Heating & Cooling",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend4d')
+                  plottingOutput(id = "trend4d")
               )
             ),
 
@@ -930,10 +853,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you economizing with your HCV open?'),
-                h4('Faults:'),
+                h2("Are you economizing with your HCV open?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Simultaneous cooling and heating (When not humidifying)',
+                  title = "Simultaneous cooling and heating (When not humidifying)",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -961,7 +884,7 @@ body <- dashboardBody(
               box(title = "Trend 5a: Economizing Using Temperature or Enthalpy",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend5a')
+                  plottingOutput(id = "trend5a")
               )
             ),
 
@@ -974,10 +897,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you in cooling mode?'),
-                h4('Faults:'),
+                h2("Are you in cooling mode?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Not in cooling mode',
+                  title = "Not in cooling mode",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -998,10 +921,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is MAT not between OAT and RAT? (OAF)'),
-                h4('Faults:'),
+                h2("Is MAT not between OAT and RAT? (OAF)"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'MAT is not between OAT and RAT',
+                  title = "MAT is not between OAT and RAT",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1021,10 +944,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Should you be economizing? Are you not?'),
-                h4('Faults:'),
+                h2("Should you be economizing? Are you not?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Economizer not following the sequence of operations',
+                  title = "Economizer not following the sequence of operations",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1056,7 +979,7 @@ body <- dashboardBody(
               box(title = "Trend 7: DAT Control",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend7')
+                  plottingOutput(id = "trend7")
               )
             ),
 
@@ -1069,10 +992,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2(' Is the system having trouble meeting the DATSP?'),
-                h4('Faults:'),
+                h2(" Is the system having trouble meeting the DATSP?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'DAT does not meet DATSP',
+                  title = "DAT does not meet DATSP",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1093,10 +1016,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2(' Is the DAT hunting/stable?'),
-                h4('Faults:'),
+                h2(" Is the DAT hunting/stable?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'DAT hunting',
+                  title = "DAT hunting",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1118,10 +1041,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('For a dynamic DATSP: Is the DATSP erratic or unstable?'),
-                h4('Faults:'),
+                h2("For a dynamic DATSP: Is the DATSP erratic or unstable?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Erratic DATSP',
+                  title = "Erratic DATSP",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1150,7 +1073,7 @@ body <- dashboardBody(
               box(title = "Trend 8a: Compressor/Burner Cycling & Staging",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend8a')
+                  plottingOutput(id = "trend8a")
               )
             ),
 
@@ -1163,10 +1086,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the compressors short cycling?'),
-                h4('Faults:'),
+                h2("Are the compressors short cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Short cycling',
+                  title = "Short cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1186,10 +1109,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the compressors not staged properly?'),
-                h4('Faults:'),
+                h2("Are the compressors not staged properly?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Compressors are not staged properly',
+                  title = "Compressors are not staged properly",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1218,7 +1141,7 @@ body <- dashboardBody(
               box(title = "Trend 8b: Burner Cycling & Staging",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend8b')
+                  plottingOutput(id = "trend8b")
               )
             ),
 
@@ -1231,10 +1154,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the burners short cycling?'),
-                h4('Faults:'),
+                h2("Are the burners short cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Short cycling',
+                  title = "Short cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1254,10 +1177,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the burners not staged properly?'),
-                h4('Faults:'),
+                h2("Are the burners not staged properly?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Burners are not staged properly',
+                  title = "Burners are not staged properly",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1288,7 +1211,7 @@ body <- dashboardBody(
               box(title = "Trend 10: Heating/Cooling Mode",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = 'trend10')
+                  plottingOutput(id = "trend10")
               )
             ),
 
@@ -1301,10 +1224,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the AHU in cooling or heating mode? '),
-                h4('Faults:'),
+                h2("Is the AHU in cooling or heating mode? "),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'NO FAULTS (expand for details)',
+                  title = "NO FAULTS (expand for details)",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1339,91 +1262,72 @@ body <- dashboardBody(
     #Chiller Home Page Begin
 
     tabItem(tabName = "ChillerPlant",
-           fluidRow(
-            width = 12,
-
-            boxPlus(
-              title = "Trend Chart 12: Chiller Plant Schedule",
-              collapsed = TRUE,
-              collapsible = TRUE,
-              closable = FALSE,
-              solidHeader = TRUE,
-              background = 'navy',
-              width = 4,
-              h1(strong('Trend Chart 12')),
-              h2('Chiller Plant Schedule'),
-              h3('Parameters to trend'),
-              tags$ul(
-                tags$li(csvFileInput(id = 'CHWST12', label = 'Chilled Water Supply Temperature')),
-                tags$li(csvFileInput(id = "CHWP12", label = 'Chilled Water Pump Speed')),
-                tags$li(occupancyInput(id='occ12',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-              ),
-
-              actionButton('trend12Tab','Trend 12')
-            ),
-
-
-            boxPlus(
-              title = "Trend Chart 13a: Chilled Water Delta T",
-              collapsed = TRUE,
-              collapsible = TRUE,
-              closable = FALSE,
-              solidHeader = TRUE,
-              background = 'navy',
-              width = 4,
-              h1(strong('Trend Chart 13a')),
-              h2('Chilled Water Delta T'),
-              h3('Parameters to trend'),
-              tags$ul(
-                tags$li(csvFileInput(id = 'CHWST13a', label = 'Chilled Water Supply Temperature')),
-                tags$li(csvFileInput(id = "CHWRT13a", label = 'Chilled Water Return Temperature')),
-                tags$li(occupancyInput(id='occ13a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-              ),
-
-              actionButton('trend13aTab','Trend 13a')
-              ),
-
-            boxPlus(
-              title = "Trend Chart 14a",
-              collapsed = TRUE,
-              collapsible = TRUE,
-              closable = FALSE,
-              solidHeader = TRUE,
-              background = 'navy',
-              width = 4,
-              h1(strong('Trend Chart 14a')),
-              h2('ChWST Reset'),
-              h3('Parameters to trend'),
-              tags$ul(
-                tags$li(csvFileInput(id = 'CHWST14a', label = 'Chilled Water Supply Temperature')),
-                tags$li(csvFileInput(id = "CHWSTSP14a", label = 'Chilled Water Supply Temperature Set Point')),
-                tags$li(csvFileInput(id = "OAT14a", label = 'Outside Air Temperature')),
-                tags$li(occupancyInput(id='occ14a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-              ),
-              actionButton('trend14aTab','Trend 14a')
-            )
-
-            ),
-
-          fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Trend Chart 15: Cooling Tower Scheduling",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 15')),
-                h2('Cooling Tower Scheduling'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'CWPS15', label = 'Chilled Water Pump Status')),
-                  tags$li(csvFileInput(id = "CTFS15", label = 'Cooling Tower Fan Status')),
-                  tags$li(occupancyInput(id ='occ15',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+            fluidRow(
+              titlePanel("CHILLER PLANT TRENDS"),
+              navlistPanel(
+                tabPanel(
+                  "Chiller Plant",
+                  h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
-                actionButton('trend15Tab','Trend 15')
+                tabPanel(
+                  "Trend Chart 12",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 12")),
+                      h2("Chiller Plant Schedule"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "CHWST12", label = "Chilled Water Supply Temperature")),
+                        tags$li(csvFileInput(id = "CHWP12", label = "Chilled Water Pump Speed")),
+                        tags$li(occupancyInput(id="occ12","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+
+                      actionButton("trend12Tab","Trend 12")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 13a",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 13a")),
+                      h2("Chilled Water Delta T"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "CHWST13a", label = "Chilled Water Supply Temperature")),
+                        tags$li(csvFileInput(id = "CHWRT13a", label = "Chilled Water Return Temperature")),
+                        tags$li(occupancyInput(id="occ13a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+
+                      actionButton("trend13aTab","Trend 13a")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 14a",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 14a")),
+                      h2("ChWST Reset"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "CHWST14a", label = "Chilled Water Supply Temperature")),
+                        tags$li(csvFileInput(id = "CHWSTSP14a", label = "Chilled Water Supply Temperature Set Point")),
+                        tags$li(csvFileInput(id = "OAT14a", label = "Outside Air Temperature")),
+                        tags$li(occupancyInput(id="occ14a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend14aTab","Trend 14a")
+                  )
+                ),
+                tabPanel(
+                  "Trend Chart 15",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 15")),
+                      h2("Cooling Tower Scheduling"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "CWPS15", label = "Chilled Water Pump Status")),
+                        tags$li(csvFileInput(id = "CTFS15", label = "Cooling Tower Fan Status")),
+                        tags$li(occupancyInput(id ="occ15","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend15Tab","Trend 15")
+                  )
+                )
               )
             )
 
@@ -1439,7 +1343,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend12')
+                plottingOutput(id = "trend12")
               )
             ),
 
@@ -1452,10 +1356,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the chiller not following the occupancy (and start up) schedule?'),
-                h4('Faults:'),
+                h2("Is the chiller not following the occupancy (and start up) schedule?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Chiller does not follow the schedule',
+                  title = "Chiller does not follow the schedule",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1487,7 +1391,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend13a')
+              plottingOutput(id = "trend13a")
               )
             ),
 
@@ -1500,10 +1404,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is my Delta-T (ChWST and ChWRT differential) too small? '),
-                h4('Faults:'),
+                h2("Is my Delta-T (ChWST and ChWRT differential) too small? "),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Delta-T is too small (such as below 10°F when the load is high)',
+                  title = "Delta-T is too small (such as below 10°F when the load is high)",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1521,10 +1425,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('LDP not properly maintained by modulating pump speed?'),
-                h4('Faults:'),
+                h2("LDP not properly maintained by modulating pump speed?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'LDP is not maintained well',
+                  title = "LDP is not maintained well",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1543,10 +1447,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Does pump speed not vary?'),
-                h4('Faults:'),
+                h2("Does pump speed not vary?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Pump speed constant when LDP varies',
+                  title = "Pump speed constant when LDP varies",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1558,7 +1462,7 @@ body <- dashboardBody(
                 ),
 
                 boxPlus(
-                  title = 'Pump speed constant, LDP constant',
+                  title = "Pump speed constant, LDP constant",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1590,7 +1494,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend14a')
+                plottingOutput(id = "trend14a")
               )
             ),
 
@@ -1603,10 +1507,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Does your ChWST-SP not have a reset schedule? What is it based on? (such as OAT, occupancy, maximum cooling coil valve position)'),
-                h4('Faults:'),
+                h2("Does your ChWST-SP not have a reset schedule? What is it based on? (such as OAT, occupancy, maximum cooling coil valve position)"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'No ChWST-SP reset',
+                  title = "No ChWST-SP reset",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1626,10 +1530,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your maximum CCV positions below 90%?'),
-                h4('Faults:'),
+                h2("Are your maximum CCV positions below 90%?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'The maximum CCV position is often well below 90%',
+                  title = "The maximum CCV position is often well below 90%",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1659,7 +1563,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend15')
+                plottingOutput(id = "trend15")
               )
             ),
 
@@ -1672,10 +1576,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the fans on during unoccupied hours?'),
-                h4('Faults:'),
+                h2("Are the fans on during unoccupied hours?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Cooling tower fans run for many hours before occupancy',
+                  title = "Cooling tower fans run for many hours before occupancy",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1695,10 +1599,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the fans short cycling? (turning on and off in short periods of time)'),
-                h4('Faults:'),
+                h2("Are the fans short cycling? (turning on and off in short periods of time)"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Fans short cycling',
+                  title = "Fans short cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -1728,146 +1632,107 @@ body <- dashboardBody(
     ##################################Boiler TAB Start###################
     tabItem(tabName = "BoilerPlant",
             fluidRow(
-              boxPlus(
-                title = "Trend Chart 17: Steam Boiler Condensate Return Temperature",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 17')),
-                h2('Steam Boiler Condensate Return Temperature'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'CRT17', label = "Condensate Return Temperature")),
-                  tags$li(occupancyInput(id='occ17',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+              titlePanel("BOILER PLANT TRENDS"),
+              navlistPanel(
+                tabPanel(
+                  "Boiler Plant",
+                  h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
-                actionButton('trend17Tab',"Trend 17")
-              ),
 
-              boxPlus(
-                title = "Trend Chart 18: Boiler Plant Scheduling",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 18')),
-                h2('Boiler Plant Scheduling'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'BS18', label = "Boiler Status")),
-                  tags$li(csvFileInput(id = 'HWST18', label = "Hot Water Supply Temperature")),
-                  tags$li(csvFileInput(id = 'HWPS18', label = "Hot Water Pump Status")),
-                  tags$li(csvFileInput(id = "OAT18", label = "Outside Air Temperature"))
+                tabPanel(
+                  "Trend Chart 12",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 17")),
+                      h2("Steam Boiler Condensate Return Temperature"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "CRT17", label = "Condensate Return Temperature")),
+                        tags$li(occupancyInput(id="occ17","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend17Tab","Trend 17")
+                  )
                 ),
-                actionButton('trend18Tab',"Trend 18")
-              ),
 
-              boxPlus(
-                title = "Trend Chart 19a: Hot Water Temperature Reset",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 19a')),
-                h2('Hot Water Temperature Reset'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'HWST19a', label = "Hot Water Supply Temperature")),
-                  tags$li(csvFileInput(id = "OAT19a", label = "Outside Air Temperature")),
-                  tags$li(occupancyInput(id='occ19a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                tabPanel(
+                  "Trend Chart 18",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 18")),
+                      h2("Boiler Plant Scheduling"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "BS18", label = "Boiler Status")),
+                        tags$li(csvFileInput(id = "HWST18", label = "Hot Water Supply Temperature")),
+                        tags$li(csvFileInput(id = "HWPS18", label = "Hot Water Pump Status")),
+                        tags$li(csvFileInput(id = "OAT18", label = "Outside Air Temperature")),
+                        tags$li(occupancyInput(id="occ18","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend18Tab","Trend 18")
+                  )
                 ),
-                actionButton('trend19aTab',"Trend 19a")
-              )
-            ),
 
-            fluidRow(
-              width = 12,
-
-              boxPlus(
-                title = "Trend Chart 20a: Hot Water Loop: Delta T",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 20a')),
-                h2('Hot Water Loop: Delta T'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'HWST20a', label = "Hot Water Supply Temperature")),
-                  tags$li(csvFileInput(id = "HWRT20a", label = "Hot Water Return Temperature")),
-                  tags$li(occupancyInput(id='occ20a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                tabPanel(
+                  "Trend Chart 19a",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 19a")),
+                      h2("Hot Water Temperature Reset"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "HWST19a", label = "Hot Water Supply Temperature")),
+                        tags$li(csvFileInput(id = "OAT19a", label = "Outside Air Temperature")),
+                        tags$li(occupancyInput(id="occ19a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend19aTab","Trend 19a")
+                  )
                 ),
-                actionButton('trend20aTab',"Trend 20a")
-              ),
 
-              boxPlus(
-                title = "Trend Chart 21: Condensing Boiler Efficiency",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 21')),
-                h2('Condensing Boiler Efficiency'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = "HWRT21", label = "Hot Water Return Temperature")),
-                  tags$li(occupancyInput(id='occ21',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                tabPanel(
+                  "Trend Chart 21",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 21")),
+                      h2("Condensing Boiler Efficiency"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "HWRT21", label = "Hot Water Return Temperature")),
+                        tags$li(occupancyInput(id="occ21","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend21Tab","Trend 21")
+                  )
                 ),
-                actionButton('trend21Tab',"Trend 21")
-              ),
 
-              boxPlus(
-                title = "Trend Chart 22: Boiler Cycling & Staging",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 22')),
-                h2('Boiler Cycling & Staging'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = "BMS22", label = "Burner Motor Status")),
-                  tags$li(csvFileInput(id = "STACK22", label = "Stack Temperature")),
-                  tags$li(occupancyInput(id='occ22',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                tabPanel(
+                  "Trend Chart 22",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 22")),
+                      h2("Boiler Cycling & Staging"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "BMS22", label = "Burner Motor Status")),
+                        tags$li(csvFileInput(id = "STACK22", label = "Stack Temperature")),
+                        tags$li(occupancyInput(id="occ22","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend22Tab","Trend 22")
+                  )
                 ),
-                actionButton('trend22Tab',"Trend 22")
-              )
 
-            ),
-
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Trend Chart 23: Hot Water Temperature Hunting",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 23')),
-                h2('Hot Water Temperature Hunting'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = "HWST23", label = "Hot Water Supply Temperature")),
-                  tags$li(csvFileInput(id = "HWSTSP23", label = "Hot Water Supply Temperature Set Point")),
-                  tags$li(occupancyInput(id='occ23',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend23Tab',"Trend 23")
+                tabPanel(
+                  "Trend Chart 23",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 23")),
+                      h2("Hot Water Temperature Hunting"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "HWST23", label = "Hot Water Supply Temperature")),
+                        tags$li(csvFileInput(id = "HWSTSP23", label = "Hot Water Supply Temperature Set Point")),
+                        tags$li(occupancyInput(id="occ23","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend23Tab","Trend 23")
+                  )
+                )
               )
             )
+
+
+
 
     ),
 
@@ -1880,7 +1745,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend17')
+              plottingOutput(id = "trend17")
             )
           ),
 
@@ -1893,10 +1758,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is the condensate return temperature too high?'),
-              h4('Faults:'),
+              h2("Is the condensate return temperature too high?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'Condensate return temperature is too high',
+                title = "Condensate return temperature is too high",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -1925,7 +1790,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend18')
+              plottingOutput(id = "trend18")
             )
           ),
 
@@ -1938,10 +1803,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is the boiler not following the occupancy schedule? '),
-              h4('Faults:'),
+              h2("Is the boiler not following the occupancy schedule? "),
+              h4("Faults:"),
               boxPlus(
-                title = 'Boiler does not follow the occupancy schedule',
+                title = "Boiler does not follow the occupancy schedule",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -1962,10 +1827,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is the boiler running when heating should be locked out? (such as 50℉) '),
-              h4('Faults:'),
+              h2("Is the boiler running when heating should be locked out? (such as 50℉) "),
+              h4("Faults:"),
               boxPlus(
-                title = 'Boiler is running when heating should be locked out',
+                title = "Boiler is running when heating should be locked out",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -1997,7 +1862,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend19a')
+              plottingOutput(id = "trend19a")
             )
           ),
 
@@ -2011,10 +1876,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is HW reset failing to work properly or not aggressive enough?'),
-              h4('Faults:'),
+              h2("Is HW reset failing to work properly or not aggressive enough?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'No HW reset',
+                title = "No HW reset",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2029,7 +1894,7 @@ body <- dashboardBody(
               ),
 
               boxPlus(
-                title = 'HW reset is ineffective',
+                title = "HW reset is ineffective",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2048,10 +1913,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is your average HCV position well below 50%? '),
-              h4('Faults:'),
+              h2("Is your average HCV position well below 50%? "),
+              h4("Faults:"),
               boxPlus(
-                title = 'The average HCV position is often well below 50% (for systems where HW is used solely for heating coils)',
+                title = "The average HCV position is often well below 50% (for systems where HW is used solely for heating coils)",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2070,10 +1935,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is your maximum HCV position well below 90%?'),
-              h4('Faults:'),
+              h2("Is your maximum HCV position well below 90%?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'The maximum HCV position is often well below 90% (for systems where HW is used solely for heating coils) ',
+                title = "The maximum HCV position is often well below 90% (for systems where HW is used solely for heating coils) ",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2103,7 +1968,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend20a')
+              plottingOutput(id = "trend20a")
             )
           ),
           fluidRow(
@@ -2115,10 +1980,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is my delta T (HWST - HWRT) too small? '),
-              h4('Faults:'),
+              h2("Is my delta T (HWST - HWRT) too small? "),
+              h4("Faults:"),
               boxPlus(
-                title = 'Delta T too small (below 10°F) during high load times',
+                title = "Delta T too small (below 10°F) during high load times",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2137,10 +2002,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is LDP not properly maintained by modulating pump speed?'),
-              h4('Faults:'),
+              h2("Is LDP not properly maintained by modulating pump speed?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'LDP is not maintained well',
+                title = "LDP is not maintained well",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2160,10 +2025,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Does pump speed fail to vary?'),
-              h4('Faults:'),
+              h2("Does pump speed fail to vary?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'Pump speed constant when LDP varies',
+                title = "Pump speed constant when LDP varies",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2174,7 +2039,7 @@ body <- dashboardBody(
                 )
               ),
               boxPlus(
-                title = 'Pump speed constant, LDP constant',
+                title = "Pump speed constant, LDP constant",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2204,7 +2069,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend21')
+              plottingOutput(id = "trend21")
             )
           ),
           fluidRow(
@@ -2215,10 +2080,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is the condensate return temperature too high?'),
-              h4('Faults:'),
+              h2("Is the condensate return temperature too high?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'Is HWRT above 130°F?',
+                title = "Is HWRT above 130°F?",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2249,7 +2114,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend22')
+              plottingOutput(id = "trend22")
             )
           ),
 
@@ -2262,10 +2127,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is the boiler short cycling?'),
-              h4('Faults:'),
+              h2("Is the boiler short cycling?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'Short cycling',
+                title = "Short cycling",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2287,10 +2152,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Does Stack temperature show that my burner is cycling on/off or modulating?'),
-              h4('Faults:'),
+              h2("Does Stack temperature show that my burner is cycling on/off or modulating?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'Stack temperature is higher than expected or not modulating with burner',
+                title = "Stack temperature is higher than expected or not modulating with burner",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2310,10 +2175,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is my stack temperature too high?'),
-              h4('Faults:'),
+              h2("Is my stack temperature too high?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'Stack temperature is higher than expected or not modulating with burner',
+                title = "Stack temperature is higher than expected or not modulating with burner",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2344,7 +2209,7 @@ body <- dashboardBody(
             box(
               width = 12,
               solidHeader = TRUE,
-              plottingOutput(id = 'trend23')
+              plottingOutput(id = "trend23")
             )
           ),
 
@@ -2357,10 +2222,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2('Is the HWST failing to follow its setpoint?'),
-              h4('Faults:'),
+              h2("Is the HWST failing to follow its setpoint?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'HWST does not follow its setpoint',
+                title = "HWST does not follow its setpoint",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2380,10 +2245,10 @@ body <- dashboardBody(
               closable = FALSE,
               solidHeader = TRUE,
               width = 4,
-              h2(' Is there hunting?'),
-              h4('Faults:'),
+              h2(" Is there hunting?"),
+              h4("Faults:"),
               boxPlus(
-                title = 'HWST is hunting',
+                title = "HWST is hunting",
                 collapsed = TRUE,
                 collapsible = TRUE,
                 closable = FALSE,
@@ -2414,26 +2279,30 @@ body <- dashboardBody(
 
     tabItem(tabName = "Zone",
             fluidRow(
-              boxPlus(
-                title = "Trend 26",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 26')),
-                h2('Zone Temperature Setpoint'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'ZT26', label = "Zone Temperature")),
-                  tags$li(csvFileInput(id = 'ZTSP26', label = 'Zone Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'ZTSBSP26', label = 'Zone Temperature Setback Setpoint')),
-                  tags$li(occupancyInput(id='occ26',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+              titlePanel("ZONE TRENDS"),
+              navlistPanel(
+                tabPanel(
+                  "Boiler Plant",
+                  h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
-                actionButton('trend26Tab',"Trend 26")
+
+                tabPanel(
+                  "Trend Chart 26",
+                  box(solidHeader = TRUE, width = 12,
+                      h1(strong("Trend Chart 26")),
+                      h2("Zone Temperature Setpoint"),
+                      h3("Parameters to trend"),
+                      tags$ul(
+                        tags$li(csvFileInput(id = "ZT26", label = "Zone Temperature")),
+                        tags$li(csvFileInput(id = "ZTSP26", label = "Zone Temperature Setpoint")),
+                        tags$li(csvFileInput(id = "ZTSBSP26", label = "Zone Temperature Setback Setpoint")),
+                        tags$li(occupancyInput(id="occ26","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                      ),
+                      actionButton("trend26Tab","Trend 26")
+                  )
+                )
+                )
               )
-            )
     ),
     ###########trend26###########
     tabItem(tabName = "trend26",
@@ -2441,7 +2310,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend26')
+                plottingOutput(id = "trend26")
               )
             ),
 
@@ -2454,10 +2323,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the Zone Temperature not meeting its Zone Temperature Set-point?'),
-                h4('Faults:'),
+                h2("Is the Zone Temperature not meeting its Zone Temperature Set-point?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zone temperature does not meet its set point',
+                  title = "Zone temperature does not meet its set point",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2477,10 +2346,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the deadband not wide enough (below 5℉), allowing alternating heating and cooling to occur?'),
-                h4('Faults:'),
+                h2("Is the deadband not wide enough (below 5℉), allowing alternating heating and cooling to occur?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Deadband (number of degrees between heating and cooling setpoints) is below 5℉',
+                  title = "Deadband (number of degrees between heating and cooling setpoints) is below 5℉",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2499,10 +2368,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the zone temperature not floating toward the setback temperature during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the zone temperature not floating toward the setback temperature during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zone temperature does not float toward the setback temperature during unoccupied times',
+                  title = "Zone temperature does not float toward the setback temperature during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2513,7 +2382,7 @@ body <- dashboardBody(
                   )
                 ),
                 boxPlus(
-                  title = 'Zone temperature does not float toward the setback temperature during unoccupied times',
+                  title = "Zone temperature does not float toward the setback temperature during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2541,257 +2410,211 @@ body <- dashboardBody(
     ############START OF PERIMETER TAB#########
 
      tabItem(tabName = "Perimeter",
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Trend Chart 27-37a",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 27-37a')),
-                h2('Plotting the "a" Trend Chart For Each Trend (Heating Status)'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'Burner-t2737a', label = 'Burner Status')),
-                  tags$li(csvFileInput(id = 'Boiler-t2737a', label = 'Boiler Status')),
-                  tags$li(csvFileInput(id = 'MAT2737a', label = "Mixed Air Temperature")),
-                  tags$li(csvFileInput(id = 'DAT2737a', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'HCV2737a', label = "Heating Coil Valve Position")),
-                  tags$li(occupancyInput(id='occ2737a',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend2737aTab',"Trend 27-37a")
-              ),
-              boxPlus(
-                title = "Trend Chart 27b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 27b')),
-                h2('Constant Volume Air System With a Heating Coil or Burner'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'DAT27b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'ZT27b', label = "Zone Temperature")),
-                  tags$li(csvFileInput(id = 'ZTSP-A27b',label = 'Zone Temperature Setpoint (Air System)')),
-                  tags$li(csvFileInput(id = 'fant27b',label = 'Fan Status')),
-                  tags$li(occupancyInput(id='occ27b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend27bTab',"Trend 27b")
-              ),
-              boxPlus(
-                title = "Trend Chart 28b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 28b')),
-                h2('VAV without Reheats'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'DAT28b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'DATSP28b', label = 'Discharge Air Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'ZT28b', label = "Zone Temperature")),
-                  tags$li(csvFileInput(id = 'ZTSP-A28b',label = 'Zone Temperature Setpoint (Air System)')),
-                  tags$li(csvFileInput(id = 'fant28b',label = 'Fan Status')),
-                  tags$li(occupancyInput(id='occ28b',"https://cunybpl.shinyapps.io/nobas-occupancy/")
-                ),
-                actionButton('trend28bTab',"Trend 28b")
-                )
-              )
-            ),
+             fluidRow(
+               titlePanel("PERIMETER AND AIR TRENDS"),
+               navlistPanel(
+                 tabPanel(
+                   "Perimeter and air",
+                   h1("Start by selecting a tab on the left, then input the data that is requested")
+                 ),
+                 tabPanel(
+                   "Trend Chart 27-37a",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 27-37a")),
+                       h2("Plotting the 'a' Trend Chart For Each Trend (Heating Status)"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "Burner-t2737a", label = "Burner Status")),
+                         tags$li(csvFileInput(id = "Boiler-t2737a", label = "Boiler Status")),
+                         tags$li(csvFileInput(id = "MAT2737a", label = "Mixed Air Temperature")),
+                         tags$li(csvFileInput(id = "DAT2737a", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "HCV2737a", label = "Heating Coil Valve Position")),
+                         tags$li(occupancyInput(id="occ2737a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend2737aTab","Trend 27-37a")
+                   )
+                 ),
+                 tabPanel(
+                   "Trend Chart 27b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 27b")),
+                       h2("Constant Volume Air System With a Heating Coil or Burner"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT27b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "ZT27b", label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-A27b",label = "Zone Temperature Setpoint (Air System)")),
+                         tags$li(csvFileInput(id = "fant27b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ27b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend27bTab","Trend 27b")
+                   )
+                 ),
+                 tabPanel(
+                   "Trend Chart 28b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 28b")),
+                       h2("VAV without Reheats"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT28b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "DATSP28b", label = "Discharge Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "ZT28b", label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-A28b",label = "Zone Temperature Setpoint (Air System)")),
+                         tags$li(csvFileInput(id = "fant28b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ28b","https://cunybpl.shinyapps.io/nobas-occupancy/")
+                         ),
+                         actionButton("trend28bTab","Trend 28b")
+                       )
+                   )
+                 ),
 
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Trend Chart 29b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 29b')),
-                h2('VAV with Reheats'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'DAT29b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'DATSP29b', label = 'Discharge Air Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'ZTSP-A29b',label = 'Zone Temperature Setpoint (Air System)')),
-                  tags$li(csvFileInput(id = 'fant29b',label = 'Fan Status')),
-                  tags$li(occupancyInput(id='occ29b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend29bTab',"Trend 29b")
-              ),
-              boxPlus(
-                title = "Trend Chart 30b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 30b')),
-                h2('DAT Modulates Based on RAT'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'RATSP30b', label = 'Return Air Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'RAT30b', label = 'Return Air Temperature')),
-                  tags$li(csvFileInput(id = 'DAT30b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'ZT30b', label = "Zone Temperature")),
-                  tags$li(csvFileInput(id = 'fant30b',label = 'Fan Status')),
-                  tags$li(occupancyInput(id='occ30b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend30bTab',"Trend 30b")
-              ),
-              boxPlus(
-                title = "Trend Chart 31b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 31b')),
-                h2('Constant Volume Air System with a DATSP'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'DAT31b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'DATSP31b', label = 'Discharge Air Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'ZT31b',label = 'Zone Temperature')),
-                  tags$li(csvFileInput(id = 'RAT31b',label = 'Return Air Temperature')),
-                  tags$li(occupancyInput(id='occ31b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend31bTab',"Trend 31b")
-              )
+                 tabPanel(
+                   "Trend Chart 29b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 29b")),
+                       h2("VAV with Reheats"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT29b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "DATSP29b", label = "Discharge Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "ZTSP-A29b",label = "Zone Temperature Setpoint (Air System)")),
+                         tags$li(csvFileInput(id = "fant29b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ29b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend29bTab","Trend 29b")
+                   )
+                 ),
+                 tabPanel(
+                   "Trend Chart 30b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 30b")),
+                       h2("DAT Modulates Based on RAT"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "RATSP30b", label = "Return Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "RAT30b", label = "Return Air Temperature")),
+                         tags$li(csvFileInput(id = "DAT30b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "ZT30b", label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "fant30b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ30b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend30bTab","Trend 30b")
+                   )
+                 ),
+                 tabPanel(
+                   "Trend Chart 31b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 31b")),
+                       h2("Constant Volume Air System with a DATSP"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT31b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "DATSP31b", label = "Discharge Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "ZT31b",label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "RAT31b",label = "Return Air Temperature")),
+                         tags$li(occupancyInput(id="occ31b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend31bTab","Trend 31b")
+                   )
+                 ),
 
-            ),
+                 tabPanel(
+                   "Trend Chart 32b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 32b")),
+                       h2("Constant Volume Air System without a DATSP"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "HWST32b", label = "Perimeter Hot Water Supply Temperature")),
+                         tags$li(csvFileInput(id = "HWRT32b", label = "Perimeter Hot Water Return Temperature")),
+                         tags$li(csvFileInput(id = "ZT32b",label = "Zone Temperature")),
+                         tags$li(occupancyInput(id="occ32b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend32bTab","Trend 32b")
+                   )
+                 ),
 
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Trend Chart 32b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 32b')),
-                h2('Constant Volume Air System without a DATSP'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'HWST32b', label = 'Perimeter Hot Water Supply Temperature')),
-                  tags$li(csvFileInput(id = 'HWRT32b', label = 'Perimeter Hot Water Return Temperature')),
-                  tags$li(csvFileInput(id = 'ZT32b',label = 'Zone Temperature')),
-                  tags$li(occupancyInput(id='occ32b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend32bTab',"Trend 32b")
-              ),
-              boxPlus(
-                title = "Trend Chart 33b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 33b')),
-                h2('Cosntant Volume On/Off Air System With a Heating Coil or Burner'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'ZT33b',label = 'Zone Temperature')),
-                  tags$li(csvFileInput(id = 'ZTSP-P33b', label = 'Zone Temperature Setpoint (Perimeter)')),
-                  tags$li(csvFileInput(id = 'ZTSP-A33b', label = 'Zone Temperature Setpoint (Air System)')),
-                  tags$li(csvFileInput(id = 'fant33b',label = 'Fan Status')),
-                  tags$li(csvFileInput(id = 'DAT33b', label = 'Discharge Air Temperature')),
-                  tags$li(occupancyInput(id='occ33b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend33bTab',"Trend 33b")
-              ),
-              boxPlus(
-                title = "Trend Chart 34b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 34b')),
-                h2('VAV without Reheats'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'DAT34b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'DATSP34b', label = 'Discharge Air Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'ZT34b',label = 'Zone Temperature')),
-                  tags$li(csvFileInput(id = 'ZTSP-P34b', label = 'Zone Temperature Setpoint (Perimeter)')),
-                  tags$li(csvFileInput(id = 'ZTSP-A34b', label = 'Zone Temperature Setpoint (Air System)')),
-                  tags$li(csvFileInput(id = 'fant34b',label = 'Fan Status')),
-                  tags$li(occupancyInput(id='occ34b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                 tabPanel(
+                   "Trend Chart 33b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 33b")),
+                       h2("Cosntant Volume On/Off Air System With a Heating Coil or Burner"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "ZT33b",label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-P33b", label = "Zone Temperature Setpoint (Perimeter)")),
+                         tags$li(csvFileInput(id = "ZTSP-A33b", label = "Zone Temperature Setpoint (Air System)")),
+                         tags$li(csvFileInput(id = "fant33b",label = "Fan Status")),
+                         tags$li(csvFileInput(id = "DAT33b", label = "Discharge Air Temperature")),
+                         tags$li(occupancyInput(id="occ33b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend33bTab","Trend 33b")
+                   )
+                 ),
 
-                ),
-                actionButton('trend34bTab',"Trend 34b")
-              )
+                 tabPanel(
+                   "Trend Chart 34b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 34b")),
+                       h2("VAV without Reheats"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT34b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "DATSP34b", label = "Discharge Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "ZT34b",label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-P34b", label = "Zone Temperature Setpoint (Perimeter)")),
+                         tags$li(csvFileInput(id = "ZTSP-A34b", label = "Zone Temperature Setpoint (Air System)")),
+                         tags$li(csvFileInput(id = "fant34b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ34b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+
+                       ),
+                       actionButton("trend34bTab","Trend 34b")
+                   )
+                 ),
+
+                 tabPanel(
+                   "Trend Chart 36b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 36b")),
+                       h2("DAT based on RAT"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "RATSP36b", label = "Return Air Temperature Setpoint")),
+                         tags$li(csvFileInput(id = "RAT36b", label = "Return Air Temperature")),
+                         tags$li(csvFileInput(id = "DAT36b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "ZT36b", label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-P36b", label = "Zone Temperature Setpoint (Perimeter)")),
+                         tags$li(csvFileInput(id = "fant36b",label = "Fan Status")),
+                         tags$li(occupancyInput(id="occ36b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+
+                       ),
+                       actionButton("trend36bTab","Trend 36b")
+                   )
+                 ),
 
 
-            ),
+                 tabPanel(
+                   "Trend Chart 37b",
+                   box(solidHeader = TRUE, width = 12,
+                       h1(strong("Trend Chart 37b")),
+                       h2("Constant Volume Air System Based on DAT"),
+                       h3("Parameters to trend"),
+                       tags$ul(
+                         tags$li(csvFileInput(id = "DAT37b", label = "Discharge Air Temperature")),
+                         tags$li(csvFileInput(id = "DATSP37b", label = "Discharge Air Temperature Set Point")),
+                         tags$li(csvFileInput(id = "ZT37b", label = "Zone Temperature")),
+                         tags$li(csvFileInput(id = "ZTSP-P37b", label = "Zone Temperature Setpoint (Perimeter)")),
+                         tags$li(csvFileInput(id = "RAT37b", label = "Return Air Temperature")),
+                         tags$li(occupancyInput(id="occ37b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
+                       ),
+                       actionButton("trend37bTab","Trend 37b")
+                   )
+                 )
 
+               )
+             )
 
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Trend Chart 36b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 36b')),
-                h2('DAT based on RAT'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'RATSP36b', label = 'Return Air Temperature Setpoint')),
-                  tags$li(csvFileInput(id = 'RAT36b', label = 'Return Air Temperature')),
-                  tags$li(csvFileInput(id = 'DAT36b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'ZT36b', label = 'Zone Temperature')),
-                  tags$li(csvFileInput(id = 'ZTSP-P36b', label = 'Zone Temperature Setpoint (Perimeter)')),
-                  tags$li(csvFileInput(id = 'fant36b',label = 'Fan Status')),
-                  tags$li(occupancyInput(id='occ36b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-
-                ),
-                actionButton('trend36bTab',"Trend 36b")
-              ),
-
-              boxPlus(
-                title = "Trend Chart 37b",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                background = 'navy',
-                width = 4,
-                h1(strong('Trend Chart 37b')),
-                h2('Constant Volume Air System Based on DAT'),
-                h3('Parameters to trend'),
-                tags$ul(
-                  tags$li(csvFileInput(id = 'DAT37b', label = 'Discharge Air Temperature')),
-                  tags$li(csvFileInput(id = 'DATSP37b', label = 'Discharge Air Temperature Set Point')),
-                  tags$li(csvFileInput(id = 'ZT37b', label = 'Zone Temperature')),
-                  tags$li(csvFileInput(id = 'ZTSP-P37b', label = 'Zone Temperature Setpoint (Perimeter)')),
-                  tags$li(csvFileInput(id = 'RAT37b', label = 'Return Air Temperature')),
-                  tags$li(occupancyInput(id='occ37b',"https://cunybpl.shinyapps.io/nobas-occupancy/"))
-                ),
-                actionButton('trend37bTab',"Trend 37b")
-              )
-            )
         ),
     #################Start OF PERIMETER Plot##################
 
@@ -2801,7 +2624,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend2737a')
+                plottingOutput(id = "trend2737a")
               )
             ),
 
@@ -2821,7 +2644,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend27b')
+                plottingOutput(id = "trend27b")
               )
             ),
 
@@ -2834,10 +2657,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the system failing to meet the ZTSP-A?'),
-                h4('Faults:'),
+                h2("Is the system failing to meet the ZTSP-A?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Failing to meet ZTSP-A',
+                  title = "Failing to meet ZTSP-A",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2862,10 +2685,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent HCV fluctuations or is there burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent HCV fluctuations or is there burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2884,10 +2707,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2910,10 +2733,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('If there are nighttime setbacks, are both systems running at night?'),
-                h4('Faults:'),
+                h2("If there are nighttime setbacks, are both systems running at night?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Both systems run at night to meet nighttime setbacks',
+                  title = "Both systems run at night to meet nighttime setbacks",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2941,7 +2764,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend28b')
+                plottingOutput(id = "trend28b")
               )
             ),
 
@@ -2954,10 +2777,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you failing to meet your ZTSP-A?'),
-                h4('Faults:'),
+                h2("Are you failing to meet your ZTSP-A?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Failing to meet ZTSP-A',
+                  title = "Failing to meet ZTSP-A",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -2982,10 +2805,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3004,10 +2827,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2(' Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2(" Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3030,10 +2853,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the VAV damper positions below 50% or above 75%?'),
-                h4('Faults:'),
+                h2("Are the VAV damper positions below 50% or above 75%?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Most of the VAV damper positions are below 50% or above 75%',
+                  title = "Most of the VAV damper positions are below 50% or above 75%",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3046,7 +2869,7 @@ body <- dashboardBody(
                   )
                 ),
                 boxPlus(
-                  title = 'VAV Damper Positions change too frequently',
+                  title = "VAV Damper Positions change too frequently",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3065,10 +2888,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is DAT greater or less than ZT? '),
-                h4('Faults:'),
+                h2("Is DAT greater or less than ZT? "),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'DATSP < ZTSP-A',
+                  title = "DATSP < ZTSP-A",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3087,10 +2910,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('If there are nighttime setbacks, are both systems running at night?'),
-                h4('Faults:'),
+                h2("If there are nighttime setbacks, are both systems running at night?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Both systems run at night to meet nighttime setbacks',
+                  title = "Both systems run at night to meet nighttime setbacks",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3118,7 +2941,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend29b')
+                plottingOutput(id = "trend29b")
               )
             ),
 
@@ -3131,10 +2954,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Does the system fail to meet its DATSP and ZTSP-A?'),
-                h4('Faults:'),
+                h2("Does the system fail to meet its DATSP and ZTSP-A?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Fails to meet DATSP',
+                  title = "Fails to meet DATSP",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3145,7 +2968,7 @@ body <- dashboardBody(
                   )
                 ),
                 boxPlus(
-                  title = 'Fails to meet ZTSP-A',
+                  title = "Fails to meet ZTSP-A",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3170,10 +2993,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3192,10 +3015,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent valve fluctuations for the reheat coil?'),
-                h4('Faults:'),
+                h2("Are there frequent valve fluctuations for the reheat coil?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Reheat valve hunting',
+                  title = "Reheat valve hunting",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3217,10 +3040,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3240,10 +3063,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is DAT greater or less than ZT?'),
-                h4('Faults:'),
+                h2("Is DAT greater or less than ZT?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'DAT > ZT',
+                  title = "DAT > ZT",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3262,10 +3085,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the VAV damper positions below 50% or above 75%?'),
-                h4('Faults:'),
+                h2("Are the VAV damper positions below 50% or above 75%?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Most of the VAV damper positions are below 50% or above 75%',
+                  title = "Most of the VAV damper positions are below 50% or above 75%",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3278,7 +3101,7 @@ body <- dashboardBody(
                   )
                 ),
                 boxPlus(
-                  title = 'VAV Damper Positions change too frequently',
+                  title = "VAV Damper Positions change too frequently",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3300,10 +3123,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('What is the maximum HCV position when reheat coils are active?'),
-                h4('Faults:'),
+                h2("What is the maximum HCV position when reheat coils are active?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Majority of reheat valves are throttled to typically less than 70%',
+                  title = "Majority of reheat valves are throttled to typically less than 70%",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3322,10 +3145,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the majority of the reheats active?'),
-                h4('Faults:'),
+                h2("Are the majority of the reheats active?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Majority of reheat valves are throttled to typically less than 70%',
+                  title = "Majority of reheat valves are throttled to typically less than 70%",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3344,10 +3167,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('If there are nighttime setbacks, are both systems running at night?'),
-                h4('Faults:'),
+                h2("If there are nighttime setbacks, are both systems running at night?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Both systems run at night to meet nighttime setbacks',
+                  title = "Both systems run at night to meet nighttime setbacks",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3375,7 +3198,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend30b')
+                plottingOutput(id = "trend30b")
               )
             ),
 
@@ -3388,10 +3211,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3410,10 +3233,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Does the RAT fail to meet its setpoint?'),
-                h4('Faults:'),
+                h2("Does the RAT fail to meet its setpoint?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'RATSP is not met',
+                  title = "RATSP is not met",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3432,10 +3255,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Does RAT fail to change in order to meet the RATSP?'),
-                h4('Faults:'),
+                h2("Does RAT fail to change in order to meet the RATSP?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'If RAT<RATSP despite increasing DAT',
+                  title = "If RAT<RATSP despite increasing DAT",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3458,10 +3281,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3481,10 +3304,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your zone temperatures uneven?'),
-                h4('Faults:'),
+                h2("Are your zone temperatures uneven?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zone temperatures are uneven – some too hot, some too cold',
+                  title = "Zone temperatures are uneven – some too hot, some too cold",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3504,10 +3327,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('If there are nighttime setbacks, are both systems running at night?'),
-                h4('Faults:'),
+                h2("If there are nighttime setbacks, are both systems running at night?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Both systems run at night to meet nighttime setbacks',
+                  title = "Both systems run at night to meet nighttime setbacks",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3537,7 +3360,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend31b')
+                plottingOutput(id = "trend31b")
               )
             ),
 
@@ -3550,10 +3373,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Does the system fail to meet its DATSP?'),
-                h4('Faults:'),
+                h2("Does the system fail to meet its DATSP?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Not meeting DATSP',
+                  title = "Not meeting DATSP",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3572,10 +3395,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your zone and return temperatures too hot or cold?'),
-                h4('Faults:'),
+                h2("Are your zone and return temperatures too hot or cold?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zone temps too hot or too cold',
+                  title = "Zone temps too hot or too cold",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3595,10 +3418,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3620,10 +3443,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3651,7 +3474,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend32b')
+                plottingOutput(id = "trend32b")
               )
             ),
 
@@ -3664,10 +3487,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your zone or return temperatures too hot or cold?'),
-                h4('Faults:'),
+                h2("Are your zone or return temperatures too hot or cold?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zones too hot or too cold',
+                  title = "Zones too hot or too cold",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3692,10 +3515,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3723,7 +3546,7 @@ body <- dashboardBody(
             fluidRow(
               box(
                 width = 12,
-                plottingOutput(id = 'trend33b')
+                plottingOutput(id = "trend33b")
               )
             ),
 
@@ -3736,10 +3559,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Do zone temperatures fail to meet their setpoints?'),
-                h4('Faults:'),
+                h2("Do zone temperatures fail to meet their setpoints?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'ZTs not meeting their setpoints',
+                  title = "ZTs not meeting their setpoints",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3764,10 +3587,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3786,10 +3609,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent heating coil valve fluctuations or burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent heating coil valve fluctuations or burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3811,10 +3634,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your ZTSP-P and ZTSP-A within one or two degrees of each other?'),
-                h4('Faults:'),
+                h2("Are your ZTSP-P and ZTSP-A within one or two degrees of each other?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'ZTSP-P and ZTSP-A are within 1-2°F of each other',
+                  title = "ZTSP-P and ZTSP-A are within 1-2°F of each other",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3833,10 +3656,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('If there are nighttime setbacks, are both systems running at night?'),
-                h4('Faults:'),
+                h2("If there are nighttime setbacks, are both systems running at night?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Both systems run at night to meet nighttime setbacks',
+                  title = "Both systems run at night to meet nighttime setbacks",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3865,7 +3688,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend34b')
+                plottingOutput(id = "trend34b")
               )
             ),
 
@@ -3878,10 +3701,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Do zone temperatures fail to meet their setpoints? IF YES, ask Qs. 1a–c, too!'),
-                h4('Faults:'),
+                h2("Do zone temperatures fail to meet their setpoints? IF YES, ask Qs. 1a–c, too!"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zones not meeting their set points',
+                  title = "Zones not meeting their set points",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3906,10 +3729,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is DAT > ZT when ZTSP-P (or TRVSP) > ZTSP-A?'),
-                h4('Faults:'),
+                h2("Is DAT > ZT when ZTSP-P (or TRVSP) > ZTSP-A?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'DAT>ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A',
+                  title = "DAT>ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3928,10 +3751,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is DAT < ZT when ZTSP-P (or TRVSP) < ZTSP-A? '),
-                h4('Faults:'),
+                h2("Is DAT < ZT when ZTSP-P (or TRVSP) < ZTSP-A? "),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'DAT<ZTSP-A when ZTSP-P (or TRVSP) < ZTSP-A',
+                  title = "DAT<ZTSP-A when ZTSP-P (or TRVSP) < ZTSP-A",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3953,10 +3776,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('When ZTSP-P (or TRVSP) > ZTSP-A and DAT < ZT, does the VAV damper fail to modulate to minimum position?'),
-                h4('Faults:'),
+                h2("When ZTSP-P (or TRVSP) > ZTSP-A and DAT < ZT, does the VAV damper fail to modulate to minimum position?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'VAV dampers are not at minimum position at DAT < ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A',
+                  title = "VAV dampers are not at minimum position at DAT < ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3975,10 +3798,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -3997,10 +3820,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent heating coil valve fluctuations or burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent heating coil valve fluctuations or burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4022,10 +3845,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are the VAV damper positions below 50% or above 75%?'),
-                h4('Faults:'),
+                h2("Are the VAV damper positions below 50% or above 75%?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Most of the VAV damper positions are below 50% or above 75%',
+                  title = "Most of the VAV damper positions are below 50% or above 75%",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4038,7 +3861,7 @@ body <- dashboardBody(
                   )
                 ),
                 boxPlus(
-                  title = 'VAV Damper Positions change too frequently',
+                  title = "VAV Damper Positions change too frequently",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4057,10 +3880,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are your ZTSP-P and ZTSP-A within one or two degrees of each other?'),
-                h4('Faults:'),
+                h2("Are your ZTSP-P and ZTSP-A within one or two degrees of each other?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'ZTSP-P and ZTSP-A are within 1-2°F of each other',
+                  title = "ZTSP-P and ZTSP-A are within 1-2°F of each other",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4079,10 +3902,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('If there are nighttime setbacks, are both systems running at night?'),
-                h4('Faults:'),
+                h2("If there are nighttime setbacks, are both systems running at night?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Both systems run at night to meet nighttime setbacks',
+                  title = "Both systems run at night to meet nighttime setbacks",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4111,7 +3934,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend36b')
+                plottingOutput(id = "trend36b")
               )
             ),
 
@@ -4124,10 +3947,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is DAT having trouble meeting the RATSP?'),
-                h4('Faults:'),
+                h2("Is DAT having trouble meeting the RATSP?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'RATSP is not met',
+                  title = "RATSP is not met",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4138,7 +3961,7 @@ body <- dashboardBody(
                   )
                 ),
                 boxPlus(
-                  title = 'RAT<RATSP despite increasing DAT',
+                  title = "RAT<RATSP despite increasing DAT",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4158,10 +3981,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the system having trouble meeting your ZTSP-P? '),
-                h4('Faults:'),
+                h2("Is the system having trouble meeting your ZTSP-P? "),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zone temperatures are uneven – some too hot, some too cold',
+                  title = "Zone temperatures are uneven – some too hot, some too cold",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4181,10 +4004,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4206,10 +4029,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the ZTSP-P < RATSP?'),
-                h4('Faults:'),
+                h2("Is the ZTSP-P < RATSP?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'ZTSP-P < RATSP',
+                  title = "ZTSP-P < RATSP",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4238,7 +4061,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = 'trend37b')
+                plottingOutput(id = "trend37b")
               )
             ),
 
@@ -4251,10 +4074,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you having trouble meeting  ZTSP-P?'),
-                h4('Faults:'),
+                h2("Are you having trouble meeting  ZTSP-P?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Zone temps too hot or too cold',
+                  title = "Zone temps too hot or too cold",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4274,10 +4097,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are you having trouble meeting DATSP?'),
-                h4('Faults:'),
+                h2("Are you having trouble meeting DATSP?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Not meeting DATSP',
+                  title = "Not meeting DATSP",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4296,10 +4119,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Is the supply fan on during unoccupied times?'),
-                h4('Faults:'),
+                h2("Is the supply fan on during unoccupied times?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Supply fan is on during unoccupied times',
+                  title = "Supply fan is on during unoccupied times",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,
@@ -4321,10 +4144,10 @@ body <- dashboardBody(
                 closable = FALSE,
                 solidHeader = TRUE,
                 width = 4,
-                h2('Are there frequent heating coil valve fluctuations or is there burner cycling?'),
-                h4('Faults:'),
+                h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
+                h4("Faults:"),
                 boxPlus(
-                  title = 'Heating coil valve fluctuations or burner(s) is/are short-cycling',
+                  title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
                   collapsed = TRUE,
                   collapsible = TRUE,
                   closable = FALSE,

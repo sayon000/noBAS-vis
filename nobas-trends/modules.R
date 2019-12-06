@@ -13,7 +13,9 @@ library(shinyjs)
 
 #source('data_processing.R')
 MASTER_DATE_FORMATS_MODULE = c('mdy HMSOS','mdy HMSp','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
-csvFileInput <- function(id, label = "CSV file") {
+
+
+csvFileInput <- function(id, label = "CSV file",bLabel = "Look for your file") {
   #File Input UI
     #Inputs:
       #label: label of fileInput in UI output (string)
@@ -28,7 +30,8 @@ csvFileInput <- function(id, label = "CSV file") {
       "text/csv",
       "text/comma-separated-values,text/plain",
       ".csv"
-    )
+    ),
+    buttonLabel = bLabel
   ))
 }
 
@@ -130,7 +133,7 @@ dateRange <- function(input, output, session, data) {
   return(date_range)
 }
 
-occupancyInput <- function(id, occupancy_app_link) {
+occupancyInput <- function(id, occupancy_app_link, bLabel = "Upload your occupancy csv") {
   #File Input for an occupancy .csv, retreieved from the occupancy shiny application.
     #Inputs:
       #occupancy_app_link: url of the occupancy shiny application
@@ -146,7 +149,8 @@ occupancyInput <- function(id, occupancy_app_link) {
         "text/csv",
         "text/comma-separated-values,text/plain",
         ".csv"
-      )
+      ),
+      buttonLabel = bLabel
     ),
     tags$a(
       href = occupancy_app_link,
@@ -584,7 +588,6 @@ plotting <-
         #data: list of 'trends' from csvFile module
         #occupancyRects: ouput of occupancy module
     #Note: fullPlot comes from data processing
-    #Note for Sk: You can modify plotting to accept different values for height and width
     ###NOTE: Everytime i want a reactive input, I go to data_processing and keep modifying the fullPlot
     ###with whatever I need
     plt <- reactive({
@@ -602,6 +605,7 @@ plotting <-
         XTickSize = input$xTickSize,
         YTickSize = input$yTickSize
       )
+      plt <- config(plt,displayModeBar = TRUE)
 
       return(plt)
     })

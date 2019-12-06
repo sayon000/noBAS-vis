@@ -1883,13 +1883,4 @@ server <- function(input, output, session) {
 
 
    ########end of trend 37b########
-
-   ######Acronym Table#######
-
-   acronymFile <- "acronyms.csv" ###edit associated table for the acronyms
-   acroTable <- read_csv(acronymFile)
-   output$acroTable <- renderTable({ head( acroTable, n = 30 )},
-                                    hover = TRUE,
-                                    spacing = 'm'
-                                   )
 }
