@@ -43,7 +43,12 @@ sidebar <- dashboardSidebar(disable = TRUE,
     menuItem('Trend 34b',tabName = 'trend34b', icon = icon('queen')),
     menuItem('Trend 36b',tabName = 'trend36b', icon = icon('queen')),
     menuItem('Trend 37b',tabName = 'trend37b', icon = icon('queen')),
-    menuItem('Acrotab',tabName = 'AcroTab', icon = icon('queen'))
+    menuItem('OccToAHU', tabName = 'OccToAHU', icon = icon('queen')),
+    menuItem('OccToCHP', tabName = 'OccToCHP', icon = icon('queen')),
+    menuItem('OccToBP', tabName = 'OccToBP', icon = icon('queen')),
+    menuItem('OccToZ', tabName = 'OccToZ', icon = icon('queen')),
+    menuItem('OccToP', tabName = 'OccToP', icon = icon('queen'))
+
   )
 )
 

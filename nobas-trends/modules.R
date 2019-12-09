@@ -15,7 +15,7 @@ library(shinyjs)
 MASTER_DATE_FORMATS_MODULE = c('mdy HMSOS','mdy HMSp','mdy HM','Ymd HM', 'ymd HM', 'Ymd HMS', 'ymd HMS', 'mdy IMS p', 'mdy HMS', 'mdY HM', 'mdY HMS', 'mdy HMS', "HM md")
 
 
-csvFileInput <- function(id, label = "CSV file",bLabel = "Look for your file") {
+csvFileInput <- function(id, label = "CSV file",bLabel = "Click here to find and upload your file") {
   #File Input UI
     #Inputs:
       #label: label of fileInput in UI output (string)
@@ -133,7 +133,7 @@ dateRange <- function(input, output, session, data) {
   return(date_range)
 }
 
-occupancyInput <- function(id, occupancy_app_link, bLabel = "Upload your occupancy csv") {
+occupancyInput <- function(id, occupancy_app_link, bLabel = "Click here to find and upload your occupancy file") {
   #File Input for an occupancy .csv, retreieved from the occupancy shiny application.
     #Inputs:
       #occupancy_app_link: url of the occupancy shiny application
@@ -489,37 +489,38 @@ plottingOutput <- function(id) {
 
     #questionButtonOutput("yeetus"),
 
-    div(style = 'display: inline-block;vertical-align:top;width:25%;',
-     numericInput(
-        ns("Height"),
-        label = h3("Plot Height"),
-        value = 500
-        )
-    ),
-
-    #these space out the elements on the page
-    div(style = 'display: inline-block;vertical-align:top; width:25%;',
-        HTML("<br>")
-    ),
-
-
-    div(style = 'display: inline-block;vertical-align:top; width:25%;',
-     numericInput(
-        ns("Width"),
-        label = h3("Plot Width"),
-        value = 1350
-     )
-    ),
-
-    div(style = 'display: inline-block;vertical-align:top; width:100%;',
-        HTML("<br>")
-    ),
-
     box(title = "Advanced Options",
+      width = 12,
       collapsed = TRUE,
       collapsible = TRUE,
       closable = FALSE,
       solidHeader = TRUE,
+      div(style = 'display: inline-block;vertical-align:top;width:25%;',
+          numericInput(
+            ns("Height"),
+            label = h3("Plot Height"),
+            value = 500
+          )
+      ),
+
+      #these space out the elements on the page
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          HTML("<br>")
+      ),
+
+
+      div(style = 'display: inline-block;vertical-align:top; width:25%;',
+          numericInput(
+            ns("Width"),
+            label = h3("Plot Width"),
+            value = 1350
+          )
+      ),
+
+      div(style = 'display: inline-block;vertical-align:top; width:100%;',
+          HTML("<br>")
+      ),
+
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           numericInput(
             ns("XTicks"),

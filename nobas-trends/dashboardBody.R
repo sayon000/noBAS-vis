@@ -1,4 +1,4 @@
-#####FOR ONE ONLY COLLAPSED AT THE SAMETIME, LOOK AT SHINY BS#####
+
 
 body <- dashboardBody(
   tags$head(
@@ -7,7 +7,6 @@ body <- dashboardBody(
   useShinyjs(),
   extendShinyjs("www/shinyjsScrollUp.js"),
   tabItems(
-    #######First tab content###########
     tabItem(tabName = "Home",
            fluidRow(
              width = 12
@@ -37,7 +36,7 @@ body <- dashboardBody(
                 solidHeader = TRUE,
                 width = 2,
                 tags$button(
-                  id = "AHUTab",
+                  id = "OccToAHUTab",
                   type = "button",
                   class = "btn action-button",
                   img(src = "AHU.png",
@@ -52,7 +51,7 @@ body <- dashboardBody(
                 width = 2,
                 solidHeader = TRUE,
                 tags$button(
-                  id = "CHPTab",
+                  id = "OccToCHPTab",
                   type = "button",
                   class = "btn action-button",
                   img(src = "CHILLER.jpg",
@@ -66,7 +65,7 @@ body <- dashboardBody(
                 width = 2,
                 solidHeader = TRUE,
                 tags$button(
-                  id = "BPTab",
+                  id = "OccToBPTab",
                   type = "button",
                   class = "btn action-button",
                   img(src = "BOILER.png",
@@ -80,7 +79,7 @@ body <- dashboardBody(
                 width = 2,
                 solidHeader = TRUE,
                 tags$button(
-                  id = "ZTab",
+                  id = "OccToZTab",
                   type = "button",
                   class = "btn action-button",
                   img(src = "ZONE.png",
@@ -93,7 +92,7 @@ body <- dashboardBody(
                 width = 2,
                 solidHeader = TRUE,
                 tags$button(
-                  id = "PTab",
+                  id = "OccToPTab",
                   type = "button",
                   class = "btn action-button",
                   img(src = "PERIMETER.png",
@@ -112,7 +111,8 @@ body <- dashboardBody(
                        tags$ul(class = "text-left",
                              tags$li("In order to use this app, you must input each trend in to a CSV"),
                              tags$li("You should come prepared with data from your loggers."),
-                             tags$li("To save a trend, click the camera in the top right hand corner to download the plot")
+                             tags$li("To save a trend, click the camera icon in the top right hand corner of the trend graph to save the image."),
+                             tags$li("If you want to return back to the main page, click the home button at the top right hand corner.")
                       )
                      )
                  )
@@ -133,7 +133,7 @@ body <- dashboardBody(
                   h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
                 tabPanel(
-                  "Trend Chart 1",
+                  div(class="navPanels", "Trend Chart 1: Fan Schedule"),
                   box(solidHeader = TRUE, width = 12,
                     h1(strong("Trend Chart 1")),
                     h2("Fan Schedule"),
@@ -146,7 +146,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 2a",
+                  div(class="navPanels", "Trend Chart 2a: OA Control Using OAD"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 2a")),
                       h2("OA Control Using OAD"),
@@ -160,7 +160,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                   "Trend Chart 2b",
+                  div(class="navPanels", "Trend Chart 2b: OA Control Using OAF"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 2b")),
                        h2("OA Control Using OAF"),
@@ -176,7 +176,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 3",
+                  div(class="navPanels", "Trend Chart 3: Minimum OAD Position"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 3")),
                       h2("Minimum OAD Position"),
@@ -190,7 +190,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 4c",
+                  div(class="navPanels", "Trend Chart 4c: Simultaneous Heating & Cooling"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 4c")),
                       h2("Simultaneous Heating & Cooling"),
@@ -205,7 +205,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 4d",
+                  div(class="navPanels", "Trend Chart 4d: Simultaneous Heating & Cooling"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 4d")),
                       h2("Simultaneous Heating & Cooling"),
@@ -219,7 +219,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 5a",
+                  div(class="navPanels", "Trend Chart 5a: Economizing Using Temperature or Enthalpy"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 5a")),
                       h2("Economizing Using Temperature or Enthalpy"),
@@ -235,7 +235,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 7",
+                  div(class="navPanels", "Trend Chart 7: DAT Control"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 7")),
                       h2("DAT Control"),
@@ -250,7 +250,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 8a",
+                  div(class="navPanels", "Trend Chart 8a: Compressor Cycling & Staging"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 8a")),
                       h2("Compressor Cycling & Staging"),
@@ -264,7 +264,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 8b",
+                  div(class="navPanels", "Trend Chart 8b: Burner Cycling & Staging"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 8b")),
                       h2("Burner Cycling & Staging"),
@@ -278,7 +278,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 10",
+                  div(class="navPanels", "Trend Chart 10: Heating/Cooling Mode"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 10")),
                       h2("Heating/Cooling Mode"),
@@ -306,6 +306,24 @@ body <- dashboardBody(
 
     ),
     ####AHU TAB END#########
+
+    ####AHU REMINDER ABOUT THE OCCUPANCY SCHEDULE######
+    tabItem(tabName = "OccToAHU",
+            fluidRow(class = "text-center",
+                     width = 12,
+                     box(class = "text-center",
+                         width = 12,
+                         solidHeader = TRUE,
+                         h1("NOTE:Start by making an occupancy schedule if you do not have one already (24/7 buildings do not need to have this"),
+                         h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                         h2("Make sure to save it to an accessible location"),
+                         h2(" "),
+                         fluidRow(
+                           actionButton("AHUTab","Click here to proceed once you have your occupancy schedule ready")
+                         )
+                     )
+            )
+    ),
     #AHU Plot
     #######################################AHU Plots#################################################
 
@@ -1270,7 +1288,7 @@ body <- dashboardBody(
                   h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
                 tabPanel(
-                  "Trend Chart 12",
+                  div(class="navPanels", "Trend Chart 12: Chiller Plant Schedule"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 12")),
                       h2("Chiller Plant Schedule"),
@@ -1285,7 +1303,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 13a",
+                  div(class="navPanels", "Trend Chart 13a: Chilled Water Delta T"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 13a")),
                       h2("Chilled Water Delta T"),
@@ -1300,7 +1318,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 14a",
+                  div(class="navPanels", "Trend Chart 14a: ChWST Reset"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 14a")),
                       h2("ChWST Reset"),
@@ -1315,7 +1333,7 @@ body <- dashboardBody(
                   )
                 ),
                 tabPanel(
-                  "Trend Chart 15",
+                  div(class="navPanels", "Trend Chart 15: Cooling Tower Scheduling"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 15")),
                       h2("Cooling Tower Scheduling"),
@@ -1332,6 +1350,22 @@ body <- dashboardBody(
             )
 
 
+    ),
+
+    #################OCCUPANCY TO CHILLER PLANT#################
+    tabItem(tabName = "OccToCHP",
+            fluidRow(class = "text-center",
+                     width = 12,
+                     box(class = "text-center",
+                         width = 12,
+                         solidHeader = TRUE,
+                         h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
+                         h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                         fluidRow(
+                           actionButton("CHPTab","Click here to proceed once you have your occupancy schedule ready")
+                         )
+                     )
+            )
     ),
 
     ################CHILLER PLANT PLOTS########################
@@ -1640,7 +1674,7 @@ body <- dashboardBody(
                 ),
 
                 tabPanel(
-                  "Trend Chart 12",
+                  div(class="navPanels", "Trend Chart 17: Steam Boiler Condensate Return Temperature"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 17")),
                       h2("Steam Boiler Condensate Return Temperature"),
@@ -1654,7 +1688,7 @@ body <- dashboardBody(
                 ),
 
                 tabPanel(
-                  "Trend Chart 18",
+                  div(class="navPanels", "Trend Chart 18: Boiler Plant Scheduling"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 18")),
                       h2("Boiler Plant Scheduling"),
@@ -1671,7 +1705,7 @@ body <- dashboardBody(
                 ),
 
                 tabPanel(
-                  "Trend Chart 19a",
+                  div(class="navPanels", "Trend Chart 19a: Hot Water Temperature Reset"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 19a")),
                       h2("Hot Water Temperature Reset"),
@@ -1686,7 +1720,7 @@ body <- dashboardBody(
                 ),
 
                 tabPanel(
-                  "Trend Chart 21",
+                  div(class="navPanels", "Trend Chart 21: Condensing Boiler Efficiency"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 21")),
                       h2("Condensing Boiler Efficiency"),
@@ -1700,7 +1734,7 @@ body <- dashboardBody(
                 ),
 
                 tabPanel(
-                  "Trend Chart 22",
+                  div(class="navPanels", "Trend Chart 22: Boiler Cycling & Staging"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 22")),
                       h2("Boiler Cycling & Staging"),
@@ -1715,7 +1749,7 @@ body <- dashboardBody(
                 ),
 
                 tabPanel(
-                  "Trend Chart 23",
+                  div(class="navPanels", "Trend Chart 23: Hot Water Temperature Hunting"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 23")),
                       h2("Hot Water Temperature Hunting"),
@@ -1735,6 +1769,22 @@ body <- dashboardBody(
 
 
     ),
+
+  ##########OCCUPANCY TO BOILER#############
+  tabItem(tabName = "OccToBP",
+          fluidRow(class = "text-center",
+                   width = 12,
+                   box(class = "text-center",
+                       width = 12,
+                       solidHeader = TRUE,
+                       h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
+                       h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                       fluidRow(
+                         actionButton("BPTab","Click here to proceed once you have your occupancy schedule ready")
+                       )
+                   )
+          )
+  ),
 
     #########START BOILER PLOT#####################
 
@@ -2279,15 +2329,15 @@ body <- dashboardBody(
 
     tabItem(tabName = "Zone",
             fluidRow(
-              titlePanel("ZONE TRENDS"),
+              titlePanel("Zone Trends"),
               navlistPanel(
                 tabPanel(
-                  "Boiler Plant",
+                  "Zone Trends",
                   h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
 
                 tabPanel(
-                  "Trend Chart 26",
+                  div(class="navPanels", "Trend Chart 26: Zone Temperature Setpoint"),
                   box(solidHeader = TRUE, width = 12,
                       h1(strong("Trend Chart 26")),
                       h2("Zone Temperature Setpoint"),
@@ -2304,6 +2354,24 @@ body <- dashboardBody(
                 )
               )
     ),
+
+
+  ###############OCC TO ZONE############################3
+  tabItem(tabName = "OccToZ",
+          fluidRow(class = "text-center",
+                   width = 12,
+                   box(class = "text-center",
+                       width = 12,
+                       solidHeader = TRUE,
+                       h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
+                       h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                       fluidRow(
+                         actionButton("ZTab","Click here to proceed once you have your occupancy schedule ready")
+                       )
+                   )
+          )
+  ),
+
     ###########trend26###########
     tabItem(tabName = "trend26",
             fluidRow(
@@ -2411,14 +2479,14 @@ body <- dashboardBody(
 
      tabItem(tabName = "Perimeter",
              fluidRow(
-               titlePanel("PERIMETER AND AIR TRENDS"),
+               titlePanel("Perimter and Air Trends"),
                navlistPanel(
                  tabPanel(
                    "Perimeter and air",
                    h1("Start by selecting a tab on the left, then input the data that is requested")
                  ),
                  tabPanel(
-                   "Trend Chart 27-37a",
+                   div(class="navPanels", "Trend Chart 27-37a: Heating Status"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 27-37a")),
                        h2("Plotting the 'a' Trend Chart For Each Trend (Heating Status)"),
@@ -2435,7 +2503,7 @@ body <- dashboardBody(
                    )
                  ),
                  tabPanel(
-                   "Trend Chart 27b",
+                   div(class="navPanels", "Trend Chart 27b: Constant Volume Air System With a Heating Coil or Burner"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 27b")),
                        h2("Constant Volume Air System With a Heating Coil or Burner"),
@@ -2451,7 +2519,7 @@ body <- dashboardBody(
                    )
                  ),
                  tabPanel(
-                   "Trend Chart 28b",
+                   div(class="navPanels", "Trend Chart 28b: VAV without Reheats"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 28b")),
                        h2("VAV without Reheats"),
@@ -2470,7 +2538,7 @@ body <- dashboardBody(
                  ),
 
                  tabPanel(
-                   "Trend Chart 29b",
+                   div(class="navPanels", "Trend Chart 29b: VAV with Reheats"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 29b")),
                        h2("VAV with Reheats"),
@@ -2486,7 +2554,7 @@ body <- dashboardBody(
                    )
                  ),
                  tabPanel(
-                   "Trend Chart 30b",
+                   div(class="navPanels", "Trend Chart 30b: DAT Modulates Based on RAT"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 30b")),
                        h2("DAT Modulates Based on RAT"),
@@ -2503,7 +2571,7 @@ body <- dashboardBody(
                    )
                  ),
                  tabPanel(
-                   "Trend Chart 31b",
+                   div(class="navPanels", "Trend Chart 31b: Constant Volume Air System with a DATSP"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 31b")),
                        h2("Constant Volume Air System with a DATSP"),
@@ -2520,7 +2588,7 @@ body <- dashboardBody(
                  ),
 
                  tabPanel(
-                   "Trend Chart 32b",
+                   div(class="navPanels", "Trend Chart 32b: Constant Volume Air System without a DATSP"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 32b")),
                        h2("Constant Volume Air System without a DATSP"),
@@ -2536,10 +2604,10 @@ body <- dashboardBody(
                  ),
 
                  tabPanel(
-                   "Trend Chart 33b",
+                   div(class="navPanels", "Trend Chart 33b: Constant Volume On/Off Air System With a Heating Coil or Burner"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 33b")),
-                       h2("Cosntant Volume On/Off Air System With a Heating Coil or Burner"),
+                       h2("Constant Volume On/Off Air System With a Heating Coil or Burner"),
                        h3("Parameters to trend"),
                        tags$ul(
                          tags$li(csvFileInput(id = "ZT33b",label = "Zone Temperature")),
@@ -2554,7 +2622,7 @@ body <- dashboardBody(
                  ),
 
                  tabPanel(
-                   "Trend Chart 34b",
+                   div(class="navPanels", "Trend Chart 34b: VAV without Reheats"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 34b")),
                        h2("VAV without Reheats"),
@@ -2574,7 +2642,7 @@ body <- dashboardBody(
                  ),
 
                  tabPanel(
-                   "Trend Chart 36b",
+                   div(class="navPanels", "Trend Chart 36b: DAT based on RAT"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 36b")),
                        h2("DAT based on RAT"),
@@ -2595,7 +2663,7 @@ body <- dashboardBody(
 
 
                  tabPanel(
-                   "Trend Chart 37b",
+                   div(class="navPanels", "Trend Chart 37b: Constant Volume Air System Based on DAT"),
                    box(solidHeader = TRUE, width = 12,
                        h1(strong("Trend Chart 37b")),
                        h2("Constant Volume Air System Based on DAT"),
@@ -2616,6 +2684,25 @@ body <- dashboardBody(
              )
 
         ),
+
+  ####################OCC TO PERIMETER#####################
+
+  tabItem(tabName = "OccToP",
+          fluidRow(class = "text-center",
+                   width = 12,
+                   box(class = "text-center",
+                       width = 12,
+                       solidHeader = TRUE,
+                       h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
+                       h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                       fluidRow(
+                         actionButton("PTab","Click here to proceed once you have your occupancy schedule ready")
+                       )
+                   )
+          )
+  ),
+
+
     #################Start OF PERIMETER Plot##################
 
   #########trend2737a#########
@@ -4170,5 +4257,5 @@ body <- dashboardBody(
           )
     #######################END OF PERIMETER PLOT###########
 
-  )####THESE ARE THE MOST IMPORTANT END PARENTHESES THAT HOLD THE WHOLE FUNCTION TOGETHER
+    )####THESE ARE THE MOST IMPORTANT END PARENTHESES THAT HOLD THE WHOLE FUNCTION TOGETHER
   )####
