@@ -303,6 +303,9 @@ ui <- navbarPage(
     #   dataTableOutput('holiday_table')
     # ),
     wellPanel(
+      h4(strong("Close this tab once you download your occupancy schedule"))
+    ),
+    wellPanel(
       h3("Download"),
       textInput('occ_filename', 'Filename', value = 'occupancy_schedule'),
       downloadButton('occ_csv', label = 'Download Occupancy CSV', width =
