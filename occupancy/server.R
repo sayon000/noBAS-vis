@@ -1,4 +1,4 @@
-#Occupancy Scheduling
+#Server
 
 server <- function(input, output, session) {
   #return diff_time in seconds between two times
@@ -6,7 +6,6 @@ server <- function(input, output, session) {
     as.integer(difftime(time1,time2,units='secs'))
   }
 
-  #Receive / Label Occupancy File Input
   occData <- reactive({
     if (!is.null(input$occFile)) {
       d1 <- input$occFile$datapath
@@ -258,7 +257,7 @@ server <- function(input, output, session) {
   })
 
   #Prep Timeinputs
-  #NOTE: inputs sun_start, sun_end etc are of class POSIXlt
+  #NOTE: inputs sun_start, sun_end etc aree of class POSIXlt
   sun <- reactive({
     if (input$sun_occ == FALSE) {
       return(c('NA', 'NA', 'NA'))
@@ -429,7 +428,6 @@ server <- function(input, output, session) {
     return(df)
   })
 
-  #Format Schedule into Dataframe
   occupancy <- reactive({
     df <- data.frame(matrix(ncol = 5, nrow = 7))
     x <-
@@ -465,18 +463,14 @@ server <- function(input, output, session) {
     return(df)
   })
 
-  #Preview Output
   output$occ_table <-
     renderDataTable(occupancy_preview(), options = list(bLengthChange = F))
 
-  #Require filename to click download button
   observe({
     toggleState('occ_csv',
                 condition = input$occ_filename != "" |
                   is.null(input$occ_filename))
   })
-
-  #File Download logic
   output$occ_csv <- downloadHandler(
     filename = function() {
       paste(input$occ_filename, ".csv", sep = "")
