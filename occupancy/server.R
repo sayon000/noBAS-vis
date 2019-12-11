@@ -1,4 +1,4 @@
-#Occupancy Scheduling
+#Server
 
 server <- function(input, output, session) {
   #return diff_time in seconds between two times
@@ -6,7 +6,6 @@ server <- function(input, output, session) {
     as.integer(difftime(time1,time2,units='secs'))
   }
 
-  #Receive / Label Occupancy File Input
   occData <- reactive({
     if (!is.null(input$occFile)) {
       d1 <- input$occFile$datapath
@@ -108,6 +107,8 @@ server <- function(input, output, session) {
     }
   })
 
+  
+  ###NOTE TO SELF: THE BUG IS IN SLIDER BEHAVIOR#######
   ####----Slider Behavior---####
 
   sun_startup_end <- reactive({
@@ -121,14 +122,18 @@ server <- function(input, output, session) {
     diff <- time_diff(input$sun_slider[1], input$sun_slider[2]) * -1
     updateSliderInput(session,
                       'sun_slider',
-                      value = c(sun_startup_end(), sun_startup_end() + diff))
+                      value = c(sun_startup_end(), sun_startup_end() + diff),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   observeEvent(sun_occ_start(), {
     diff <- time_diff(input$sun_startup[1], input$sun_startup[2])
     updateSliderInput(session,
                       'sun_startup',
-                      value = c(sun_occ_start() + diff, sun_occ_start()))
+                      value = c(sun_occ_start() + diff, sun_occ_start()),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   mon_startup_end <- reactive({
@@ -142,14 +147,18 @@ server <- function(input, output, session) {
     diff <- time_diff(input$mon_slider[1], input$mon_slider[2]) * -1
     updateSliderInput(session,
                       'mon_slider',
-                      value = c(mon_startup_end(), mon_startup_end() + diff))
+                      value = c(mon_startup_end(), mon_startup_end() + diff),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   observeEvent(mon_occ_start(), {
     diff <- time_diff(input$mon_startup[1], input$mon_startup[2])
     updateSliderInput(session,
                       'mon_startup',
-                      value = c(mon_occ_start() + diff, mon_occ_start()))
+                      value = c(mon_occ_start() + diff, mon_occ_start()),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   tue_startup_end <- reactive({
@@ -163,14 +172,18 @@ server <- function(input, output, session) {
     diff <- time_diff(input$tue_slider[1], input$tue_slider[2]) * -1
     updateSliderInput(session,
                       'tue_slider',
-                      value = c(tue_startup_end(), tue_startup_end() + diff))
+                      value = c(tue_startup_end(), tue_startup_end() + diff),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   observeEvent(tue_occ_start(), {
     diff <- time_diff(input$tue_startup[1], input$tue_startup[2])
     updateSliderInput(session,
                       'tue_startup',
-                      value = c(tue_occ_start() + diff, tue_occ_start()))
+                      value = c(tue_occ_start() + diff, tue_occ_start()),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   wed_startup_end <- reactive({
@@ -184,14 +197,18 @@ server <- function(input, output, session) {
     diff <- time_diff(input$wed_slider[1], input$wed_slider[2]) * -1
     updateSliderInput(session,
                       'wed_slider',
-                      value = c(wed_startup_end(), wed_startup_end() + diff))
+                      value = c(wed_startup_end(), wed_startup_end() + diff),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   observeEvent(wed_occ_start(), {
     diff <- time_diff(input$wed_startup[1], input$wed_startup[2])
     updateSliderInput(session,
                       'wed_startup',
-                      value = c(wed_occ_start() + diff, wed_occ_start()))
+                      value = c(wed_occ_start() + diff, wed_occ_start()),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   thu_startup_end <- reactive({
@@ -205,14 +222,18 @@ server <- function(input, output, session) {
     diff <- time_diff(input$thu_slider[1], input$thu_slider[2]) * -1
     updateSliderInput(session,
                       'thu_slider',
-                      value = c(thu_startup_end(), thu_startup_end() + diff))
+                      value = c(thu_startup_end(), thu_startup_end() + diff),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   observeEvent(thu_occ_start(), {
     diff <- time_diff(input$thu_startup[1], input$thu_startup[2])
     updateSliderInput(session,
                       'thu_startup',
-                      value = c(thu_occ_start() + diff, thu_occ_start()))
+                      value = c(thu_occ_start() + diff, thu_occ_start()),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   fri_startup_end <- reactive({
@@ -226,14 +247,18 @@ server <- function(input, output, session) {
     diff <- time_diff(input$fri_slider[1], input$fri_slider[2]) * -1
     updateSliderInput(session,
                       'fri_slider',
-                      value = c(fri_startup_end(), fri_startup_end() + diff))
+                      value = c(fri_startup_end(), fri_startup_end() + diff),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   observeEvent(fri_occ_start(), {
     diff <- time_diff(input$fri_startup[1], input$fri_startup[2])
     updateSliderInput(session,
                       'fri_startup',
-                      value = c(fri_occ_start() + diff, fri_occ_start()))
+                      value = c(fri_occ_start() + diff, fri_occ_start()),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   sat_startup_end <- reactive({
@@ -247,18 +272,22 @@ server <- function(input, output, session) {
     diff <- time_diff(input$sat_slider[1], input$sat_slider[2]) * -1
     updateSliderInput(session,
                       'sat_slider',
-                      value = c(sat_startup_end(), sat_startup_end() + diff))
+                      value = c(sat_startup_end(), sat_startup_end() + diff),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   observeEvent(sat_occ_start(), {
     diff <- time_diff(input$sat_startup[1], input$sat_startup[2])
     updateSliderInput(session,
                       'sat_startup',
-                      value = c(sat_occ_start() + diff, sat_occ_start()))
+                      value = c(sat_occ_start() + diff, sat_occ_start()),
+                      timeFormat = TIME_FORM,
+                      timezone = TZ)
   })
 
   #Prep Timeinputs
-  #NOTE: inputs sun_start, sun_end etc are of class POSIXlt
+  #NOTE: inputs sun_start, sun_end etc aree of class POSIXlt
   sun <- reactive({
     if (input$sun_occ == FALSE) {
       return(c('NA', 'NA', 'NA'))
@@ -429,7 +458,6 @@ server <- function(input, output, session) {
     return(df)
   })
 
-  #Format Schedule into Dataframe
   occupancy <- reactive({
     df <- data.frame(matrix(ncol = 5, nrow = 7))
     x <-
@@ -465,18 +493,14 @@ server <- function(input, output, session) {
     return(df)
   })
 
-  #Preview Output
   output$occ_table <-
     renderDataTable(occupancy_preview(), options = list(bLengthChange = F))
 
-  #Require filename to click download button
   observe({
     toggleState('occ_csv',
                 condition = input$occ_filename != "" |
                   is.null(input$occ_filename))
   })
-
-  #File Download logic
   output$occ_csv <- downloadHandler(
     filename = function() {
       paste(input$occ_filename, ".csv", sep = "")
