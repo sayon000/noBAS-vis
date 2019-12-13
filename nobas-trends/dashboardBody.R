@@ -1,4 +1,5 @@
-
+######MODIFY EACH SPECIFIC QUESTION DOWN HERE#######
+source("questions.R")
 
 body <- dashboardBody(
   tags$head(
@@ -10,9 +11,9 @@ body <- dashboardBody(
     tabItem(tabName = "Home",
            fluidRow(
              width = 12
-
+             
            ),
-
+           
            fluidRow(class = "text-center",
              width = 12,
              box(class = "text-center",
@@ -44,8 +45,8 @@ body <- dashboardBody(
                       width = "75%")
                 )
               ),
-
-
+              
+              
              box(
                 title = "Chiller Plant Charts",
                 width = 2,
@@ -59,7 +60,7 @@ body <- dashboardBody(
                       width = "75%")
                 )
               ),
-
+              
               box(
                 title = "Boiler Plant Charts",
                 width = 2,
@@ -73,7 +74,7 @@ body <- dashboardBody(
                       width = "75%")
                 )
               ),
-
+             
               box(
                 title = "Zone Charts",
                 width = 2,
@@ -87,7 +88,7 @@ body <- dashboardBody(
                       width = "75%")
                 )
               ),
-
+            
             box(title = "Perimeter and Air Charts",
                 width = 2,
                 solidHeader = TRUE,
@@ -116,11 +117,11 @@ body <- dashboardBody(
                       )
                      )
                  )
-
-        )
-
+                 
+        )  
+          
     ),
-
+    
     ########################################AHU TAB START##################################################
     # AHU Tab Content start
     tabItem(tabName = "AHU",
@@ -294,19 +295,19 @@ body <- dashboardBody(
                 )
               )
             ),
-
-
-
+            
+           
+           
            #fourth row end
-
+           
             fluidRow(
-
+                
 
             )
-
+            
     ),
     ####AHU TAB END#########
-
+    
     ####AHU REMINDER ABOUT THE OCCUPANCY SCHEDULE######
     tabItem(tabName = "OccToAHU",
             fluidRow(class = "text-center",
@@ -314,56 +315,31 @@ body <- dashboardBody(
                      box(class = "text-center",
                          width = 12,
                          solidHeader = TRUE,
-                         h1("NOTE:Start by making an occupancy schedule if you do not have one already (24/7 buildings do not need to have this"),
-                         h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
-                         h2("Make sure to save it to an accessible location"),
+                         h1("Make an occupancy schedule if you do not have one already"),
+                         h1("(24/7 buildings do not require this)"),
+                         h2(tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", target = "_blank", "Click here "), "to make an occupancy schedule"),
+                         h2("Remember where you saved the file"),
                          h2(" "),
                          fluidRow(
-                           actionButton("AHUTab","Click here to proceed once you have your occupancy schedule ready")
-                         )
-                     )
+                           actionButton("AHUTab","Click here to proceed once you are ready")
+                  )
+              )
             )
     ),
     #AHU Plot
     #######################################AHU Plots#################################################
-
+    
     ####Trend 1 Plot ####
     tabItem(tabName = "trend1",
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Question 1",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are the fans running during unoccupied hours?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Fans are on during unoccupied hours",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Do they need to be on for any reason, e.g. meeting setbacks? Might have to trend zone temps and setback temps."),
-                    tags$li("Are you using outside air for pre-cooling overnight?"),
-                    tags$li("Can the amount of time the fan runs during unoccupied periods be reduced?")
-                  )
-                )
-              )
-            ),
-
+            
             fluidRow(
               box(title = "Trend 1: Fan Status",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id="trend1")
+                  plottingOutput(id="trend1",initialName = "Trend 1: Fan Status", Row1 = trend1_panel)
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 2,
@@ -372,362 +348,17 @@ body <- dashboardBody(
               )
             )
     ),
-
-    #####Trend 2b Plot#####
-    tabItem(tabName = "trend2b",
-            fluidRow(
-              box(title = "Trend 2b: OA Control Using OAF",
-                width = 12,
-                solidHeader = TRUE,
-                plottingOutput(id = "trend2b")
-              )
-            ),
-
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Question 1",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Is the OAD open during unoccupied times?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "OAD is open during unoccupied times.",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Do they need to be open for any reason?"),
-                    tags$li("Are there times when OAD can be closed for a few hours?"),
-                    tags$li("Do you have the right occupancy schedule?"),
-                    tags$li("Is your AHU scheduled according to your occupancy schedule?"),
-                    tags$li("Are your dampers closing when your AHU is off?")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 2",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Is the OAD open during startup when conditions are not favorable for economizing?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "OAD is open during startup when conditions are not favorable for economizing.",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Do they need to be open for any reason?"),
-                    tags$li("If not, can the BAS have controls to keep OAD closed during startup?")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 3",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are your dampers open more than the minimum position during occupied hours when not economizing?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Are the zones served by this AHU required to run on 100% outside air?"),
-                    tags$li("Does demand control ventilation require more or less OA?")
-                  )
-                )
-              )
-            ),
-
-            fluidRow(
-              width = 12,
-
-              boxPlus(
-                title = "Question 4",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are you over-ventilating? (OAD > 20%)"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Overventilation",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is there any reason that the minimum damper position should be greater than 20% (special CO2 requirement, demand control ventilation)?"),
-                    tags$li("Is it working properly?"),
-                    tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 5",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are you under-ventilating? (OAD < 10%)"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Underventilation",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is there any reason that the minimum damper position should be less than 10% (special CO2 requirement, demand control ventilation)?"),
-                    tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 6",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are Questions 1, 2, and 3 occurring simultaneously?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Failure to close when commanded",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-                    tags$li("What controls are enabled that could affect the damper position? Do they contradict?")
-                  )
-                ),
-
-                boxPlus(
-                  title = "High Leakage Rate when closed",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-                    tags$li("Is the CO2 concentration similar to when the damper is open, irregardless of occupant load?"),
-                    tags$li("What position does the BAS consider fully closed? Does that correlate to the actual position?")
-                  )
-                )
-              )
-            ),
-
-
-            fluidRow(
-              box(
-                width = 3,
-                solidHeader = TRUE,
-                actionButton("Prevtabt2b","Previous Page")
-              )
-            )
-          ),
-
+    
     #####Trend 2a Plot#####
     tabItem(tabName = "trend2a",
             fluidRow(
               box(title = "Trend 2a: OA Control Using OAD",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = "trend2a")
+                  plottingOutput(id = "trend2a",initialName = "Trend 2a: OA Control Using OAD", Row1 = trend2a_panel)
               )
             ),
-
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Question 1",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Is the OAD open during unoccupied times?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "OAD is open during unoccupied times.",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Do they need to be open for any reason?"),
-                    tags$li("Are there times when OAD can be closed for a few hours?"),
-                    tags$li("Do you have the right occupancy schedule?"),
-                    tags$li("Is your AHU scheduled according to your occupancy schedule?"),
-                    tags$li("Are your dampers closing when your AHU is off?")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 2",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Is the OAD open during startup when conditions are not favorable for economizing?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "OAD is open during startup when conditions are not favorable for economizing.",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Do they need to be open for any reason?"),
-                    tags$li("If not, can the BAS have controls to keep OAD closed during startup?")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 3",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are your dampers open more than the minimum position during occupied hours when not economizing?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Are the zones served by this AHU required to run on 100% outside air?"),
-                    tags$li("Does demand control ventilation require more or less OA?")
-                  )
-                )
-              )
-            ),
-
-            fluidRow(
-              width = 12,
-
-              boxPlus(
-                title = "Question 4",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are you over-ventilating? (OAD > 20%)"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Overventilation",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is there any reason that the minimum damper position should be greater than 20% (special CO2 requirement, demand control ventilation)?"),
-                    tags$li("Is it working properly?"),
-                    tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 5",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are you under-ventilating? (OAD < 10%)"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Underventilation",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is there any reason that the minimum damper position should be less than 10% (special CO2 requirement, demand control ventilation)?"),
-                    tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 6",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are Questions 1, 2, and 3 occurring simultaneously?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Failure to close when commanded",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-                    tags$li("What controls are enabled that could affect the damper position? Do they contradict?")
-                  )
-                ),
-
-                boxPlus(
-                  title = "High Leakage Rate when closed",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-                    tags$li("Is the CO2 concentration similar to when the damper is open, irregardless of occupant load?"),
-                    tags$li("What position does the BAS consider fully closed? Does that correlate to the actual position?")
-                  )
-                )
-              )
-            ),
-
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -736,65 +367,39 @@ body <- dashboardBody(
               )
             )
     ),
+    
+    #####Trend 2b Plot#####
+    tabItem(tabName = "trend2b",
+            fluidRow(
+              box(title = "Trend 2b: OA Control Using OAF",
+                width = 12,
+                solidHeader = TRUE,
+                plottingOutput(id = "trend2b", initialName = "Trend 2b: OA Control Using OAF",Row1 = trend2b_row1, Row2 = trend2b_row2)
+              )
+            ),
+            
+            
+            fluidRow(
+              box(
+                width = 3,
+                solidHeader = TRUE,
+                actionButton("Prevtabt2b","Previous Page")
+              )
+            )
+    ),
 
+    
     ###Trend 3 Plot####
-
+    
     tabItem(tabName = "trend3",
             fluidRow(
               box(title = "Trend 3: Minimum OAD Position",
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = "trend3")
+                plottingOutput(id = "trend3",initialName = "Trend 3: Minimum OAD Position",Row1 = trend3_row1 )
               )
             ),
-
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Question 1",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                width = 4,
-                h2("Does the maximum CO2 level of densely occupied zones exceed 900 ppm for hours at a time?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "The maximum CO2 level of densely occupied zones exceeds 900 ppm for hours at a time",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
-                    tags$li("Is there demand control ventilation? Is it working properly?"),
-                    tags$li("Can the minimum OAD position be increased?")
-                  )
-                )
-              ),
-
-              boxPlus(
-                title = "Question 2",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                width = 4,
-                h2("Do CO2 levels of densely occupied zones never exceed 750 ppm?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "The minimum OAD position is providing too much fresh air to the zones",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
-                    tags$li("Is there demand control ventilation? Is it working properly?"),
-                    tags$li("Can the minimum OAD position be decreased?")
-                  )
-                )
-              )
-            ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -803,46 +408,20 @@ body <- dashboardBody(
               )
             )
           ),
-
-
+    
+    
     #####Trend 4c######
-
+    
     tabItem(tabName = "trend4c",
             fluidRow(
               box(title = "Trend 4c: Simultaneous Heating & Cooling",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = "trend4c")
+                  plottingOutput(id = "trend4c",initialName = "Trend 4c: Simultaneous Heating & Cooling",Row1 = trend4c_row1 )
               )
             ),
-
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Question 1",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are you economizing with your HCV open?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Simultaneous cooling and heating (When not humidifying)",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
-                  )
-                )
-              )
-            ),
-
-
-
+            
+            
             fluidRow(
               box(
                 width = 3,
@@ -850,43 +429,18 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
     ####Trend 4d####
-
+    
     tabItem(tabName = "trend4d",
             fluidRow(
               box(title = "Trend 4d: Simultaneous Heating & Cooling",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = "trend4d")
+                  plottingOutput(id = "trend4d",initialName = "Trend 4d: Simultaneous Heating & Cooling",Row1 = trend4d_row1)
               )
             ),
-
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Question 1",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are you economizing with your HCV open?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Simultaneous cooling and heating (When not humidifying)",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
-                  )
-                )
-              )
-            ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -894,9 +448,9 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
     #####Trend 5a######
-
+    
     tabItem(tabName = "trend5a",
             fluidRow(
               box(title = "Trend 5a: Economizing Using Temperature or Enthalpy",
@@ -905,7 +459,7 @@ body <- dashboardBody(
                   plottingOutput(id = "trend5a")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -931,7 +485,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -954,7 +508,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -989,9 +543,9 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
     #######Trend 7#######
-
+    
     tabItem(tabName = "trend7",
             fluidRow(
               box(title = "Trend 7: DAT Control",
@@ -1000,7 +554,7 @@ body <- dashboardBody(
                   plottingOutput(id = "trend7")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1026,7 +580,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -1051,7 +605,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -1075,7 +629,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -1083,9 +637,9 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
     #####Trend 8a#####
-
+    
     tabItem(tabName = "trend8a",
             fluidRow(
               box(title = "Trend 8a: Compressor/Burner Cycling & Staging",
@@ -1094,7 +648,7 @@ body <- dashboardBody(
                   plottingOutput(id = "trend8a")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1119,7 +673,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -1141,9 +695,9 @@ body <- dashboardBody(
                   )
                 )
               )
-
+              
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -1151,9 +705,9 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
     #######Trend 8b######
-
+    
     tabItem(tabName = "trend8b",
             fluidRow(
               box(title = "Trend 8b: Burner Cycling & Staging",
@@ -1162,7 +716,7 @@ body <- dashboardBody(
                   plottingOutput(id = "trend8b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1187,7 +741,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -1209,9 +763,9 @@ body <- dashboardBody(
                   )
                 )
               )
-
+              
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -1220,10 +774,10 @@ body <- dashboardBody(
               )
             )
     ),
-
-
+    
+    
     ######Trend 10######
-
+    
     tabItem(tabName = "trend10",
             fluidRow(
               box(title = "Trend 10: Heating/Cooling Mode",
@@ -1232,7 +786,7 @@ body <- dashboardBody(
                   plottingOutput(id = "trend10")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1258,10 +812,10 @@ body <- dashboardBody(
                   )
                 )
               )
-
-
+              
+              
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -1269,16 +823,16 @@ body <- dashboardBody(
                 actionButton("Prevtabt10","Previous Page")
               )
             )
-
-
+            
+            
     ),
-
+    
     #Trend 10 Plot End
     ###################################AHU CONTENT END####################
-
+    
     ###################################Chiller Tab Start######################
     #Chiller Home Page Begin
-
+    
     tabItem(tabName = "ChillerPlant",
             fluidRow(
               titlePanel("CHILLER PLANT TRENDS"),
@@ -1298,7 +852,7 @@ body <- dashboardBody(
                         tags$li(csvFileInput(id = "CHWP12", label = "Chilled Water Pump Speed")),
                         tags$li(occupancyInput(id="occ12","https://cunybpl.shinyapps.io/nobas-occupancy/"))
                       ),
-
+                      
                       actionButton("trend12Tab","Trend 12")
                   )
                 ),
@@ -1313,7 +867,7 @@ body <- dashboardBody(
                         tags$li(csvFileInput(id = "CHWRT13a", label = "Chilled Water Return Temperature")),
                         tags$li(occupancyInput(id="occ13a","https://cunybpl.shinyapps.io/nobas-occupancy/"))
                       ),
-
+                      
                       actionButton("trend13aTab","Trend 13a")
                   )
                 ),
@@ -1348,10 +902,10 @@ body <- dashboardBody(
                 )
               )
             )
-
-
+            
+            
     ),
-
+    
     #################OCCUPANCY TO CHILLER PLANT#################
     tabItem(tabName = "OccToCHP",
             fluidRow(class = "text-center",
@@ -1359,19 +913,22 @@ body <- dashboardBody(
                      box(class = "text-center",
                          width = 12,
                          solidHeader = TRUE,
-                         h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
-                         h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                         h1("Make an occupancy schedule if you do not have one already"),
+                         h1("(24/7 buildings do not require this)"),
+                         h2(tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", target = "_blank", "Click here "), "to make an occupancy schedule"),
+                         h2("Remember where you saved the file"),
+                         h2(" "),
                          fluidRow(
-                           actionButton("CHPTab","Click here to proceed once you have your occupancy schedule ready")
+                           actionButton("CHPTab","Click here to proceed once you are ready")
                          )
                      )
-            )
+                  )
     ),
-
+    
     ################CHILLER PLANT PLOTS########################
-
+   
   ##################Trend 12############
-
+    
     tabItem(tabName = "trend12",
             fluidRow(
               box(
@@ -1380,7 +937,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend12")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1406,8 +963,8 @@ body <- dashboardBody(
                 )
               )
             ),
-
-
+            
+            
             fluidRow(
               box(
                 width = 3,
@@ -1415,11 +972,11 @@ body <- dashboardBody(
                 actionButton("Prevtabt12","Previous Page")
               )
             )
-
+            
     ),
-
+    
     #######TREND 13a#########
-
+    
     tabItem(tabName = "trend13a",
             fluidRow(
             box(
@@ -1428,7 +985,7 @@ body <- dashboardBody(
               plottingOutput(id = "trend13a")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1451,7 +1008,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -1473,7 +1030,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -1494,7 +1051,7 @@ body <- dashboardBody(
                     tags$li("Control loop not operating.")
                   )
                 ),
-
+                
                 boxPlus(
                   title = "Pump speed constant, LDP constant",
                   collapsed = TRUE,
@@ -1510,7 +1067,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -1518,11 +1075,11 @@ body <- dashboardBody(
                 actionButton("Prevtabt13a","Previous Page")
               )
             )
-
+      
     ),
-
+    
   #####trend 14a#########
-
+    
     tabItem(tabName = "trend14a",
             fluidRow(
               box(
@@ -1531,7 +1088,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend14a")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1556,7 +1113,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -1580,18 +1137,18 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
                 actionButton("Prevtabt14a","Previous Page")
               )
             )
-
+            
     ),
-
+    
     ######trend 15#######
-
+    
     tabItem(tabName = "trend15",
             fluidRow(
               box(
@@ -1600,7 +1157,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend15")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -1625,7 +1182,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -1649,7 +1206,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -1657,12 +1214,12 @@ body <- dashboardBody(
                 actionButton("Prevtabt15","Previous Page")
               )
             )
-
+            
     ),
-
+    
     #end trend 15
     ##################################Chiller End################
-
+    
     ##################################Boiler TAB Start###################
     tabItem(tabName = "BoilerPlant",
             fluidRow(
@@ -1672,7 +1229,7 @@ body <- dashboardBody(
                   "Boiler Plant",
                   h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
-
+                
                 tabPanel(
                   div(class="navPanels", "Trend Chart 17: Steam Boiler Condensate Return Temperature"),
                   box(solidHeader = TRUE, width = 12,
@@ -1686,7 +1243,7 @@ body <- dashboardBody(
                       actionButton("trend17Tab","Trend 17")
                   )
                 ),
-
+                
                 tabPanel(
                   div(class="navPanels", "Trend Chart 18: Boiler Plant Scheduling"),
                   box(solidHeader = TRUE, width = 12,
@@ -1703,7 +1260,7 @@ body <- dashboardBody(
                       actionButton("trend18Tab","Trend 18")
                   )
                 ),
-
+                
                 tabPanel(
                   div(class="navPanels", "Trend Chart 19a: Hot Water Temperature Reset"),
                   box(solidHeader = TRUE, width = 12,
@@ -1718,7 +1275,7 @@ body <- dashboardBody(
                       actionButton("trend19aTab","Trend 19a")
                   )
                 ),
-
+                
                 tabPanel(
                   div(class="navPanels", "Trend Chart 21: Condensing Boiler Efficiency"),
                   box(solidHeader = TRUE, width = 12,
@@ -1732,7 +1289,7 @@ body <- dashboardBody(
                       actionButton("trend21Tab","Trend 21")
                   )
                 ),
-
+                
                 tabPanel(
                   div(class="navPanels", "Trend Chart 22: Boiler Cycling & Staging"),
                   box(solidHeader = TRUE, width = 12,
@@ -1747,7 +1304,7 @@ body <- dashboardBody(
                       actionButton("trend22Tab","Trend 22")
                   )
                 ),
-
+                
                 tabPanel(
                   div(class="navPanels", "Trend Chart 23: Hot Water Temperature Hunting"),
                   box(solidHeader = TRUE, width = 12,
@@ -1763,13 +1320,13 @@ body <- dashboardBody(
                   )
                 )
               )
-            )
-
-
-
-
+            )    
+            
+            
+            
+            
     ),
-
+    
   ##########OCCUPANCY TO BOILER#############
   tabItem(tabName = "OccToBP",
           fluidRow(class = "text-center",
@@ -1777,19 +1334,22 @@ body <- dashboardBody(
                    box(class = "text-center",
                        width = 12,
                        solidHeader = TRUE,
-                       h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
-                       h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                       h1("Make an occupancy schedule if you do not have one already"),
+                       h1("24/7 buildings do not require this"),
+                       h2(tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", target = "_blank", "Click here "), "to make an occupancy schedule"),
+                       h2("Remember where you saved the file"),
+                       h2(" "),
                        fluidRow(
-                         actionButton("BPTab","Click here to proceed once you have your occupancy schedule ready")
+                         actionButton("BPTab","Click here to proceed when you are ready")
                        )
                    )
-          )
+              )
   ),
-
+  
     #########START BOILER PLOT#####################
-
+    
   ####### trend 17########
-
+  
   tabItem(tabName = "trend17",
           fluidRow(
             box(
@@ -1798,7 +1358,7 @@ body <- dashboardBody(
               plottingOutput(id = "trend17")
             )
           ),
-
+          
           fluidRow(
             width = 12,
             boxPlus(
@@ -1823,18 +1383,18 @@ body <- dashboardBody(
               )
             )
           ),
-
+          
           fluidRow(
             box(
               width = 3,
               actionButton("Prevtabt17","Previous Page")
             )
           )
-
+          
   ),
-
+  
   ######trend 18######
-
+  
   tabItem(tabName = "trend18",
           fluidRow(
             box(
@@ -1843,7 +1403,7 @@ body <- dashboardBody(
               plottingOutput(id = "trend18")
             )
           ),
-
+          
           fluidRow(
             width = 12,
             boxPlus(
@@ -1869,7 +1429,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 2",
               collapsed = TRUE,
@@ -1894,7 +1454,7 @@ body <- dashboardBody(
               )
             )
           ),
-
+          
           fluidRow(
             box(
               width = 3,
@@ -1902,10 +1462,10 @@ body <- dashboardBody(
               actionButton("Prevtabt18","Previous Page")
             )
           )
-
+          
   ),
-
-
+  
+  
   #########trend 19a#########
   tabItem(tabName = "trend19a",
           fluidRow(
@@ -1915,10 +1475,10 @@ body <- dashboardBody(
               plottingOutput(id = "trend19a")
             )
           ),
-
+          
           fluidRow(
             width = 12,
-
+            
             boxPlus(
               title = "Question 1",
               collapsed = TRUE,
@@ -1942,7 +1502,7 @@ body <- dashboardBody(
                   tags$li("If HW is solely for heating coils, consider programming HWST-SP based on a maximum HCV position of 90%.")
                 )
               ),
-
+              
               boxPlus(
                 title = "HW reset is ineffective",
                 collapsed = TRUE,
@@ -1955,7 +1515,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 2",
               collapsed = TRUE,
@@ -1977,7 +1537,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 3",
               collapsed = TRUE,
@@ -2000,7 +1560,7 @@ body <- dashboardBody(
               )
             )
           ),
-
+          
           fluidRow(
             box(
               width = 3,
@@ -2008,11 +1568,11 @@ body <- dashboardBody(
               actionButton("Prevtabt19a","Previous Page")
             )
           )
-
+          
   ),
-
+  
   ######trend 20a########
-
+  
   tabItem(tabName = "trend20a",
           fluidRow(
             box(
@@ -2044,7 +1604,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 2",
               collapsed = TRUE,
@@ -2067,7 +1627,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 3",
               collapsed = TRUE,
@@ -2101,7 +1661,7 @@ body <- dashboardBody(
               )
             )
           ),
-
+          
           fluidRow(
             box(
               width = 3,
@@ -2109,11 +1669,11 @@ body <- dashboardBody(
               actionButton("Prevtabt20a","Previous Page")
             )
           )
-
+          
   ),
-
+  
   #####trend 21########
-
+  
   tabItem(tabName = "trend21",
           fluidRow(
             box(
@@ -2146,7 +1706,7 @@ body <- dashboardBody(
               )
             )
           ),
-
+          
           fluidRow(
             box(
               width = 3,
@@ -2154,11 +1714,11 @@ body <- dashboardBody(
               actionButton("Prevtabt21","Previous Page")
             )
           )
-
+          
   ),
-
+  
   #####trend 22######
-
+  
   tabItem(tabName = "trend22",
           fluidRow(
             box(
@@ -2167,7 +1727,7 @@ body <- dashboardBody(
               plottingOutput(id = "trend22")
             )
           ),
-
+          
           fluidRow(
             width = 12,
             boxPlus(
@@ -2194,7 +1754,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 2",
               collapsed = TRUE,
@@ -2217,7 +1777,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 3",
               collapsed = TRUE,
@@ -2241,7 +1801,7 @@ body <- dashboardBody(
               )
             )
           ),
-
+          
           fluidRow(
             box(
               width = 3,
@@ -2249,11 +1809,11 @@ body <- dashboardBody(
               actionButton("Prevtabt22","Previous Page")
             )
           )
-
+          
   ),
-
+  
   ####trend 23######
-
+  
   tabItem(tabName = "trend23",
           fluidRow(
             box(
@@ -2262,7 +1822,7 @@ body <- dashboardBody(
               plottingOutput(id = "trend23")
             )
           ),
-
+          
           fluidRow(
             width = 12,
             boxPlus(
@@ -2287,7 +1847,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             boxPlus(
               title = "Question 2",
               collapsed = TRUE,
@@ -2310,8 +1870,8 @@ body <- dashboardBody(
               )
             )
           ),
-
-
+          
+          
           fluidRow(
             box(
               width = 3,
@@ -2319,14 +1879,14 @@ body <- dashboardBody(
               actionButton("Prevtabt23","Previous Page")
             )
           )
-
+          
   ),
-
+  
   #######END OF BOILER#################
-
-
+  
+    
     #######START OF ZONE##############
-
+    
     tabItem(tabName = "Zone",
             fluidRow(
               titlePanel("Zone Trends"),
@@ -2335,7 +1895,7 @@ body <- dashboardBody(
                   "Zone Trends",
                   h1("Start by selecting a tab on the left, then input the data that is requested")
                 ),
-
+                
                 tabPanel(
                   div(class="navPanels", "Trend Chart 26: Zone Temperature Setpoint"),
                   box(solidHeader = TRUE, width = 12,
@@ -2354,24 +1914,27 @@ body <- dashboardBody(
                 )
               )
     ),
-
-
-  ###############OCC TO ZONE############################3
+  
+  
+  ###############OCC TO ZONE############################
   tabItem(tabName = "OccToZ",
           fluidRow(class = "text-center",
                    width = 12,
                    box(class = "text-center",
                        width = 12,
                        solidHeader = TRUE,
-                       h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
-                       h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                       h1("Make an occupancy schedule if you do not have one already"),
+                       h1("(24/7 buildings do not require this)"),
+                       h2(tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", target = "_blank", "Click here "), "to make an occupancy schedule"),
+                       h2("Remember where you saved the file"),
+                       h2(" "),
                        fluidRow(
-                         actionButton("ZTab","Click here to proceed once you have your occupancy schedule ready")
+                         actionButton("ZTab","Click here to proceed once you are ready")
                        )
                    )
           )
   ),
-
+  
     ###########trend26###########
     tabItem(tabName = "trend26",
             fluidRow(
@@ -2381,7 +1944,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend26")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -2406,7 +1969,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -2428,7 +1991,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -2462,7 +2025,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -2471,12 +2034,12 @@ body <- dashboardBody(
               )
             )
           ),
-
-
+    
+    
     ########END OF ZONE#############
-
-    ############START OF PERIMETER TAB#########
-
+     
+    ############START OF PERIMETER TAB######### 
+    
      tabItem(tabName = "Perimeter",
              fluidRow(
                titlePanel("Perimter and Air Trends"),
@@ -2536,7 +2099,7 @@ body <- dashboardBody(
                        )
                    )
                  ),
-
+                 
                  tabPanel(
                    div(class="navPanels", "Trend Chart 29b: VAV with Reheats"),
                    box(solidHeader = TRUE, width = 12,
@@ -2586,7 +2149,7 @@ body <- dashboardBody(
                        actionButton("trend31bTab","Trend 31b")
                    )
                  ),
-
+                 
                  tabPanel(
                    div(class="navPanels", "Trend Chart 32b: Constant Volume Air System without a DATSP"),
                    box(solidHeader = TRUE, width = 12,
@@ -2602,7 +2165,7 @@ body <- dashboardBody(
                        actionButton("trend32bTab","Trend 32b")
                    )
                  ),
-
+                 
                  tabPanel(
                    div(class="navPanels", "Trend Chart 33b: Constant Volume On/Off Air System With a Heating Coil or Burner"),
                    box(solidHeader = TRUE, width = 12,
@@ -2620,7 +2183,7 @@ body <- dashboardBody(
                        actionButton("trend33bTab","Trend 33b")
                    )
                  ),
-
+                 
                  tabPanel(
                    div(class="navPanels", "Trend Chart 34b: VAV without Reheats"),
                    box(solidHeader = TRUE, width = 12,
@@ -2635,12 +2198,12 @@ body <- dashboardBody(
                          tags$li(csvFileInput(id = "ZTSP-A34b", label = "Zone Temperature Setpoint (Air System)")),
                          tags$li(csvFileInput(id = "fant34b",label = "Fan Status")),
                          tags$li(occupancyInput(id="occ34b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
-
+                         
                        ),
                        actionButton("trend34bTab","Trend 34b")
                    )
                  ),
-
+                 
                  tabPanel(
                    div(class="navPanels", "Trend Chart 36b: DAT based on RAT"),
                    box(solidHeader = TRUE, width = 12,
@@ -2655,13 +2218,13 @@ body <- dashboardBody(
                          tags$li(csvFileInput(id = "ZTSP-P36b", label = "Zone Temperature Setpoint (Perimeter)")),
                          tags$li(csvFileInput(id = "fant36b",label = "Fan Status")),
                          tags$li(occupancyInput(id="occ36b","https://cunybpl.shinyapps.io/nobas-occupancy/"))
-
+                         
                        ),
                        actionButton("trend36bTab","Trend 36b")
                    )
                  ),
-
-
+                 
+                 
                  tabPanel(
                    div(class="navPanels", "Trend Chart 37b: Constant Volume Air System Based on DAT"),
                    box(solidHeader = TRUE, width = 12,
@@ -2679,32 +2242,36 @@ body <- dashboardBody(
                        actionButton("trend37bTab","Trend 37b")
                    )
                  )
-
+                 
                )
              )
-
+            
         ),
-
+  
   ####################OCC TO PERIMETER#####################
-
+  
   tabItem(tabName = "OccToP",
           fluidRow(class = "text-center",
                    width = 12,
                    box(class = "text-center",
                        width = 12,
                        solidHeader = TRUE,
-                       h1("NOTE: YOU MUST HAVE AN OCCUPANCY SCHEDULE BEFORE YOU PROCEED"),
-                       h2("If you do not have one for the building system, ", tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", "Click here!")),
+                       h1("Make an occupancy schedule if you do not have one already"),
+                       h1("(24/7 buildings do not require this)"),
+                       h2(tags$a(href="https://cunybpl.shinyapps.io/nobas-occupancy/", target = "_blank", "Click here "), "to make an occupancy schedule"),
+                       h2("Remember where you saved the file"),
+                       h2(" "),
                        fluidRow(
-                         actionButton("PTab","Click here to proceed once you have your occupancy schedule ready")
+                         actionButton("PTab","Click here to proceed once you are ready")
                        )
                    )
           )
+          
   ),
-
-
+  
+  
     #################Start OF PERIMETER Plot##################
-
+    
   #########trend2737a#########
     tabItem(tabName = "trend2737a",
             fluidRow(
@@ -2714,7 +2281,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend2737a")
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -2722,9 +2289,9 @@ body <- dashboardBody(
                 actionButton("Prevtabt2737a","Previous Page")
               )
             )
-
+            
     ),
-
+    
   ###########trend27b#############
     tabItem(tabName = "trend27b",
             fluidRow(
@@ -2734,7 +2301,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend27b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -2764,7 +2331,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -2786,7 +2353,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -2810,7 +2377,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -2835,7 +2402,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -2844,7 +2411,7 @@ body <- dashboardBody(
               )
             )
           ),
-
+  
   ###########trend28b#############
     tabItem(tabName = "trend28b",
             fluidRow(
@@ -2854,7 +2421,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend28b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -2884,7 +2451,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -2906,7 +2473,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -2930,7 +2497,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -2967,7 +2534,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 5",
                 collapsed = TRUE,
@@ -2989,7 +2556,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 6",
                 collapsed = TRUE,
@@ -3012,7 +2579,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               box(
@@ -3021,7 +2588,7 @@ body <- dashboardBody(
               )
             )
         ),
-
+  
   ###########trend29b#############
     tabItem(tabName = "trend29b",
             fluidRow(
@@ -3031,7 +2598,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend29b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3070,9 +2637,9 @@ body <- dashboardBody(
                     tags$li("For overheating, reduce the heating from the perimeter system. ")
                   )
                 )
-
+                
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -3094,7 +2661,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -3117,7 +2684,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3142,7 +2709,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 5",
                 collapsed = TRUE,
@@ -3164,7 +2731,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 6",
                 collapsed = TRUE,
@@ -3200,7 +2767,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3224,7 +2791,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 8",
                 collapsed = TRUE,
@@ -3246,7 +2813,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 9",
                 collapsed = TRUE,
@@ -3269,7 +2836,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -3277,8 +2844,8 @@ body <- dashboardBody(
               )
             )
     ),
-
-
+  
+  
   ###########trend30b#############
     tabItem(tabName = "trend30b",
             fluidRow(
@@ -3288,7 +2855,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend30b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3312,7 +2879,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -3334,7 +2901,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -3358,7 +2925,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3383,7 +2950,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 5",
                 collapsed = TRUE,
@@ -3406,7 +2973,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 6",
                 collapsed = TRUE,
@@ -3429,7 +2996,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -3437,11 +3004,11 @@ body <- dashboardBody(
                 actionButton("Prevtabt30b","Previous Page")
               )
             )
-
+            
     ),
-
+    
   ###########trend31b#############
-
+    
     tabItem(tabName = "trend31b",
             fluidRow(
               box(
@@ -3450,7 +3017,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend31b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3474,7 +3041,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -3497,7 +3064,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -3520,7 +3087,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3545,7 +3112,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -3554,7 +3121,7 @@ body <- dashboardBody(
               )
             )
       ),
-
+    
   ###########trend32b#############
     tabItem(tabName = "trend32b",
             fluidRow(
@@ -3564,7 +3131,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend32b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3594,7 +3161,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -3617,8 +3184,8 @@ body <- dashboardBody(
                 )
               )
             ),
-
-
+            
+            
             fluidRow(
               box(
                 width = 3,
@@ -3626,9 +3193,9 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
   ###########trend33b#############
-
+  
     tabItem(tabName = "trend33b",
             fluidRow(
               box(
@@ -3636,7 +3203,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend33b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3666,7 +3233,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -3688,7 +3255,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -3711,7 +3278,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3735,7 +3302,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 5",
                 collapsed = TRUE,
@@ -3758,7 +3325,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -3767,9 +3334,9 @@ body <- dashboardBody(
               )
             )
     ),
-
-  ###########trend34b#############
-
+  
+  ###########trend34b#############  
+  
     tabItem(tabName = "trend34b",
             fluidRow(
               box(
@@ -3778,7 +3345,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend34b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3808,7 +3375,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 1a",
                 collapsed = TRUE,
@@ -3830,7 +3397,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 1b",
                 collapsed = TRUE,
@@ -3853,7 +3420,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3877,7 +3444,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -3899,7 +3466,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -3922,7 +3489,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -3959,7 +3526,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 5",
                 collapsed = TRUE,
@@ -3981,7 +3548,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 6",
                 collapsed = TRUE,
@@ -4004,7 +3571,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -4013,9 +3580,9 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
   ###########trend36b#############
-
+  
     tabItem(tabName = "trend36b",
             fluidRow(
               box(
@@ -4024,7 +3591,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend36b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -4060,7 +3627,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -4083,7 +3650,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -4106,7 +3673,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -4131,7 +3698,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -4140,9 +3707,9 @@ body <- dashboardBody(
               )
             )
     ),
-
+    
   ###########trend37b#############
-
+  
     tabItem(tabName = "trend37b",
             fluidRow(
               box(
@@ -4151,7 +3718,7 @@ body <- dashboardBody(
                 plottingOutput(id = "trend37b")
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -4176,7 +3743,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 2",
                 collapsed = TRUE,
@@ -4198,7 +3765,7 @@ body <- dashboardBody(
                   )
                 )
               ),
-
+              
               boxPlus(
                 title = "Question 3",
                 collapsed = TRUE,
@@ -4221,7 +3788,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               width = 12,
               boxPlus(
@@ -4246,7 +3813,7 @@ body <- dashboardBody(
                 )
               )
             ),
-
+            
             fluidRow(
               box(
                 width = 3,
@@ -4256,6 +3823,10 @@ body <- dashboardBody(
             )
           )
     #######################END OF PERIMETER PLOT###########
-
     )####THESE ARE THE MOST IMPORTANT END PARENTHESES THAT HOLD THE WHOLE FUNCTION TOGETHER
   )####
+
+
+#####MODIFY THE SPECFIC PAGES DOWN HERE#######
+
+

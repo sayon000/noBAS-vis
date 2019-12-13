@@ -471,7 +471,7 @@ occupancy <- function(input, output, session, date_range) {
   return(occRects)
 }
 
-plottingOutput <- function(id) {
+plottingOutput <- function(id,initialName = "Untitled plot",Row1 = fluidRow(),Row2 = fluidRow(),Row3 = fluidRow()) {
   #Plot Output UI
   ns <- NS(id)
 
@@ -482,13 +482,16 @@ plottingOutput <- function(id) {
     textInput(
       ns("plot_name"),
       label = "Plot Title",
-      value = "My Plot",
+      value = initialName,
       placeholder = "My Plot",
       width = '25%'
     ),
-
+    h2("Questions"),
+    Row1,
+    Row2,
+    Row3,
     #questionButtonOutput("yeetus"),
-
+    
     box(title = "Advanced Options",
       width = 12,
       collapsed = TRUE,
@@ -502,13 +505,13 @@ plottingOutput <- function(id) {
             value = 500
           )
       ),
-
+      
       #these space out the elements on the page
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           HTML("<br>")
       ),
-
-
+      
+      
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           numericInput(
             ns("Width"),
@@ -516,11 +519,11 @@ plottingOutput <- function(id) {
             value = 1350
           )
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:100%;',
           HTML("<br>")
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           numericInput(
             ns("XTicks"),
@@ -528,11 +531,11 @@ plottingOutput <- function(id) {
             value = 60,
           )
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           HTML("<br>")
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           sliderInput(
             ns("TickAngle"),
@@ -542,11 +545,11 @@ plottingOutput <- function(id) {
             value = 90,
           )
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:100%;',
           HTML("<br>")
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           numericInput(
             ns("xTickSize"),
@@ -554,11 +557,11 @@ plottingOutput <- function(id) {
             value = 12,
           )
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           HTML("<br>")
       ),
-
+      
       div(style = 'display: inline-block;vertical-align:top; width:25%;',
           numericInput(
             ns("yTickSize"),
@@ -567,7 +570,7 @@ plottingOutput <- function(id) {
           )
       )
     )
-
+    
     #actionButton(
     #  ns("Download"),
      # "Download"
@@ -607,7 +610,7 @@ plotting <-
         YTickSize = input$yTickSize
       )
       plt <- config(plt,displayModeBar = TRUE)
-
+      
       return(plt)
     })
 
@@ -619,12 +622,14 @@ questionButtonOutput <- function(id){
   actionButton(ns("questionJump"),"Go To Questions")
 }
 
-questionButton <-
+questionButton <- 
   function(input,
           output,
           session){
-
+  
   observeEvent(input$questionJump,{
     js$ScrollToQuestion()
   })
 }
+
+
