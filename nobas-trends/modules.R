@@ -471,7 +471,7 @@ occupancy <- function(input, output, session, date_range) {
   return(occRects)
 }
 
-plottingOutput <- function(id,initialName = "Untitled plot",Row1 = fluidRow(),Row2 = fluidRow(),Row3 = fluidRow()) {
+plottingOutput <- function(id,initialName = "Untitled plot",questionPanel = fluidRow()) {
   #Plot Output UI
   ns <- NS(id)
 
@@ -487,10 +487,7 @@ plottingOutput <- function(id,initialName = "Untitled plot",Row1 = fluidRow(),Ro
       width = '25%'
     ),
     h2("Questions"),
-    Row1,
-    Row2,
-    Row3,
-    #questionButtonOutput("yeetus"),
+    questionPanel,
     
     box(title = "Advanced Options",
       width = 12,
@@ -570,11 +567,6 @@ plottingOutput <- function(id,initialName = "Untitled plot",Row1 = fluidRow(),Ro
           )
       )
     )
-    
-    #actionButton(
-    #  ns("Download"),
-     # "Download"
-    #)
     ###work on the download thing using JShttps://stackoverflow.com/questions/48929528/whats-the-best-way-to-write-custom-javascript-for-r-shiny-module-that-uses-modu#####
   )
 }
@@ -616,20 +608,5 @@ plotting <-
 
     output$plot <- renderPlotly(plt())
   }
-
-questionButtonOutput <- function(id){
-  ns <- NS(id)
-  actionButton(ns("questionJump"),"Go To Questions")
-}
-
-questionButton <- 
-  function(input,
-          output,
-          session){
-  
-  observeEvent(input$questionJump,{
-    js$ScrollToQuestion()
-  })
-}
 
 

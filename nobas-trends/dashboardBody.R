@@ -336,7 +336,7 @@ body <- dashboardBody(
               box(title = "Trend 1: Fan Status",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id="trend1",initialName = "Trend 1: Fan Status", Row1 = trend1_panel)
+                  plottingOutput(id="trend1",initialName = "Trend 1: Fan Status", questionPanel = trend1_panel)
               )
             ),
             
@@ -355,7 +355,7 @@ body <- dashboardBody(
               box(title = "Trend 2a: OA Control Using OAD",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = "trend2a",initialName = "Trend 2a: OA Control Using OAD", Row1 = trend2a_panel)
+                  plottingOutput(id = "trend2a",initialName = "Trend 2a: OA Control Using OAD", questionPanel = trend2a_panel)
               )
             ),
             
@@ -374,7 +374,7 @@ body <- dashboardBody(
               box(title = "Trend 2b: OA Control Using OAF",
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = "trend2b", initialName = "Trend 2b: OA Control Using OAF",Row1 = trend2b_row1, Row2 = trend2b_row2)
+                plottingOutput(id = "trend2b", initialName = "Trend 2b: OA Control Using OAF",questionPanel = trend2b_panel)
               )
             ),
             
@@ -396,7 +396,7 @@ body <- dashboardBody(
               box(title = "Trend 3: Minimum OAD Position",
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = "trend3",initialName = "Trend 3: Minimum OAD Position",Row1 = trend3_row1 )
+                plottingOutput(id = "trend3",initialName = "Trend 3: Minimum OAD Position",questionPanel = trend3_panel )
               )
             ),
             
@@ -417,7 +417,7 @@ body <- dashboardBody(
               box(title = "Trend 4c: Simultaneous Heating & Cooling",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = "trend4c",initialName = "Trend 4c: Simultaneous Heating & Cooling",Row1 = trend4c_row1 )
+                  plottingOutput(id = "trend4c",initialName = "Trend 4c: Simultaneous Heating & Cooling",questionPanel = trend4c_panel )
               )
             ),
             
@@ -437,7 +437,7 @@ body <- dashboardBody(
               box(title = "Trend 4d: Simultaneous Heating & Cooling",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = "trend4d",initialName = "Trend 4d: Simultaneous Heating & Cooling",Row1 = trend4d_row1)
+                  plottingOutput(id = "trend4d",initialName = "Trend 4d: Simultaneous Heating & Cooling",questionPanel = trend4d_row1)
               )
             ),
             
@@ -456,85 +456,10 @@ body <- dashboardBody(
               box(title = "Trend 5a: Economizing Using Temperature or Enthalpy",
                   width = 12,
                   solidHeader = TRUE,
-                  plottingOutput(id = "trend5a")
+                  plottingOutput(id = "trend5a",initialName = "Trend 5a: Economizing Using Temperature or Enthalpy",questionPanel = trend5a_panel)
               )
             ),
             
-            fluidRow(
-              width = 12,
-              boxPlus(
-                title = "Question 1",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Are you in cooling mode?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Not in cooling mode",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("(See trend chart 2) If not in cooling mode, you should not be economizing."),
-                    tags$li("The BAS does not know how to disable economizing while in heating mode."),
-                    tags$li("Reprogram/disable economizing during heating.")
-                  )
-                )
-              ),
-              
-              boxPlus(
-                title = "Question 2",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Is MAT not between OAT and RAT? (OAF)"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "MAT is not between OAT and RAT",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("The temperature sensors are not calibrated properly."),
-                    tags$li("The temperature sensors may not be properly located (ie. away from heating/cooling coils).")
-                  )
-                )
-              ),
-              
-              boxPlus(
-                title = "Question 3",
-                collapsed = TRUE,
-                collapsible = TRUE,
-                closable = FALSE,
-                solidHeader = TRUE,
-                width = 4,
-                h2("Should you be economizing? Are you not?"),
-                h4("Faults:"),
-                boxPlus(
-                  title = "Economizer not following the sequence of operations",
-                  collapsed = TRUE,
-                  collapsible = TRUE,
-                  closable = FALSE,
-                  solidHeader = TRUE,
-                  width = 12,
-                  tags$ul(
-                    tags$li("Operator override."),
-                    tags$li("There may be issues with sensor calibration (e.g. humidity, temperature)."),
-                    tags$li("OAD damper or actuator malfunction."),
-                    tags$li("BAS is not executing economizing operations."),
-                    tags$li("Is the economizing function overridden by another loop, such as DCV?")
-                  )
-                )
-              )
-            ),
             fluidRow(
               box(
                 width = 3,
