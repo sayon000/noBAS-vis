@@ -88,4 +88,4 @@ Info on Shiny Modules:
 
 
 ### Master Link To The Web Application Product
-* https://sayon000.shinyapps.io/nobas-trends/
+* https://cunybpl.shinyapps.io/nobas-trends/
