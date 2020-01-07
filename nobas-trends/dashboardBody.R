@@ -1079,7 +1079,7 @@ body <- dashboardBody(
               box(
                 width = 12,
                 solidHeader = TRUE,
-                plottingOutput(id = "trend26")
+                plottingOutput(id = "trend26",initialName = trend26_name,questionPanel = trend26_panel)
               )
             ),
             

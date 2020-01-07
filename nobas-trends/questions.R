@@ -14,7 +14,7 @@ trend4c_name <- "Trend 4c: Simultaneous Heating & Cooling"
 trend4d_name <- "Trend 4d: Simultaneous Heating & Cooling"
 trend5a_name <- "Trend 5a: Economizing Using Temperature or Enthalpy"
 trend7_name <- "Trend 7: DAT Control"
-trend8a_name <- "Trend 8a: Compressor/Burner Cycling & Staging"
+trend8a_name <- "Trend 8a: Compressor Cycling & Staging"
 trend8b_name <- "Trend 8b: Burner Cycling & Staging"
 trend10_name <- "Trend 10: Heating/Cooling Mode"
 trend12_name <- "Trend Chart 12: Chiller Plant Schedule"
@@ -109,7 +109,7 @@ trend2a_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Is the OAD open during startup when conditions are not favorable for economizing?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = div(class="faultTitle",strong("OAD is open during startup when conditions are not favorable for economizing.")),
         collapsed = TRUE,
@@ -145,9 +145,9 @@ trend2a_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Are you over-ventilating? (OAD > 20%)"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Overventilation",
+        title = div(class="faultTitle",strong("Overventilation")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -163,9 +163,9 @@ trend2a_panel <- box(
     tabPanel(
       div(class="navPanels","Question 5"),
       h2("Are you under-ventilating? (OAD < 10%)"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Underventilation",
+        title = div(class="faultTitle",strong("Underventilation")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -180,9 +180,9 @@ trend2a_panel <- box(
     tabPanel(
       div(class="navPanels","Question 6"),
       h2("Are Questions 1, 2, and 3 occurring simultaneously?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Failure to close when commanded",
+        title = div(class="faultTitle",strong("Failure to close when commanded")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -195,7 +195,7 @@ trend2a_panel <- box(
       ),
       
       boxPlus(
-        title = "High Leakage Rate when closed",
+        title = div(class="faultTitle",strong("High Leakage Rate when closed")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -223,9 +223,9 @@ trend2b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Is the OAD open during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "OAD is open during unoccupied times.",
+        title = div(class="faultTitle",strong("OAD is open during unoccupied times.")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -244,12 +244,13 @@ trend2b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Is the OAD open during startup when conditions are not favorable for economizing?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "OAD is open during startup when conditions are not favorable for economizing.",
+        title = div(class="faultTitle",strong("OAD is open during startup when conditions are not favorable for economizing.")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
+        solidHeader = TRUE,
         width = 12,
         tags$ul(
           tags$li("Do they need to be open for any reason?"),
@@ -261,9 +262,9 @@ trend2b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Are your dampers open more than the minimum position during occupied hours when not economizing?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.",
+        title = div(class="faultTitle",strong("OAD position is not set to minimum position during occupied hours when conditions are not favorable for economizing.")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -278,9 +279,9 @@ trend2b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Are you over-ventilating? (OAD > 20%)"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Overventilation",
+        title = div(class="faultTitle",strong("Overventilation")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -296,9 +297,9 @@ trend2b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 5"),
       h2("Are you under-ventilating? (OAD < 10%)"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Underventilation",
+        title = div(class="faultTitle",strong("Underventilation")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -313,9 +314,9 @@ trend2b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 6"),
       h2("Are Questions 1, 2, and 3 occurring simultaneously?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Failure to close when commanded",
+        title = div(class="faultTitle",strong("Failure to close when commanded")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -328,7 +329,7 @@ trend2b_panel <- box(
       ),
       
       boxPlus(
-        title = "High Leakage Rate when closed",
+        title = div(class="faultTitle",strong("High Leakage Rate when closed")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
@@ -355,12 +356,13 @@ trend3_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Does the maximum CO2 level of densely occupied zones exceed 900 ppm for hours at a time?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "The maximum CO2 level of densely occupied zones exceeds 900 ppm for hours at a time",
+               title = div(class="faultTitle",strong("The maximum CO2 level of densely occupied zones exceeds 900 ppm for hours at a time")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
                width = 12,
                tags$ul(
                  tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
@@ -372,12 +374,13 @@ trend3_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Do CO2 levels of densely occupied zones never exceed 750 ppm?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "The minimum OAD position is providing too much fresh air to the zones",
+               title = div(class="faultTitle",strong("The minimum OAD position is providing too much fresh air to the zones")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
                width = 12,
                tags$ul(
                  tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
@@ -399,9 +402,9 @@ trend4c_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Are you economizing with your HCV open?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Simultaneous cooling and heating (When not humidifying)",
+               title = div(class="faultTitle",strong("Simultaneous cooling and heating (When not humidifying)")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
@@ -426,9 +429,9 @@ trend4d_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Are you economizing with your HCV open?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Simultaneous cooling and heating (When not humidifying)",
+               title = div(class="faultTitle",strong("Simultaneous cooling and heating (When not humidifying)")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
@@ -453,9 +456,9 @@ trend5a_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Are you in cooling mode?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Not in cooling mode",
+               title = div(class="faultTitle",strong("Not in cooling mode")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
@@ -471,7 +474,7 @@ trend5a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Is MAT not between OAT and RAT? (OAF)"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "MAT is not between OAT and RAT",
                collapsed = TRUE,
@@ -488,7 +491,7 @@ trend5a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 3"),
              h2("Should you be economizing? Are you not?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Economizer not following the sequence of operations",
                collapsed = TRUE,
@@ -517,7 +520,7 @@ trend7_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2(" Is the system having trouble meeting the DATSP?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "DAT does not meet DATSP",
                collapsed = TRUE,
@@ -535,7 +538,7 @@ trend7_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2(" Is the DAT hunting/stable?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "DAT hunting",
                collapsed = TRUE,
@@ -554,7 +557,7 @@ trend7_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 3"),
              h2("For a dynamic DATSP: Is the DATSP erratic or unstable?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Erratic DATSP",
                collapsed = TRUE,
@@ -582,7 +585,7 @@ trend8a_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Are the compressors short cycling?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Short cycling",
                collapsed = TRUE,
@@ -599,7 +602,7 @@ trend8a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Are the compressors not staged properly?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Compressors are not staged properly",
                collapsed = TRUE,
@@ -624,7 +627,7 @@ trend8b_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Are the burners short cycling?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Short cycling",
                collapsed = TRUE,
@@ -641,7 +644,7 @@ trend8b_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Are the burners not staged properly?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Burners are not staged properly",
                collapsed = TRUE,
@@ -666,7 +669,7 @@ trend10_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the AHU in cooling or heating mode? "),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "NO FAULTS (expand for details)",
                collapsed = TRUE,
@@ -693,12 +696,13 @@ trend12_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the chiller not following the occupancy (and start up) schedule?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Chiller does not follow the schedule",
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
                width = 12,
                tags$ul(
                  tags$li("Chiller is on for another reason, such as to satisfy cooling needs for a data center."),
@@ -719,12 +723,13 @@ trend13a_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is my Delta-T (ChWST and ChWRT differential) too small? "),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Delta-T is too small (such as below 10°F when the load is high)",
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
                width = 12,
                tags$ul(
                  tags$li("LDP is set too high, creating a high ChW flow rate and low Delta T. Incrementally decrease the LDP setpoint to avoid not getting enough flow to zones that are far away.")
@@ -734,12 +739,13 @@ trend13a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("LDP not properly maintained by modulating pump speed?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "LDP is not maintained well",
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
                width = 12,
                tags$ul(
                  tags$li("LDP sensor problem."),
@@ -750,7 +756,7 @@ trend13a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 3"),
              h2("Does pump speed not vary?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Pump speed constant when LDP varies",
                collapsed = TRUE,
@@ -789,7 +795,7 @@ trend14a_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Does your ChWST-SP not have a reset schedule? What is it based on? (such as OAT, occupancy, maximum cooling coil valve position)"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "No ChWST-SP reset",
                collapsed = TRUE,
@@ -806,7 +812,7 @@ trend14a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Are your maximum CCV positions below 90%?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "The maximum CCV position is often well below 90%",
                collapsed = TRUE,
@@ -833,7 +839,7 @@ trend15_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Are the fans on during unoccupied hours?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Cooling tower fans run for many hours before occupancy",
                collapsed = TRUE,
@@ -850,7 +856,7 @@ trend15_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Are the fans short cycling? (turning on and off in short periods of time)"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Fans short cycling",
                collapsed = TRUE,
@@ -876,7 +882,7 @@ trend17_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the condensate return temperature too high?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Condensate return temperature is too high",
                collapsed = TRUE,
@@ -901,7 +907,7 @@ trend18_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the boiler not following the occupancy schedule?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Boiler does not follow the occupancy schedule",
                collapsed = TRUE,
@@ -919,7 +925,7 @@ trend18_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Is the boiler running when heating should be locked out? (such as 50℉) "),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Boiler is running when heating should be locked out",
                collapsed = TRUE,
@@ -946,7 +952,7 @@ trend19a_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is HW reset failing to work properly or not aggressive enough?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "No HW reset",
                collapsed = TRUE,
@@ -977,7 +983,7 @@ trend19a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Is your average HCV position well below 50%?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "The average HCV position is often well below 50% (for systems where HW is used solely for heating coils)",
                collapsed = TRUE,
@@ -993,7 +999,7 @@ trend19a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 3"),
              h2("Is your maximum HCV position well below 90%?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "The maximum HCV position is often well below 90% (for systems where HW is used solely for heating coils) ",
                collapsed = TRUE,
@@ -1019,7 +1025,7 @@ trend20a_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is my delta T (HWST - HWRT) too small? "),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Delta T too small (below 10°F) during high load times",
                collapsed = TRUE,
@@ -1035,7 +1041,7 @@ trend20a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Is LDP not properly maintained by modulating pump speed?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "LDP is not maintained well",
                collapsed = TRUE,
@@ -1052,7 +1058,7 @@ trend20a_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 3"),
              h2("Does pump speed fail to vary?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Pump speed constant when LDP varies",
                collapsed = TRUE,
@@ -1089,7 +1095,7 @@ trend21_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the condensate return temperature too high?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Is HWRT above 130°F?",
                collapsed = TRUE,
@@ -1115,7 +1121,7 @@ trend22_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the boiler short cycling?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Short cycling",
                collapsed = TRUE,
@@ -1134,7 +1140,7 @@ trend22_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Does Stack temperature show that my burner is cycling on/off or modulating?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Stack temperature is higher than expected or not modulating with burner",
                collapsed = TRUE,
@@ -1151,7 +1157,7 @@ trend22_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 3"),
              h2("Is my stack temperature too high?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Stack temperature is higher than expected or not modulating with burner",
                collapsed = TRUE,
@@ -1177,7 +1183,7 @@ trend23_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the HWST failing to follow its setpoint?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "HWST does not follow its setpoint",
                collapsed = TRUE,
@@ -1194,7 +1200,7 @@ trend23_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2(" Is there hunting?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "HWST is hunting",
                collapsed = TRUE,
@@ -1219,7 +1225,7 @@ trend26_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Is the Zone Temperature not meeting its Zone Temperature Set-point?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Zone temperature does not meet its set point",
                collapsed = TRUE,
@@ -1258,6 +1264,7 @@ trend26_panel <- box(
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
+               solidHeader = TRUE,
                width = 12,
                tags$ul(
                  tags$li("Zone temperature controls not working to allow zone temp to float."),
@@ -1281,6 +1288,7 @@ trend26_panel <- box(
 
 #####Trend 2737a#####
 trend2737a_panel <- box(
+  solidHeader = TRUE,
   h2("No Questions Here")
 )
 #####Trend 27b#####
@@ -1294,7 +1302,7 @@ trend27b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Is the system failing to meet the ZTSP-A?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Failing to meet ZTSP-A",
         collapsed = TRUE,
@@ -1317,7 +1325,7 @@ trend27b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Are there frequent HCV fluctuations or is there burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
@@ -1333,7 +1341,7 @@ trend27b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -1350,7 +1358,7 @@ trend27b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("If there are nighttime setbacks, are both systems running at night?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Both systems run at night to meet nighttime setbacks",
         collapsed = TRUE,
@@ -1376,7 +1384,7 @@ trend28b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Are you failing to meet your ZTSP-A?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Failing to meet ZTSP-A",
         collapsed = TRUE,
@@ -1399,7 +1407,7 @@ trend28b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
@@ -1416,7 +1424,7 @@ trend28b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2(" Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -1433,7 +1441,7 @@ trend28b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Are the VAV damper positions below 50% or above 75%?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Most of the VAV damper positions are below 50% or above 75%",
         collapsed = TRUE,
@@ -1462,7 +1470,7 @@ trend28b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 5"),
       h2("Is DAT greater or less than ZT? "),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "DATSP < ZTSP-A",
         collapsed = TRUE,
@@ -1478,7 +1486,7 @@ trend28b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 6"),
       h2("If there are nighttime setbacks, are both systems running at night?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Both systems run at night to meet nighttime setbacks",
         collapsed = TRUE,
@@ -1504,7 +1512,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Does the system fail to meet its DATSP and ZTSP-A?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Fails to meet DATSP",
         collapsed = TRUE,
@@ -1537,7 +1545,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
@@ -1554,7 +1562,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Are there frequent valve fluctuations for the reheat coil?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Reheat valve hunting",
         collapsed = TRUE,
@@ -1570,7 +1578,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -1587,7 +1595,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 5"),
       h2("Is DAT greater or less than ZT?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "DAT > ZT",
         collapsed = TRUE,
@@ -1603,7 +1611,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 6"),
       h2("Are the VAV damper positions below 50% or above 75%?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Most of the VAV damper positions are below 50% or above 75%",
         collapsed = TRUE,
@@ -1632,7 +1640,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 7"),
       h2("What is the maximum HCV position when reheat coils are active?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Majority of reheat valves are throttled to typically less than 70%",
         collapsed = TRUE,
@@ -1649,7 +1657,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 8"),
       h2("Are the majority of the reheats active?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Majority of reheat valves are throttled to typically less than 70%",
         collapsed = TRUE,
@@ -1665,7 +1673,7 @@ trend29b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 9"),
       h2("If there are nighttime setbacks, are both systems running at night?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Both systems run at night to meet nighttime setbacks",
         collapsed = TRUE,
@@ -1691,7 +1699,7 @@ trend30b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
@@ -1708,7 +1716,7 @@ trend30b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Does the RAT fail to meet its setpoint?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "RATSP is not met",
         collapsed = TRUE,
@@ -1725,7 +1733,7 @@ trend30b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Does RAT fail to change in order to meet the RATSP?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "If RAT<RATSP despite increasing DAT",
         collapsed = TRUE,
@@ -1742,7 +1750,7 @@ trend30b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -1759,7 +1767,7 @@ trend30b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 5"),
       h2("Are your zone temperatures uneven?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Zone temperatures are uneven – some too hot, some too cold",
         collapsed = TRUE,
@@ -1776,7 +1784,7 @@ trend30b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 6"),
       h2("If there are nighttime setbacks, are both systems running at night?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Both systems run at night to meet nighttime setbacks",
         collapsed = TRUE,
@@ -1802,7 +1810,7 @@ trend31b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Does the system fail to meet its DATSP?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Not meeting DATSP",
         collapsed = TRUE,
@@ -1819,7 +1827,7 @@ trend31b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Are your zone and return temperatures too hot or cold?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Zone temps too hot or too cold",
         collapsed = TRUE,
@@ -1836,7 +1844,7 @@ trend31b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -1853,7 +1861,7 @@ trend31b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
@@ -1878,7 +1886,7 @@ trend32b_panel <- box(
     ),
     tabPanel(div(class="navPanels", "Question 1"),
              h2("Are your zone or return temperatures too hot or cold?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Zones too hot or too cold",
                collapsed = TRUE,
@@ -1900,7 +1908,7 @@ trend32b_panel <- box(
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Is the supply fan on during unoccupied times?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
                title = "Supply fan is on during unoccupied times",
                collapsed = TRUE,
@@ -1926,7 +1934,7 @@ trend33b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Do zone temperatures fail to meet their setpoints?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "ZTs not meeting their setpoints",
         collapsed = TRUE,
@@ -1949,7 +1957,7 @@ trend33b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -1966,7 +1974,7 @@ trend33b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Are there frequent heating coil valve fluctuations or burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
@@ -1982,7 +1990,7 @@ trend33b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Are your ZTSP-P and ZTSP-A within one or two degrees of each other?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "ZTSP-P and ZTSP-A are within 1-2°F of each other",
         collapsed = TRUE,
@@ -1998,7 +2006,7 @@ trend33b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 5"),
       h2("If there are nighttime setbacks, are both systems running at night?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Both systems run at night to meet nighttime setbacks",
         collapsed = TRUE,
@@ -2024,7 +2032,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Do zone temperatures fail to meet their setpoints? IF YES, ask Qs. 1a–c, too!"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Zones not meeting their set points",
         collapsed = TRUE,
@@ -2047,7 +2055,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 1a"),
       h2("Is DAT > ZT when ZTSP-P (or TRVSP) > ZTSP-A?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "DAT>ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A",
         collapsed = TRUE,
@@ -2064,7 +2072,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 1b"),
       h2("Is DAT < ZT when ZTSP-P (or TRVSP) < ZTSP-A? "),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "DAT<ZTSP-A when ZTSP-P (or TRVSP) < ZTSP-A",
         collapsed = TRUE,
@@ -2080,7 +2088,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 1c"),
       h2("When ZTSP-P (or TRVSP) > ZTSP-A and DAT < ZT, does the VAV damper fail to modulate to minimum position?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "VAV dampers are not at minimum position at DAT < ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A",
         collapsed = TRUE,
@@ -2096,7 +2104,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -2112,7 +2120,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Are there frequent heating coil valve fluctuations or burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
@@ -2128,7 +2136,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Are the VAV damper positions below 50% or above 75%?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Most of the VAV damper positions are below 50% or above 75%",
         collapsed = TRUE,
@@ -2158,7 +2166,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 5"),
       h2("Are your ZTSP-P and ZTSP-A within one or two degrees of each other?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "ZTSP-P and ZTSP-A are within 1-2°F of each other",
         collapsed = TRUE,
@@ -2174,7 +2182,7 @@ trend34b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 6"),
       h2("If there are nighttime setbacks, are both systems running at night?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Both systems run at night to meet nighttime setbacks",
         collapsed = TRUE,
@@ -2200,7 +2208,7 @@ trend36b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Is DAT having trouble meeting the RATSP?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "RATSP is not met",
         collapsed = TRUE,
@@ -2229,7 +2237,7 @@ trend36b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Is the system having trouble meeting your ZTSP-P? "),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Zone temperatures are uneven – some too hot, some too cold",
         collapsed = TRUE,
@@ -2246,7 +2254,7 @@ trend36b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -2263,7 +2271,7 @@ trend36b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Is the ZTSP-P < RATSP?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "ZTSP-P < RATSP",
         collapsed = TRUE,
@@ -2289,7 +2297,7 @@ trend37b_panel <- box(
     tabPanel(
       div(class="navPanels", "Question 1"),
       h2("Are you having trouble meeting  ZTSP-P?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Zone temps too hot or too cold",
         collapsed = TRUE,
@@ -2307,7 +2315,7 @@ trend37b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 2"),
       h2("Are you having trouble meeting DATSP?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Not meeting DATSP",
         collapsed = TRUE,
@@ -2323,7 +2331,7 @@ trend37b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 3"),
       h2("Is the supply fan on during unoccupied times?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Supply fan is on during unoccupied times",
         collapsed = TRUE,
@@ -2340,7 +2348,7 @@ trend37b_panel <- box(
     tabPanel(
       div(class="navPanels","Question 4"),
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
-      h4("Faults:"),
+      div(class="faultTitle",strong("Faults:")),
       boxPlus(
         title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
         collapsed = TRUE,
