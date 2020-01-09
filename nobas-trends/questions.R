@@ -5,7 +5,7 @@
 
 QUESTION_PROMPT <- "Check each question to see if you are in good operation"
 
-#NAMES OF PLOTS#
+######NAMES OF PLOTS######
 trend1_name <- "Trend 1: Fan Status"
 trend2a_name <- "Trend 2a: OA Control Using OAD"
 trend2b_name <- "Trend 2b: OA Control Using OAF"
@@ -136,9 +136,11 @@ trend2a_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Are the zones served by this AHU required to run on 100% outside air?"),
-          tags$li("Does demand control ventilation require more or less OA?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Are the zones served by this AHU required to run on 100% outside air?"),
+            tags$li("Does demand control ventilation require more or less OA?")
+          )
         )
       )
     ),
@@ -153,10 +155,12 @@ trend2a_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is there any reason that the minimum damper position should be greater than 20% (special CO2 requirement, demand control ventilation)?"),
-          tags$li("Is it working properly?"),
-          tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is there any reason that the minimum damper position should be greater than 20% (special CO2 requirement, demand control ventilation)?"),
+            tags$li("Is it working properly?"),
+            tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+          )
         )
       )
     ),
@@ -171,9 +175,11 @@ trend2a_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is there any reason that the minimum damper position should be less than 10% (special CO2 requirement, demand control ventilation)?"),
-          tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is there any reason that the minimum damper position should be less than 10% (special CO2 requirement, demand control ventilation)?"),
+            tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+          )
         )
       )
     ),
@@ -188,9 +194,11 @@ trend2a_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-          tags$li("What controls are enabled that could affect the damper position? Do they contradict?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
+            tags$li("What controls are enabled that could affect the damper position? Do they contradict?")
+          )
         )
       ),
       
@@ -201,10 +209,12 @@ trend2a_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-          tags$li("Is the CO2 concentration similar to when the damper is open, irregardless of occupant load?"),
-          tags$li("What position does the BAS consider fully closed? Does that correlate to the actual position?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
+            tags$li("Is the CO2 concentration similar to when the damper is open, irregardless of occupant load?"),
+            tags$li("What position does the BAS consider fully closed? Does that correlate to the actual position?")
+          )
         )
       )
     )
@@ -231,12 +241,14 @@ trend2b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Do they need to be open for any reason?"),
-          tags$li("Are there times when OAD can be closed for a few hours?"),
-          tags$li("Do you have the right occupancy schedule?"),
-          tags$li("Is your AHU scheduled according to your occupancy schedule?"),
-          tags$li("Are your dampers closing when your AHU is off?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Do they need to be open for any reason?"),
+            tags$li("Are there times when OAD can be closed for a few hours?"),
+            tags$li("Do you have the right occupancy schedule?"),
+            tags$li("Is your AHU scheduled according to your occupancy schedule?"),
+            tags$li("Are your dampers closing when your AHU is off?")
+          )
         )
       )
     ),
@@ -252,9 +264,11 @@ trend2b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Do they need to be open for any reason?"),
-          tags$li("If not, can the BAS have controls to keep OAD closed during startup?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Do they need to be open for any reason?"),
+            tags$li("If not, can the BAS have controls to keep OAD closed during startup?")
+          )
         )
       )
     ),
@@ -270,9 +284,11 @@ trend2b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Are the zones served by this AHU required to run on 100% outside air?"),
-          tags$li("Does demand control ventilation require more or less OA?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Are the zones served by this AHU required to run on 100% outside air?"),
+            tags$li("Does demand control ventilation require more or less OA?")
+          )
         )
       )
     ),
@@ -287,10 +303,12 @@ trend2b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is there any reason that the minimum damper position should be greater than 20% (special CO2 requirement, demand control ventilation)?"),
-          tags$li("Is it working properly?"),
-          tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is there any reason that the minimum damper position should be greater than 20% (special CO2 requirement, demand control ventilation)?"),
+            tags$li("Is it working properly?"),
+            tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+          )
         )
       )
     ),
@@ -305,9 +323,11 @@ trend2b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is there any reason that the minimum damper position should be less than 10% (special CO2 requirement, demand control ventilation)?"),
-          tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is there any reason that the minimum damper position should be less than 10% (special CO2 requirement, demand control ventilation)?"),
+            tags$li("Check your CO2 in high occupancy load zones. Use Trend Chart 6.")
+          )
         )
       )
     ),
@@ -322,9 +342,11 @@ trend2b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-          tags$li("What controls are enabled that could affect the damper position? Do they contradict?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
+            tags$li("What controls are enabled that could affect the damper position? Do they contradict?")
+          )
         )
       ),
       
@@ -335,10 +357,12 @@ trend2b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
-          tags$li("Is the CO2 concentration similar to when the damper is open, irregardless of occupant load?"),
-          tags$li("What position does the BAS consider fully closed? Does that correlate to the actual position?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Is the OAF high when the OAD is at minimum position or closed?"),
+            tags$li("Is the CO2 concentration similar to when the damper is open, irregardless of occupant load?"),
+            tags$li("What position does the BAS consider fully closed? Does that correlate to the actual position?")
+          )
         )
       )
     )
@@ -364,10 +388,12 @@ trend3_panel <- box(
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
-                 tags$li("Is there demand control ventilation? Is it working properly?"),
-                 tags$li("Can the minimum OAD position be increased?")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
+                  tags$li("Is there demand control ventilation? Is it working properly?"),
+                  tags$li("Can the minimum OAD position be increased?")
+                )
                )
              )
           ),
@@ -382,11 +408,13 @@ trend3_panel <- box(
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
-                 tags$li("Is there demand control ventilation? Is it working properly?"),
-                 tags$li("Can the minimum OAD position be decreased?")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Is the CO2 sensor calibrated? Is it located in a place that reflects room CO2?"),
+                  tags$li("Is there demand control ventilation? Is it working properly?"),
+                  tags$li("Can the minimum OAD position be decreased?")
+                  )
+                )
              )
     )
   )
@@ -410,8 +438,10 @@ trend4c_panel <- box(
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
+                )
                )
              )
     )
@@ -437,8 +467,10 @@ trend4d_panel <- box(
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Check economizing settings and lockouts. Economizing should be disabled when heating and HCV should  be closed when economizing. Ensure that your Air Handler is not in cooling mode when it shouldn’t be.")
+                )
                )
              )
     )
@@ -464,11 +496,13 @@ trend5a_panel <- box(
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("(See trend chart 2) If not in cooling mode, you should not be economizing."),
-                 tags$li("The BAS does not know how to disable economizing while in heating mode."),
-                 tags$li("Reprogram/disable economizing during heating.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("(See trend chart 2) If not in cooling mode, you should not be economizing."),
+                  tags$li("The BAS does not know how to disable economizing while in heating mode."),
+                  tags$li("Reprogram/disable economizing during heating.")
+                )
+              )
              )
     ),
     
@@ -476,15 +510,17 @@ trend5a_panel <- box(
              h2("Is MAT not between OAT and RAT? (OAF)"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "MAT is not between OAT and RAT",
+               title = div(class="faultTitle",strong("MAT is not between OAT and RAT")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("The temperature sensors are not calibrated properly."),
-                 tags$li("The temperature sensors may not be properly located (ie. away from heating/cooling coils).")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("The temperature sensors are not calibrated properly."),
+                  tags$li("The temperature sensors may not be properly located (ie. away from heating/cooling coils).")
+                )
                )
              )
     ),
@@ -493,19 +529,21 @@ trend5a_panel <- box(
              h2("Should you be economizing? Are you not?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Economizer not following the sequence of operations",
+               title = div(class="faultTitle",strong("Economizer not following the sequence of operations")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Operator override."),
-                 tags$li("There may be issues with sensor calibration (e.g. humidity, temperature)."),
-                 tags$li("OAD damper or actuator malfunction."),
-                 tags$li("BAS is not executing economizing operations."),
-                 tags$li("Is the economizing function overridden by another loop, such as DCV?")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Operator override."),
+                  tags$li("There may be issues with sensor calibration (e.g. humidity, temperature)."),
+                  tags$li("OAD damper or actuator malfunction."),
+                  tags$li("BAS is not executing economizing operations."),
+                  tags$li("Is the economizing function overridden by another loop, such as DCV?")
+                )
+              )
              )
     )
   )
@@ -522,17 +560,19 @@ trend7_panel <- box(
              h2(" Is the system having trouble meeting the DATSP?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "DAT does not meet DATSP",
+               title = div(class="faultTitle",strong("DAT does not meet DATSP")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Does the HCV/CCV respond to the signal?"),
-                 tags$li("Are there any leaks in HCV/CCV?"),
-                 tags$li("Is the AHU undersized?")
-               )
+               div(class="questionStuff",
+                 tags$ul(
+                   tags$li("Does the HCV/CCV respond to the signal?"),
+                   tags$li("Are there any leaks in HCV/CCV?"),
+                   tags$li("Is the AHU undersized?")
+                )
+              )
              )
     ),
     
@@ -540,18 +580,20 @@ trend7_panel <- box(
              h2(" Is the DAT hunting/stable?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "DAT hunting",
+               title = div(class="faultTitle",strong("DAT hunting")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("What is the operating differential? Can it be increased?"),
-                 tags$li("Is the compressor/burner staging operating correctly? (see trend charts 8a and 8b)"),
-                 tags$li("Is there unstable heating/cooling coil valve modulation?"),
-                 tags$li("Does your PID control loop need to be tuned?")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("What is the operating differential? Can it be increased?"),
+                  tags$li("Is the compressor/burner staging operating correctly? (see trend charts 8a and 8b)"),
+                  tags$li("Is there unstable heating/cooling coil valve modulation?"),
+                  tags$li("Does your PID control loop need to be tuned?")
+                )
+              )
              )
     ),
     
@@ -559,16 +601,18 @@ trend7_panel <- box(
              h2("For a dynamic DATSP: Is the DATSP erratic or unstable?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Erratic DATSP",
+               title = div(class="faultTitle",strong("Erratic DATSP")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("What is controlling the DATSP?"),
-                 tags$li("Can you plot the parameters associated with the control loop? (use short duration intervals, e.g. 1 minute)")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("What is controlling the DATSP?"),
+                  tags$li("Can you plot the parameters associated with the control loop? (use short duration intervals, e.g. 1 minute)")
+                )
+              )
              )
     )
   )
@@ -587,16 +631,18 @@ trend8a_panel <- box(
              h2("Are the compressors short cycling?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Short cycling",
+               title = div(class="faultTitle",strong("Short cycling")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("DAT / DATSP operating differential is too tight."),
-                 tags$li("PID loop is out of tune.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("DAT / DATSP operating differential is too tight."),
+                  tags$li("PID loop is out of tune.")
+                )
+              )
              )
     ),
     
@@ -604,16 +650,18 @@ trend8a_panel <- box(
              h2("Are the compressors not staged properly?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Compressors are not staged properly",
+               title = div(class="faultTitle",strong("Compressors are not staged properly")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Staging controls not operating properly.")
-               )
-             )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Staging controls not operating properly.")
+                )
+              )
+              )
     )
   )
 )
@@ -629,16 +677,18 @@ trend8b_panel <- box(
              h2("Are the burners short cycling?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Short cycling",
+               title = div(class="faultTitle",strong("Short cycling")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("DAT / DATSP operating differential is too tight."),
-                 tags$li("PID loop is out of tune.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("DAT / DATSP operating differential is too tight."),
+                  tags$li("PID loop is out of tune.")
+                )
+              )
              )
     ),
     
@@ -646,14 +696,16 @@ trend8b_panel <- box(
              h2("Are the burners not staged properly?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Burners are not staged properly",
+               title = div(class="faultTitle",strong("Burners are not staged properly")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Staging controls not operating properly.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Staging controls not operating properly.")
+                )
                )
              )
     )
@@ -671,16 +723,18 @@ trend10_panel <- box(
              h2("Is the AHU in cooling or heating mode? "),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "NO FAULTS (expand for details)",
+               title = div(class="faultTitle",strong("NO FAULTS (expand for details)")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("If MAT < DAT, heating mode"),
-                 tags$li("If MAT > DAT, cooling mode"),
-                 tags$li("Knowing whether you are in heating or cooling mode will help with the diagnosis of the other trend charts.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("If MAT < DAT, heating mode"),
+                  tags$li("If MAT > DAT, cooling mode"),
+                  tags$li("Knowing whether you are in heating or cooling mode will help with the diagnosis of the other trend charts.")
+                )
                )
              )
     )
@@ -698,16 +752,18 @@ trend12_panel <- box(
              h2("Is the chiller not following the occupancy (and start up) schedule?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Chiller does not follow the schedule",
+               title = div(class="faultTitle",strong("Chiller does not follow the schedule")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Chiller is on for another reason, such as to satisfy cooling needs for a data center."),
-                 tags$li("Chiller is scheduled at odd times to address demand charges."),
-                 tags$li("Chiller is not scheduled properly.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Chiller is on for another reason, such as to satisfy cooling needs for a data center."),
+                  tags$li("Chiller is scheduled at odd times to address demand charges."),
+                  tags$li("Chiller is not scheduled properly.")
+                )
                )
              )
     )
@@ -725,15 +781,17 @@ trend13a_panel <- box(
              h2("Is my Delta-T (ChWST and ChWRT differential) too small? "),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Delta-T is too small (such as below 10°F when the load is high)",
+               title = div(class="faultTitle",strong("Delta-T is too small (such as below 10°F when the load is high)")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("LDP is set too high, creating a high ChW flow rate and low Delta T. Incrementally decrease the LDP setpoint to avoid not getting enough flow to zones that are far away.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("LDP is set too high, creating a high ChW flow rate and low Delta T. Incrementally decrease the LDP setpoint to avoid not getting enough flow to zones that are far away.")
+                )
+              )
              )
     ),
     
@@ -741,16 +799,18 @@ trend13a_panel <- box(
              h2("LDP not properly maintained by modulating pump speed?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "LDP is not maintained well",
+               title = div(class="faultTitle",strong("LDP is not maintained well")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("LDP sensor problem."),
-                 tags$li("Control loop problem.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("LDP sensor problem."),
+                  tags$li("Control loop problem.")
+                )
+              )
              )
     ),
     
@@ -758,28 +818,32 @@ trend13a_panel <- box(
              h2("Does pump speed not vary?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Pump speed constant when LDP varies",
+               title = div(class="faultTitle",strong("Pump speed constant when LDP varies")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Control loop not operating.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Control loop not operating.")
+                )
                )
              ),
              
              boxPlus(
-               title = "Pump speed constant, LDP constant",
+               title = div(class="faultTitle",strong("Pump speed constant, LDP constant")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("The VFD may not be working."),
-                 tags$li("Piping problem: 3-way valves instead of 2-way valves prevent variable pressure."),
-                 tags$li("Bypass loop could be opened.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("The VFD may not be working."),
+                  tags$li("Piping problem: 3-way valves instead of 2-way valves prevent variable pressure."),
+                  tags$li("Bypass loop could be opened.")
+                )
                )
              )
     )
@@ -797,32 +861,36 @@ trend14a_panel <- box(
              h2("Does your ChWST-SP not have a reset schedule? What is it based on? (such as OAT, occupancy, maximum cooling coil valve position)"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "No ChWST-SP reset",
+               title = div(class="faultTitle",strong("No ChWST-SP reset")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("ChWST reset was never set up"),
-                 tags$li("Can it be automated?")
-               )
-             )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("ChWST reset was never set up"),
+                  tags$li("Can it be automated?")
+                  )
+                )
+              )
     ),
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Are your maximum CCV positions below 90%?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "The maximum CCV position is often well below 90%",
+               title = div(class="faultTitle",strong("The maximum CCV position is often well below 90%")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("ChWST-SP is too low"),
-                 tags$li("Can you have your BAS programmed to dynamically reset the ChWST-SP to adjust so that the maximum CCV position is always 90%?")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("ChWST-SP is too low"),
+                  tags$li("Can you have your BAS programmed to dynamically reset the ChWST-SP to adjust so that the maximum CCV position is always 90%?")
+                )
                )
              )
     )
@@ -841,15 +909,17 @@ trend15_panel <- box(
              h2("Are the fans on during unoccupied hours?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Cooling tower fans run for many hours before occupancy",
+               title = div(class="faultTitle",strong("Cooling tower fans run for many hours before occupancy")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Standard start up time based on the worst day of the year."),
-                 tags$li("Can scheduling be more aggressive without introducing a significant risk of not reaching comfort during the day?")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Standard start up time based on the worst day of the year."),
+                  tags$li("Can scheduling be more aggressive without introducing a significant risk of not reaching comfort during the day?")
+                )
                )
              )
     ),
@@ -858,16 +928,18 @@ trend15_panel <- box(
              h2("Are the fans short cycling? (turning on and off in short periods of time)"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Fans short cycling",
+               title = div(class="faultTitle",strong("Fans short cycling")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Control loop not operating properly and/or needs tuning."),
-                 tags$li("The condenser water supply temperature needs to be reset.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Control loop not operating properly and/or needs tuning."),
+                  tags$li("The condenser water supply temperature needs to be reset.")
+                )
+              )
              )
     )
   )
@@ -884,14 +956,16 @@ trend17_panel <- box(
              h2("Is the condensate return temperature too high?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Condensate return temperature is too high",
+               title = div(class="faultTitle",strong("Condensate return temperature is too high")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Faulty steam traps.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Faulty steam traps.")
+                )
                )
           )
     )
@@ -909,17 +983,19 @@ trend18_panel <- box(
              h2("Is the boiler not following the occupancy schedule?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Boiler does not follow the occupancy schedule",
+               title = div(class="faultTitle",strong("Boiler does not follow the occupancy schedule")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Not scheduled properly: change the boiler schedule"),
-                 tags$li("Boiler needed for meeting zone setback temperatures"),
-                 tags$li("Boiler needed for freeze protection below 38 ℉ (can boiler not operate above OAT = 38℉")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Not scheduled properly: change the boiler schedule"),
+                  tags$li("Boiler needed for meeting zone setback temperatures"),
+                  tags$li("Boiler needed for freeze protection below 38 ℉ (can boiler not operate above OAT = 38℉")
+                )
+              )
              )
     ),
     
@@ -927,16 +1003,18 @@ trend18_panel <- box(
              h2("Is the boiler running when heating should be locked out? (such as 50℉) "),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Boiler is running when heating should be locked out",
+               title = div(class="faultTitle",strong("Boiler is running when heating should be locked out")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Disabling cutoff temperature not operating"),
-                 tags$li("No cutoff temperature is programmed"),
-                 tags$li("Boiler must operate to provide other services such as DHW, Pool Heating, etc. ")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Disabling cutoff temperature not operating"),
+                  tags$li("No cutoff temperature is programmed"),
+                  tags$li("Boiler must operate to provide other services such as DHW, Pool Heating, etc. ")
+                )
                )
              )
     )
@@ -954,29 +1032,33 @@ trend19a_panel <- box(
              h2("Is HW reset failing to work properly or not aggressive enough?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "No HW reset",
+               title = div(class="faultTitle",strong("No HW reset")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("No HW reset is available."),
-                 tags$li("HW reset controller not set properly."),
-                 tags$li("HW reset controller not working."),
-                 tags$li("If HW is solely for heating coils, consider programming HWST-SP based on a maximum HCV position of 90%.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("No HW reset is available."),
+                  tags$li("HW reset controller not set properly."),
+                  tags$li("HW reset controller not working."),
+                  tags$li("If HW is solely for heating coils, consider programming HWST-SP based on a maximum HCV position of 90%.")
+                )
                )
              ),
              
              boxPlus(
-               title = "HW reset is ineffective",
+               title = div(class="faultTitle",strong("HW reset is ineffective")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Is the control loop functioning properly?")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Is the control loop functioning properly?")
+                )
                )
              )
     ),
@@ -985,14 +1067,16 @@ trend19a_panel <- box(
              h2("Is your average HCV position well below 50%?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "The average HCV position is often well below 50% (for systems where HW is used solely for heating coils)",
+               title = div(class="faultTitle",strong("The average HCV position is often well below 50% (for systems where HW is used solely for heating coils)")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("HWST-SP is generally too high. ")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("HWST-SP is generally too high. ")
+                )
                )
              )
     ),
@@ -1001,15 +1085,17 @@ trend19a_panel <- box(
              h2("Is your maximum HCV position well below 90%?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "The maximum HCV position is often well below 90% (for systems where HW is used solely for heating coils) ",
+               title = div(class="faultTitle",strong("The maximum HCV position is often well below 90% (for systems where HW is used solely for heating coils) ")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("If HW is solely for heating coils, consider programming HWST-SP based on meeting a maximum HCV position of 90%.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("If HW is solely for heating coils, consider programming HWST-SP based on meeting a maximum HCV position of 90%.")
+                  )
+                )
              )
     )
   )
@@ -1027,14 +1113,16 @@ trend20a_panel <- box(
              h2("Is my delta T (HWST - HWRT) too small? "),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Delta T too small (below 10°F) during high load times",
+               title = div(class="faultTitle",strong("Delta T too small (below 10°F) during high load times")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Hot water is being over-pumped.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Hot water is being over-pumped.")
+                )
                )
              )
     ),
@@ -1043,15 +1131,17 @@ trend20a_panel <- box(
              h2("Is LDP not properly maintained by modulating pump speed?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "LDP is not maintained well",
+               title = div(class="faultTitle",strong("LDP is not maintained well")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("LDP sensor problem."),
-                 tags$li("Control loop problem.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("LDP sensor problem."),
+                  tags$li("Control loop problem.")
+                )
                )
              )
     ),
@@ -1060,31 +1150,35 @@ trend20a_panel <- box(
              h2("Does pump speed fail to vary?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Pump speed constant when LDP varies",
+               title = div(class="faultTitle",strong("Pump speed constant when LDP varies")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Control loop not working.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Control loop not working.")
+                )
                )
              ),
              boxPlus(
-               title = "Pump speed constant, LDP constant",
+               title = div(class="faultTitle",strong("Pump speed constant, LDP constant")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Piping problem: 3-way valves instead of 2-way valves prevent variable pressure.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Piping problem: 3-way valves instead of 2-way valves prevent variable pressure.")
+                )
                )
              )
     )
   )
 )
-#####Trend 21
+
 #####Trend 21#####
 trend21_panel <- box(
   width = 12,
@@ -1097,15 +1191,17 @@ trend21_panel <- box(
              h2("Is the condensate return temperature too high?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Is HWRT above 130°F?",
+               title = div(class="faultTitle",strong("Is HWRT above 130°F?")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Over-pumping minimizes delta T. Reduce LDP-SP to reduce pump speed, causing HWRT to drop."),
-                 tags$li("HWST too high for a condensing boiler with a good Delta-T. Incrementally reduce HWST, ensuring all zone heating needs are satisfied.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Over-pumping minimizes delta T. Reduce LDP-SP to reduce pump speed, causing HWRT to drop."),
+                  tags$li("HWST too high for a condensing boiler with a good Delta-T. Incrementally reduce HWST, ensuring all zone heating needs are satisfied.")
+                )
                )
              )
     )
@@ -1123,18 +1219,20 @@ trend22_panel <- box(
              h2("Is the boiler short cycling?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Short cycling",
+               title = div(class="faultTitle",strong("Short cycling")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("The boiler could be oversized."),
-                 tags$li("Pressuretrols/ aquastats are not set properly (such as operating differential too small) or out of calibration."),
-                 tags$li("The boiler may be overfiring."),
-                 tags$li("The lead-lag controller is not programmed/ working properly. ")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("The boiler could be oversized."),
+                  tags$li("Pressuretrols/ aquastats are not set properly (such as operating differential too small) or out of calibration."),
+                  tags$li("The boiler may be overfiring."),
+                  tags$li("The lead-lag controller is not programmed/ working properly. ")
+                )
+              )
              )
     ),
     
@@ -1142,15 +1240,17 @@ trend22_panel <- box(
              h2("Does Stack temperature show that my burner is cycling on/off or modulating?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Stack temperature is higher than expected or not modulating with burner",
+               title = div(class="faultTitle",strong("Stack temperature is higher than expected or not modulating with burner")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Tubes are fouled."),
-                 tags$li("Burner modulation not operating properly.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Tubes are fouled."),
+                  tags$li("Burner modulation not operating properly.")
+                )
                )
              )
     ),
@@ -1159,16 +1259,18 @@ trend22_panel <- box(
              h2("Is my stack temperature too high?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Stack temperature is higher than expected or not modulating with burner",
+               title = div(class="faultTitle",strong("Stack temperature is higher than expected or not modulating with burner")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Tubes are fouled."),
-                 tags$li("Burner modulation not operating properly.")
-               )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Tubes are fouled."),
+                  tags$li("Burner modulation not operating properly.")
+                )
+              )
              )
     )
   )
@@ -1185,15 +1287,17 @@ trend23_panel <- box(
              h2("Is the HWST failing to follow its setpoint?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "HWST does not follow its setpoint",
+               title = div(class="faultTitle",strong("HWST does not follow its setpoint")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Control loop not operating properly."),
-                 tags$li("Aquastat not working.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Control loop not operating properly."),
+                  tags$li("Aquastat not working.")
+                )
                )
              )
     ),
@@ -1202,14 +1306,16 @@ trend23_panel <- box(
              h2(" Is there hunting?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "HWST is hunting",
+               title = div(class="faultTitle",strong("HWST is hunting")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Aquastat operating differential is not set properly.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Aquastat operating differential is not set properly.")
+                )
                )
              )
     )
@@ -1227,59 +1333,67 @@ trend26_panel <- box(
              h2("Is the Zone Temperature not meeting its Zone Temperature Set-point?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Zone temperature does not meet its set point",
+               title = div(class="faultTitle",strong("Zone temperature does not meet its set point")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Thermostat / VAV damper control loop is not working."),
-                 tags$li("VAV box is starved or stuffed.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Thermostat / VAV damper control loop is not working."),
+                  tags$li("VAV box is starved or stuffed.")
+                )
                )
              )
     ),
     
     tabPanel(div(class="navPanels", "Question 2"),
              h2("Is the deadband not wide enough (below 5℉), allowing alternating heating and cooling to occur?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Deadband (number of degrees between heating and cooling setpoints) is below 5℉",
+               title = div(class="faultTitle",strong("Deadband (number of degrees between heating and cooling setpoints) is below 5℉")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Bad setpoints cause alternating heating / cooling: Increase the deadband to at least 5℉.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Bad setpoints cause alternating heating / cooling: Increase the deadband to at least 5℉.")
+                )
                )
              )
     ),
     
     tabPanel(div(class="navPanels", "Question 3"),
              h2("Is the zone temperature not floating toward the setback temperature during unoccupied times?"),
-             h4("Faults:"),
+             div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Zone temperature does not float toward the setback temperature during unoccupied times",
+               title = div(class="faultTitle",strong("Zone temperature does not float toward the setback temperature during unoccupied times")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Zone temperature controls not working to allow zone temp to float."),
-                 tags$li("For a zone temperature setback on the air system, the perimeter heating system is independently heating the space during unoccupied times. ")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Zone temperature controls not working to allow zone temp to float."),
+                  tags$li("For a zone temperature setback on the air system, the perimeter heating system is independently heating the space during unoccupied times. ")
+                )
                )
              ),
              boxPlus(
-               title = "Zone temperature does not float toward the setback temperature during unoccupied times",
+               title = div(class="faultTitle",strong("Zone temperature does not float toward the setback temperature during unoccupied times")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("Zone temperature setbacks should be reduced to 55-60 °F during heating season, and raised to 80-85℉ during cooling season. Incremental changes / trial and error needed, especially for a leaky envelope and/or if your building takes a long time to reach occupied zone temperature setpoints. Check to see how your building responds and move to a more aggressive setback if everything is okay.")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("Zone temperature setbacks should be reduced to 55-60 °F during heating season, and raised to 80-85℉ during cooling season. Incremental changes / trial and error needed, especially for a leaky envelope and/or if your building takes a long time to reach occupied zone temperature setpoints. Check to see how your building responds and move to a more aggressive setback if everything is okay.")
+                )
                )
              )
     )
@@ -1304,20 +1418,22 @@ trend27b_panel <- box(
       h2("Is the system failing to meet the ZTSP-A?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Failing to meet ZTSP-A",
+        title = div(class="faultTitle",strong("Failing to meet ZTSP-A")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check if the HCV opens or modulates its position (or burners fire) as a response to the call for heat."),
-          tags$li("Ensure that the DAT is appropriate and that the fan is on."),
-          tags$li("If there is a control loop between DAT, HCV, and ZTSP, tune it."),
-          tags$li("If the HCV (or burners) and DAT are fine, change the HWST set point so the ZTSP-A can be met."),
-          tags$li("If the above does not get to the issue, check your perimeter system:"),
-          tags$li("For underheating, check that there is heat provided by the perimeter system."),
-          tags$li("For overheating, reduce the heating from the perimeter system.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check if the HCV opens or modulates its position (or burners fire) as a response to the call for heat."),
+            tags$li("Ensure that the DAT is appropriate and that the fan is on."),
+            tags$li("If there is a control loop between DAT, HCV, and ZTSP, tune it."),
+            tags$li("If the HCV (or burners) and DAT are fine, change the HWST set point so the ZTSP-A can be met."),
+            tags$li("If the above does not get to the issue, check your perimeter system:"),
+            tags$li("For underheating, check that there is heat provided by the perimeter system."),
+            tags$li("For overheating, reduce the heating from the perimeter system.")
+          )
         )
       )
     ),
@@ -1327,14 +1443,16 @@ trend27b_panel <- box(
       h2("Are there frequent HCV fluctuations or is there burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     ),
@@ -1349,9 +1467,11 @@ trend27b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
-          tags$li("Is the programmed schedule correct?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
+            tags$li("Is the programmed schedule correct?")
+          )
         )
       )
     ),
@@ -1366,8 +1486,10 @@ trend27b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Can the nighttime setbacks be met solely with the perimeter system? Doing so will eliminate fan operation. This may require changing your HWST set point or HW reset settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Can the nighttime setbacks be met solely with the perimeter system? Doing so will eliminate fan operation. This may require changing your HWST set point or HW reset settings.")
+          )
         )
       )
     )
@@ -1386,20 +1508,22 @@ trend28b_panel <- box(
       h2("Are you failing to meet your ZTSP-A?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Failing to meet ZTSP-A",
+        title = div(class="faultTitle",strong("Failing to meet ZTSP-A")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check if the VAV dampers modulate their positions to meet ZTSP-A. If not, tune it."),
-          tags$li("Check if the HCV modulates its position (or burner(s) go on, modulate, or stage) to meet the DATSP."),
-          tags$li("Check that your DATSP is above the ZTSP-A."),
-          tags$li("Check that the DAT is meeting DATSP. If not, tune the loop."),
-          tags$li("For underheating, check that there is heat provided by the perimeter system. "),
-          tags$li("For underheating, if perimeter system is providing heat, and if HCV is at 100% (or burners on full), and VAV is starved, you may have to increase your HWST set point. "),
-          tags$li("For overheating, reduce the heating from the perimeter system.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check if the VAV dampers modulate their positions to meet ZTSP-A. If not, tune it."),
+            tags$li("Check if the HCV modulates its position (or burner(s) go on, modulate, or stage) to meet the DATSP."),
+            tags$li("Check that your DATSP is above the ZTSP-A."),
+            tags$li("Check that the DAT is meeting DATSP. If not, tune the loop."),
+            tags$li("For underheating, check that there is heat provided by the perimeter system. "),
+            tags$li("For underheating, if perimeter system is providing heat, and if HCV is at 100% (or burners on full), and VAV is starved, you may have to increase your HWST set point. "),
+            tags$li("For overheating, reduce the heating from the perimeter system.")
+          )
         )
       )
     ),
@@ -1409,14 +1533,16 @@ trend28b_panel <- box(
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     ),
@@ -1432,9 +1558,11 @@ trend28b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
-          tags$li("Is the programmed schedule correct?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
+            tags$li("Is the programmed schedule correct?")
+          )
         )
       )
     ),
@@ -1449,10 +1577,12 @@ trend28b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Duct static pressure is set too high or too low."),
-          tags$li("Control loop for VAV damper is not working."),
-          tags$li("DATSP is too high or too low.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Duct static pressure is set too high or too low."),
+            tags$li("Control loop for VAV damper is not working."),
+            tags$li("DATSP is too high or too low.")
+          )
         )
       ),
       boxPlus(
@@ -1462,8 +1592,10 @@ trend28b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check controls or PID loop.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check controls or PID loop.")
+          )
         )
       )
     ),
@@ -1478,8 +1610,10 @@ trend28b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Not a recommended configuration, as there is no thermostat for the perimeter system.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Not a recommended configuration, as there is no thermostat for the perimeter system.")
+          )
         )
       )
     ),
@@ -1494,8 +1628,10 @@ trend28b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+          )
         )
       )
     )
@@ -1514,30 +1650,34 @@ trend29b_panel <- box(
       h2("Does the system fail to meet its DATSP and ZTSP-A?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Fails to meet DATSP",
+        title = div(class="faultTitle",strong("Fails to meet DATSP")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check the control loop between the HCV and the DAT. Tune if needed.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check the control loop between the HCV and the DAT. Tune if needed.")
+          )
         )
       ),
       boxPlus(
-        title = "Fails to meet ZTSP-A",
+        title = div(class="faultTitle",strong("Fails to meet ZTSP-A")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If VAVs, check if the VAV dampers modulate their positions to meet ZTSP-A. If not, tune it."),
-          tags$li("Check that the DAT is meeting DATSP. If not, tune the loop."),
-          tags$li("Check if reheat valves modulate to meet the ZTSP-A."),
-          tags$li("For underheating, check that there is heat provided by the perimeter system. "),
-          tags$li("For underheating, if perimeter system is providing heat, and if HCV is at 100% (or burners on full), and VAV is starved, and the reheat valve is fully open, you may have to increase your DATSP and/or HWST set point. "),
-          tags$li("For overheating, reduce the heating from the perimeter system. ")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If VAVs, check if the VAV dampers modulate their positions to meet ZTSP-A. If not, tune it."),
+            tags$li("Check that the DAT is meeting DATSP. If not, tune the loop."),
+            tags$li("Check if reheat valves modulate to meet the ZTSP-A."),
+            tags$li("For underheating, check that there is heat provided by the perimeter system. "),
+            tags$li("For underheating, if perimeter system is providing heat, and if HCV is at 100% (or burners on full), and VAV is starved, and the reheat valve is fully open, you may have to increase your DATSP and/or HWST set point. "),
+            tags$li("For overheating, reduce the heating from the perimeter system. ")
+          )
         )
       )
     ),
@@ -1547,14 +1687,16 @@ trend29b_panel <- box(
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     ),
@@ -1564,14 +1706,16 @@ trend29b_panel <- box(
       h2("Are there frequent valve fluctuations for the reheat coil?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Reheat valve hunting",
+        title = div(class="faultTitle",strong("Reheat valve hunting")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check controls or PID loop.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check controls or PID loop.")
+          )
         )
       )
     ),
@@ -1580,15 +1724,17 @@ trend29b_panel <- box(
       h2("Is the supply fan on during unoccupied times?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Supply fan is on during unoccupied times",
+        title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
-          tags$li("Is the programmed schedule correct?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
+            tags$li("Is the programmed schedule correct?")
+          )
         )
       )
     ),
@@ -1597,14 +1743,16 @@ trend29b_panel <- box(
       h2("Is DAT greater or less than ZT?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "DAT > ZT",
+        title = div(class="faultTitle",strong("DAT > ZT")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Possible overheating and negating the need for reheats and you lose zone-specific controls; not a recommended configuration.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Possible overheating and negating the need for reheats and you lose zone-specific controls; not a recommended configuration.")
+          )
         )
       )
     ),
@@ -1613,27 +1761,31 @@ trend29b_panel <- box(
       h2("Are the VAV damper positions below 50% or above 75%?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Most of the VAV damper positions are below 50% or above 75%",
+        title = div(class="faultTitle",strong("Most of the VAV damper positions are below 50% or above 75%")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Duct static pressure is set too high or too low."),
-          tags$li("Control loop for VAV damper is not working."),
-          tags$li("DATSP is too high or too low.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Duct static pressure is set too high or too low."),
+            tags$li("Control loop for VAV damper is not working."),
+            tags$li("DATSP is too high or too low.")
+          )
         )
       ),
       boxPlus(
-        title = "VAV Damper Positions change too frequently",
+        title = div(class="faultTitle",strong("VAV Damper Positions change too frequently")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check controls or PID loop.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check controls or PID loop.")
+          )
         )
       )
     ),
@@ -1642,14 +1794,16 @@ trend29b_panel <- box(
       h2("What is the maximum HCV position when reheat coils are active?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Majority of reheat valves are throttled to typically less than 70%",
+        title = div(class="faultTitle",strong("Majority of reheat valves are throttled to typically less than 70%")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Implement HWLDPSP reset so that the maximum HCV position is around 90% open.")
+        div(class="questionStuff",
+          tags$ul(
+           tags$li("Implement HWLDPSP reset so that the maximum HCV position is around 90% open.")
+          )
         )
       )
     ),
@@ -1659,14 +1813,16 @@ trend29b_panel <- box(
       h2("Are the majority of the reheats active?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Majority of reheat valves are throttled to typically less than 70%",
+        title = div(class="faultTitle",strong("Majority of reheat valves are throttled to typically less than 70%")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Implement HWLDPSP reset so that the maximum HCV position is around 90% open.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Implement HWLDPSP reset so that the maximum HCV position is around 90% open.")
+          )
         )
       )
     ),
@@ -1675,14 +1831,16 @@ trend29b_panel <- box(
       h2("If there are nighttime setbacks, are both systems running at night?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Both systems run at night to meet nighttime setbacks",
+        title = div(class="faultTitle",strong("Both systems run at night to meet nighttime setbacks")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+          )
         )
       )
     )
@@ -1701,14 +1859,16 @@ trend30b_panel <- box(
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     ),
@@ -1718,14 +1878,16 @@ trend30b_panel <- box(
       h2("Does the RAT fail to meet its setpoint?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "RATSP is not met",
+        title = div(class="faultTitle",strong("RATSP is not met")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check controls sequence – see that DAT modulates to meet the RATSP, and that the HCV modulates to meet the DATSP. May need to tune the control loop.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check controls sequence – see that DAT modulates to meet the RATSP, and that the HCV modulates to meet the DATSP. May need to tune the control loop.")
+          )
         )
       )
     ),
@@ -1735,15 +1897,17 @@ trend30b_panel <- box(
       h2("Does RAT fail to change in order to meet the RATSP?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "If RAT<RATSP despite increasing DAT",
+        title = div(class="faultTitle",strong("If RAT<RATSP despite increasing DAT")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check for air infiltration in the zones."),
-          tags$li("HWST may be too low to meet the load. Increase HWSTSP or change HW reset settings")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check for air infiltration in the zones."),
+            tags$li("HWST may be too low to meet the load. Increase HWSTSP or change HW reset settings")
+          )
         )
       )
     ),
@@ -1752,15 +1916,17 @@ trend30b_panel <- box(
       h2("Is the supply fan on during unoccupied times?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Supply fan is on during unoccupied times",
+        title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
-          tags$li("Is the programmed schedule correct?")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Does your building use setbacks and/or early startups? Cycling to meet setbacks and starting before occupied times might be OK."),
+            tags$li("Is the programmed schedule correct?")
+          )
         )
       )
     ),
@@ -1769,15 +1935,17 @@ trend30b_panel <- box(
       h2("Are your zone temperatures uneven?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Zone temperatures are uneven – some too hot, some too cold",
+        title = div(class="faultTitle",strong("Zone temperatures are uneven – some too hot, some too cold")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check air balance."),
-          tags$li("Check for air infiltration in cold zones.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check air balance."),
+            tags$li("Check for air infiltration in cold zones.")
+          )
         )
       )
     ),
@@ -1786,14 +1954,16 @@ trend30b_panel <- box(
       h2("If there are nighttime setbacks, are both systems running at night?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Both systems run at night to meet nighttime setbacks",
+        title = div(class="faultTitle",strong("Both systems run at night to meet nighttime setbacks")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+          )
         )
       )
     )
@@ -1812,14 +1982,16 @@ trend31b_panel <- box(
       h2("Does the system fail to meet its DATSP?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Not meeting DATSP",
+        title = div(class="faultTitle",strong("Not meeting DATSP")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Does the HCV modulate to meet DATSP? If not, tune the control loop.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Does the HCV modulate to meet DATSP? If not, tune the control loop.")
+          )
         )
       )
     ),
@@ -1829,15 +2001,17 @@ trend31b_panel <- box(
       h2("Are your zone and return temperatures too hot or cold?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Zone temps too hot or too cold",
+        title = div(class="faultTitle",strong("Zone temps too hot or too cold")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If the control loop between DAT and DATSP is working, adjust the DATSP or HWSTSP until the zone temperature or return temperatures are in an appropriate range."),
-          tags$li("If valve positions (both for heating coils and for perimeter system) are all wide open or throttled, consider changing loop differential pressure set points for either or both hot water loops.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If the control loop between DAT and DATSP is working, adjust the DATSP or HWSTSP until the zone temperature or return temperatures are in an appropriate range."),
+            tags$li("If valve positions (both for heating coils and for perimeter system) are all wide open or throttled, consider changing loop differential pressure set points for either or both hot water loops.")
+          )
         )
       )
     ),
@@ -1846,14 +2020,16 @@ trend31b_panel <- box(
       h2("Is the supply fan on during unoccupied times?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Supply fan is on during unoccupied times",
+        title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+          )
         )
       )
     ),
@@ -1863,14 +2039,16 @@ trend31b_panel <- box(
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     )
@@ -1888,20 +2066,22 @@ trend32b_panel <- box(
              h2("Are your zone or return temperatures too hot or cold?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Zones too hot or too cold",
+               title = div(class="faultTitle",strong("Zones too hot or too cold")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("This system does not have many controls or set points available. Adjustments are typically manual for systems like these, and may include trial and error with the following settings:"),
-                 tags$ul(
-                   tags$li("HWSTSP"),
-                   tags$li("LDPSP (may not be any of these)"),
-                   tags$li("Schedules"),
-                   tags$li("Valve positions (hot water to perimeter and/or HCV)")
-                 )
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("This system does not have many controls or set points available. Adjustments are typically manual for systems like these, and may include trial and error with the following settings:"),
+                  tags$ul(
+                    tags$li("HWSTSP"),
+                    tags$li("LDPSP (may not be any of these)"),
+                    tags$li("Schedules"),
+                    tags$li("Valve positions (hot water to perimeter and/or HCV)")
+                  )
+                )
                )
              )
     ),
@@ -1910,14 +2090,16 @@ trend32b_panel <- box(
              h2("Is the supply fan on during unoccupied times?"),
              div(class="faultTitle",strong("Faults:")),
              boxPlus(
-               title = "Supply fan is on during unoccupied times",
+               title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
                collapsed = TRUE,
                collapsible = TRUE,
                closable = FALSE,
                solidHeader = TRUE,
                width = 12,
-               tags$ul(
-                 tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+               div(class="questionStuff",
+                tags$ul(
+                  tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+                )
                )
              )
     )
@@ -1936,20 +2118,22 @@ trend33b_panel <- box(
       h2("Do zone temperatures fail to meet their setpoints?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "ZTs not meeting their setpoints",
+        title = div(class="faultTitle",strong("ZTs not meeting their setpoints")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If ZTSP-P > ZTSP-A, the perimeter system controls meeting the ZTSP. In this case:"),
-          tags$li("Check that perimeter system valves serving the zones are operating properly."),
-          tags$li("Check that HWSTSP is sufficient to meet the load."),
-          tags$li("If ZTSP-P < ZTSP-A, the air system controls meeting the ZTSP. In this case:"),
-          tags$li("Check that the control loop between the DAT and ZTSP-A is tuned properly (if this loop exists)."),
-          tags$li("Check that the HCV valve (or burner) modulates to meet the ZTSP-A (If this loop exists)."),
-          tags$li("Check the HCV position; if fully open and zone temps too cold, increase LDPSP and/or HWSTSP (or HW reset settings).")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If ZTSP-P > ZTSP-A, the perimeter system controls meeting the ZTSP. In this case:"),
+            tags$li("Check that perimeter system valves serving the zones are operating properly."),
+            tags$li("Check that HWSTSP is sufficient to meet the load."),
+            tags$li("If ZTSP-P < ZTSP-A, the air system controls meeting the ZTSP. In this case:"),
+            tags$li("Check that the control loop between the DAT and ZTSP-A is tuned properly (if this loop exists)."),
+            tags$li("Check that the HCV valve (or burner) modulates to meet the ZTSP-A (If this loop exists)."),
+            tags$li("Check the HCV position; if fully open and zone temps too cold, increase LDPSP and/or HWSTSP (or HW reset settings).")
+          )
         )
       )
     ),
@@ -1959,14 +2143,16 @@ trend33b_panel <- box(
       h2("Is the supply fan on during unoccupied times?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Supply fan is on during unoccupied times",
+        title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+          )
         )
       )
     ),
@@ -1976,14 +2162,16 @@ trend33b_panel <- box(
       h2("Are there frequent heating coil valve fluctuations or burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     ),
@@ -1992,14 +2180,16 @@ trend33b_panel <- box(
       h2("Are your ZTSP-P and ZTSP-A within one or two degrees of each other?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "ZTSP-P and ZTSP-A are within 1-2°F of each other",
+        title = div(class="faultTitle",strong("ZTSP-P and ZTSP-A are within 1-2°F of each other")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Select the system to dominate heating and set that ZTSP significantly higher (at least 5°F) across all zones served. Be sure this is true for all zones, otherwise the second system will remain on to serve the zone (or zones) where the rule is not followed.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Select the system to dominate heating and set that ZTSP significantly higher (at least 5°F) across all zones served. Be sure this is true for all zones, otherwise the second system will remain on to serve the zone (or zones) where the rule is not followed.")
+          )
         )
       )
     ),
@@ -2014,8 +2204,10 @@ trend33b_panel <- box(
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+          )
         )
       )
     )
@@ -2034,20 +2226,22 @@ trend34b_panel <- box(
       h2("Do zone temperatures fail to meet their setpoints? IF YES, ask Qs. 1a–c, too!"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Zones not meeting their set points",
+        title = div(class="faultTitle",strong("Zones not meeting their set points")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If ZTSP-P > ZTSP-A, the perimeter system controls meeting the ZTSP. In this case:"),
-          tags$li("Check that perimeter system valves serving the zones are operating properly."),
-          tags$li("Check that HWSTSP is sufficient to meet the load."),
-          tags$li("If ZTSP-P < ZTSP-A, the air system controls meeting the ZTSP. In this case: "),
-          tags$li("Check that the zone thermostats are controlling the VAVs properly. "),
-          tags$li("Check that the HCV valve (or burner) modulates to meet the DATSP."),
-          tags$li("Check the HCV position; if fully open and zone temps too cold, increase LDPSP and/or HWSTSP (or HW reset settings).")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If ZTSP-P > ZTSP-A, the perimeter system controls meeting the ZTSP. In this case:"),
+            tags$li("Check that perimeter system valves serving the zones are operating properly."),
+            tags$li("Check that HWSTSP is sufficient to meet the load."),
+            tags$li("If ZTSP-P < ZTSP-A, the air system controls meeting the ZTSP. In this case: "),
+            tags$li("Check that the zone thermostats are controlling the VAVs properly. "),
+            tags$li("Check that the HCV valve (or burner) modulates to meet the DATSP."),
+            tags$li("Check the HCV position; if fully open and zone temps too cold, increase LDPSP and/or HWSTSP (or HW reset settings).")
+          )
         )
       )
     ),
@@ -2057,14 +2251,16 @@ trend34b_panel <- box(
       h2("Is DAT > ZT when ZTSP-P (or TRVSP) > ZTSP-A?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "DAT>ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A",
+        title = div(class="faultTitle",strong("DAT>ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("This is not a recommended setup. Potential overheating in the zones, suggest reducing VAV Damper Position to min positions and lower DATSP.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("This is not a recommended setup. Potential overheating in the zones, suggest reducing VAV Damper Position to min positions and lower DATSP.")
+          )
         )
       )
     ),
@@ -2074,14 +2270,16 @@ trend34b_panel <- box(
       h2("Is DAT < ZT when ZTSP-P (or TRVSP) < ZTSP-A? "),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "DAT<ZTSP-A when ZTSP-P (or TRVSP) < ZTSP-A",
+        title = div(class="faultTitle",strong("DAT<ZTSP-A when ZTSP-P (or TRVSP) < ZTSP-A")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("This is not a recommended setup. This will cause underheating in the zones. Increase DATSP or ZTSP-P. ")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("This is not a recommended setup. This will cause underheating in the zones. Increase DATSP or ZTSP-P. ")
+          )
         )
       )
     ),
@@ -2090,14 +2288,16 @@ trend34b_panel <- box(
       h2("When ZTSP-P (or TRVSP) > ZTSP-A and DAT < ZT, does the VAV damper fail to modulate to minimum position?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "VAV dampers are not at minimum position at DAT < ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A",
+        title = div(class="faultTitle",strong("VAV dampers are not at minimum position at DAT < ZTSP-A when ZTSP-P (or TRVSP)>ZTSP-A")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("In this scenario, you want the VAV to go to minimum position. The damper should close when the zone temperature exceeds ZTSP-A. But the VAV is not at minimum position, and simultaneous heating and cooling is occurring.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("In this scenario, you want the VAV to go to minimum position. The damper should close when the zone temperature exceeds ZTSP-A. But the VAV is not at minimum position, and simultaneous heating and cooling is occurring.")
+          )
         )
       )
     ),
@@ -2106,14 +2306,16 @@ trend34b_panel <- box(
       h2("Is the supply fan on during unoccupied times?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Supply fan is on during unoccupied times",
+        title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+          )
         )
       )
     ),
@@ -2122,14 +2324,16 @@ trend34b_panel <- box(
       h2("Are there frequent heating coil valve fluctuations or burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     ),
@@ -2138,27 +2342,31 @@ trend34b_panel <- box(
       h2("Are the VAV damper positions below 50% or above 75%?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Most of the VAV damper positions are below 50% or above 75%",
+        title = div(class="faultTitle",strong("Most of the VAV damper positions are below 50% or above 75%")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Duct static pressure is set too high or too low."),
-          tags$li("Control loop for VAV damper is not working."),
-          tags$li("DATSP is too high or too low.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Duct static pressure is set too high or too low."),
+            tags$li("Control loop for VAV damper is not working."),
+            tags$li("DATSP is too high or too low.")
+          )
         )
       ),
       boxPlus(
-        title = "VAV Damper Positions change too frequently",
+        title = div(class="faultTitle",strong("VAV Damper Positions change too frequently")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check controls or PID loop. ")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check controls or PID loop. ")
+          )
         )
       )
     ),
@@ -2168,14 +2376,16 @@ trend34b_panel <- box(
       h2("Are your ZTSP-P and ZTSP-A within one or two degrees of each other?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "ZTSP-P and ZTSP-A are within 1-2°F of each other",
+        title = div(class="faultTitle",strong("ZTSP-P and ZTSP-A are within 1-2°F of each other")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Select the system to dominate heating and set that ZTSP significantly higher (at least 5°F) across all zones served. Be sure this is true for all zones, otherwise the second system will remain on to serve the zone (or zones) where the rule is not followed.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Select the system to dominate heating and set that ZTSP significantly higher (at least 5°F) across all zones served. Be sure this is true for all zones, otherwise the second system will remain on to serve the zone (or zones) where the rule is not followed.")
+          )
         )
       )
     ),
@@ -2184,14 +2394,16 @@ trend34b_panel <- box(
       h2("If there are nighttime setbacks, are both systems running at night?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Both systems run at night to meet nighttime setbacks",
+        title = div(class="faultTitle",strong("Both systems run at night to meet nighttime setbacks")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Can the nighttime setbacks be met solely with the perimeter system? This may require changing your HWST set point or HW reset settings.")
+          )
         )
       )
     )
@@ -2210,26 +2422,30 @@ trend36b_panel <- box(
       h2("Is DAT having trouble meeting the RATSP?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "RATSP is not met",
+        title = div(class="faultTitle",strong("RATSP is not met")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check controls sequence – see that DAT modulates to meet the RATSP, and that the HCV modulates to meet the DATSP. May need to tune the control loop.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check controls sequence – see that DAT modulates to meet the RATSP, and that the HCV modulates to meet the DATSP. May need to tune the control loop.")
+          )
         )
       ),
       boxPlus(
-        title = "RAT<RATSP despite increasing DAT",
+        title = div(class="faultTitle",strong("RAT<RATSP despite increasing DAT")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check for air infiltration in the zones."),
-          tags$li("HWST may be too low to meet the load. Increase HWSTSP or change HW reset settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check for air infiltration in the zones."),
+            tags$li("HWST may be too low to meet the load. Increase HWSTSP or change HW reset settings.")
+          )
         )
       )
     ),
@@ -2239,15 +2455,17 @@ trend36b_panel <- box(
       h2("Is the system having trouble meeting your ZTSP-P? "),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Zone temperatures are uneven – some too hot, some too cold",
+        title = div(class="faultTitle",strong("Zone temperatures are uneven – some too hot, some too cold")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check air balance."),
-          tags$li("Check for air infiltration in cold zones.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check air balance."),
+            tags$li("Check for air infiltration in cold zones.")
+          )
         )
       )
     ),
@@ -2256,14 +2474,16 @@ trend36b_panel <- box(
       h2("Is the supply fan on during unoccupied times?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Supply fan is on during unoccupied times",
+        title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+          )
         )
       )
     ),
@@ -2273,14 +2493,16 @@ trend36b_panel <- box(
       h2("Is the ZTSP-P < RATSP?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "ZTSP-P < RATSP",
+        title = div(class="faultTitle",strong("ZTSP-P < RATSP")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("This configuration is not recommended. It’s better to meet your heating requirements with your perimeter system. Change the settings.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("This configuration is not recommended. It’s better to meet your heating requirements with your perimeter system. Change the settings.")
+          )
         )
       )
     )
@@ -2299,15 +2521,17 @@ trend37b_panel <- box(
       h2("Are you having trouble meeting  ZTSP-P?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Zone temps too hot or too cold",
+        title = div(class="faultTitle",strong("Zone temps too hot or too cold")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Check that perimeter system valves serving the zones are operating properly."),
-          tags$li("Check that HWSTSP is sufficient to meet the load.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Check that perimeter system valves serving the zones are operating properly."),
+            tags$li("Check that HWSTSP is sufficient to meet the load.")
+          )
         )
       )
     ),
@@ -2317,14 +2541,16 @@ trend37b_panel <- box(
       h2("Are you having trouble meeting DATSP?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Not meeting DATSP",
+        title = div(class="faultTitle",strong("Not meeting DATSP")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("Does the HCV modulate to meet DATSP? If not, tune the control loop.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("Does the HCV modulate to meet DATSP? If not, tune the control loop.")
+          )
         )
       )
     ),
@@ -2333,14 +2559,16 @@ trend37b_panel <- box(
       h2("Is the supply fan on during unoccupied times?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Supply fan is on during unoccupied times",
+        title = div(class="faultTitle",strong("Supply fan is on during unoccupied times")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("If air systems can be turned off at night, schedule it to do so. Remember freeze protection!")
+          )
         )
       )
     ),
@@ -2350,14 +2578,16 @@ trend37b_panel <- box(
       h2("Are there frequent heating coil valve fluctuations or is there burner cycling?"),
       div(class="faultTitle",strong("Faults:")),
       boxPlus(
-        title = "Heating coil valve fluctuations or burner(s) is/are short-cycling",
+        title = div(class="faultTitle",strong("Heating coil valve fluctuations or burner(s) is/are short-cycling")),
         collapsed = TRUE,
         collapsible = TRUE,
         closable = FALSE,
         solidHeader = TRUE,
         width = 12,
-        tags$ul(
-          tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+        div(class="questionStuff",
+          tags$ul(
+            tags$li("The interaction of the perimeter and air systems may be causing the instability. Check controls and/or PID loop for the AHU DAT and that for the perimeter system HWST.")
+          )
         )
       )
     )
