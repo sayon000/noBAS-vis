@@ -14,19 +14,19 @@ server <- function(input, output, session) {
   OADCOLS <- c("OAD","Oad","oad","Position","position")
   CO2COLS <- c("CO2","Co2","ppm","PPM")
   HCVCOLS <- c("HCV","hcv","Hcv","Valve")
-  HWSTCOLS <- c("HWST","hwst","Hwst","Hot Water Supply Temperature")
+  HWSTCOLS <- c("HWST","hwst","Hwst","Hot Water Supply Temperature","K-Type")
   HWSTSPCOLS <- c("HWSTSP","hwstsp","Hwstsp","Hot Water Supply Temperature Setpoint")
-  HWRTCOLS <- c("HWRT","hwrt","Hwrt","Hot Water Return Temperature")
+  HWRTCOLS <- c("HWRT","hwrt","Hwrt","Hot Water Return Temperature","K-Type")
   HWPCOLS <- c("HWP","hwp","Hwp","Hot Water Pump","Motor","MOTOR","motor")
   HWPSCOLS <- c("HWPS","hwps","Hwps","status","Status","Motor","MOTOR","motor")
   COMPRESSORCOLS <- c("COMPRESSOR","compressor","Compressor","Status")
   BURNERCOLS <- c("BURNER","burner","Burner","Status","Motor","Fan")
   BOILERCOLS <- c("BOILER","boiler","Boiler","Status","Motor","Fan")
-  CHWSTCOLS <- c("CHWST","chwst","Chwst","Temp","Chilled Water Supply")
+  CHWSTCOLS <- c("CHWST","chwst","Chwst","Temp","Chilled Water Supply","K-Type")
   CHWSTSPCOLS <- c("CHWSTSP","chwstsp","Chwstsp","Set Point","Chilled Water Supply Set Point")
-  CHWRTCOLS <- c("CHWRT","chwrt","Chwrt","Temp","Chilled Water Return")
+  CHWRTCOLS <- c("CHWRT","chwrt","Chwrt","Temp","Chilled Water Return","K-Type")
   CHWPCOLS <- c("CHWP","chwp","Chwp","Speed","SPEED")
-  CWPSCOLS <- c("CWPS","cwps","Cwps","Motor","Fan")
+  CWPSCOLS <- c("CWPS","cwps","Cwps","Motor","Fan","Speed","SPEED")
   BSCOLS <- c("BOILER","boiler","Boiler","Status","Boiler Status")
   CTFSCOLS <- c("CTFS","ctfs","Ctfs","Cooling Tower Fan Status","Motor", "Fan")
   CRTCOLS <- c("CRT","crt","Crt","Condensate Return Temperature","Temp")
@@ -976,7 +976,7 @@ server <- function(input, output, session) {
   date_range_t8b <- callModule(dateRange,"placeholder-id",data=all_data_t8b)
   occupancyRects_t8b <- callModule(occupancy,"occ8b",date_range_t8b)
   
-  callModule(plotting,"trend8b",data=all_data_t8b,occupancyRects=occupancyRects_t8b,y2label='Status')
+  callModule(plotting,"trend8b",data=all_data_t8b,occupancyRects=occupancyRects_t8b,y1label='Status')
   
   ####end of trend 8b#####
   
@@ -1028,7 +1028,7 @@ server <- function(input, output, session) {
                                  color=reactive({"blue"}),
                                  axis=reactive({'y1'}))
   
-  chwp_trend_t12 <- callModule(csvFile,"CWPS12",
+  cwps_trend_t12 <- callModule(csvFile,"CWPS12",
                                  targetColumns=reactive({CWPSCOLS}),
                                  stateChange=reactive({TRUE}),
                                  periodicity15=reactive({FALSE}),
@@ -1037,7 +1037,7 @@ server <- function(input, output, session) {
                                  axis=reactive({'y2'}))
   
   all_data_t12 <- reactive({
-    list(chwst_trend_t12(),chwp_trend_t12())
+    list(chwst_trend_t12(),chwps_trend_t12())
   })
   
   date_range_t12 <- callModule(dateRange,"placeholder-id",data=all_data_t12)

@@ -563,7 +563,7 @@ body <- dashboardBody(
                       h3("Parameters to trend"),
                       tags$ul(
                         tags$li(csvFileInput(id = "CHWST12", label = "Chilled Water Supply Temperature")),
-                        tags$li(csvFileInput(id = "CHWP12", label = "Chilled Water Pump Speed")),
+                        tags$li(csvFileInput(id = "CWPS12", label = "Chilled Water Pump Speed")),
                         tags$li(occupancyInput(id="occ12","https://cunybpl.shinyapps.io/nobas-occupancy/"))
                       ),
                       
