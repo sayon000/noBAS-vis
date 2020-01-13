@@ -5,8 +5,9 @@ account: cunybpl
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1432298
-bundleId: 2726217
+bundleId: 2726399
 url: https://cunybpl.shinyapps.io/nobas-trends/
-when: 1578949344.31804
+when: 1578954649.88026
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: graph.html|graph.png|OADFAKE.csv

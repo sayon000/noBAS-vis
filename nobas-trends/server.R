@@ -1138,7 +1138,7 @@ server <- function(input, output, session) {
   })
   
   date_range_t15 <- callModule(dateRange,"placeholder-id",data=all_data_t15)
-  occupancyRects_t15 <- callModule(occupancy,"occ15",date_range_t1)
+  occupancyRects_t15 <- callModule(occupancy,"occ15",date_range_t15)
   
   callModule(plotting,"trend15",data=all_data_t15,occupancyRects=occupancyRects_t15,y1label='Status')
   
