@@ -647,6 +647,26 @@ server <- function(input, output, session) {
   #####end of button actions####
   
   ###start of trend 1####
+  fan_trend_t1 <- callModule(csvFile,"fant1",
+                             targetColumns=reactive({FANCOLS}),
+                             stateChange=reactive({TRUE}),
+                             periodicity15=reactive({TRUE}),
+                             name=reactive({"Fan"}),
+                             color=reactive({"black"}),
+                             axis=reactive({'y1'}))
+  
+  
+  
+  all_data_t1 <- reactive({
+    list(fan_trend_t1())
+  })
+  
+  date_range_t1 <- callModule(dateRange,"placeholder-id",data=all_data_t1)
+  occupancyRects_t1 <- callModule(occupancy,"occ1",date_range_t1)
+  
+  callModule(plotting,"trend1",data=all_data_t1,occupancyRects=occupancyRects_t1,y1label='Fan Status')
+  #end of trend 1
+  
   fan_trend_t2a <- callModule(csvFile,"fant2a",
                            targetColumns=reactive({FANCOLS}),
                            stateChange=reactive({TRUE}),
