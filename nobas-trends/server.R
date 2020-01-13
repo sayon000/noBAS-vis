@@ -17,8 +17,8 @@ server <- function(input, output, session) {
   HWSTCOLS <- c("HWST","hwst","Hwst","Hot Water Supply Temperature")
   HWSTSPCOLS <- c("HWSTSP","hwstsp","Hwstsp","Hot Water Supply Temperature Setpoint")
   HWRTCOLS <- c("HWRT","hwrt","Hwrt","Hot Water Return Temperature")
-  HWPCOLS <- c("HWP","hwp","Hwp","Hot Water Pump")
-  HWPSCOLS <- c("HWPS","hwps","Hwps","status","Status")
+  HWPCOLS <- c("HWP","hwp","Hwp","Hot Water Pump","Motor","MOTOR","motor")
+  HWPSCOLS <- c("HWPS","hwps","Hwps","status","Status","Motor","MOTOR","motor")
   COMPRESSORCOLS <- c("COMPRESSOR","compressor","Compressor","Status")
   BURNERCOLS <- c("BURNER","burner","Burner","Status","Motor","Fan")
   BOILERCOLS <- c("BOILER","boiler","Boiler","Status","Motor","Fan")
@@ -927,7 +927,7 @@ server <- function(input, output, session) {
                              targetColumns=reactive({COMPRESSORCOLS}),
                              stateChange=reactive({TRUE}),
                              periodicity15=reactive({FALSE}),
-                             name=reactive({"Compressor 1"}),
+                             name=reactive({"Comp 1"}),
                              color=reactive({"gray"}),
                              axis=reactive({'y1'}))
   
@@ -935,7 +935,7 @@ server <- function(input, output, session) {
                              targetColumns=reactive({COMPRESSORCOLS}),
                              stateChange=reactive({TRUE}),
                              periodicity15=reactive({FALSE}),
-                             name=reactive({"Compressor 2"}),
+                             name=reactive({"Comp 2"}),
                              color=reactive({"brown"}),
                              axis=reactive({'y1'}))
   
