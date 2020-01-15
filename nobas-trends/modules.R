@@ -601,6 +601,7 @@ plotting <-
         XTickSize = input$xTickSize,
         YTickSize = input$yTickSize
       )
+      
       plt <- config(plt,displayModeBar = TRUE)
       
       return(plt)
